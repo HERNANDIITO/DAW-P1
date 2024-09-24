@@ -1,7 +1,78 @@
 /*
     Archivo: common.css
     En este archivo se definen los estilos que se usaran a lo largo de toda la web
-    Creado por: Juan Nadie el 20/09/2024
+    Creado por: Pablo Hernández el 24/09/2024
     Historial de cambios:
     20/09/2024 - Creado
+    24/09/2024 - Añadidas las clases del navbar y el footer
 */
+
+#navBar {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    justify-content: space-around;
+    position: sticky;
+    top: 0;
+
+    .links, .profile {
+        display: flex;
+        flex-flow: row;
+        width: fit-content;
+        justify-content: space-around;
+        gap: 2rem;
+
+        .navLink {
+            color: black;
+            text-decoration: none;
+        }
+
+    }
+}
+
+#footer {
+
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    gap: 1rem;
+
+    .logo {
+        width: 128px;
+        height: auto;
+    }
+
+    .index-column {
+
+        strong {
+            font-size: xx-large;
+        }
+
+        ul {
+            display: flex;
+            flex-flow: column;
+            gap: 10px;
+            
+            li {
+                text-decoration: none;
+                list-style: none;
+            }
+        }
+    }
+}
+
+#main-content {
+    flex-grow: 1;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    margin: 0;
+    flex-grow: 1;
+}
+
+html {
+    height: 100%;
+}
