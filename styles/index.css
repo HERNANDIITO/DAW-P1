@@ -1,0 +1,12 @@
+/*
+    Archivo: index.css
+    En este archivo se definen los estilos que se usaran a en index.html
+    Historial de cambios:
+    25/09/2024 - Creado
+*/
+
+.houses {
+    display: flex;
+    flex-flow: row;
+    gap: 1rem;
+}

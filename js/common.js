@@ -55,3 +55,12 @@ function mustLogIn() {
         location.href = "index.html";
     }
 }
+
+function fillHouses() {
+    xhr = new XMLHttpRequest();
+    xhr.open('GET', "../common/card.html", false);
+    xhr.onload = function() {
+        document.querySelector(".houses").innerHTML = xhr.response;
+    };
+    xhr.send();
+}
