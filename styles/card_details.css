@@ -1,0 +1,38 @@
+/*
+    Archivo: card_details.css
+    En este archivo se definen los estilos que se usaran a en card_details.html
+    Historial de cambios:
+    26/09/2024 - Creado
+*/
+
+#main-content{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    gap: 10px;
+
+    >*{
+        width: fit-content;
+        margin: 0 auto;
+    }
+}
+
+.card-photo-big {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    margin-bottom: 5px;
+
+    img {
+        height: 360px;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.desc{
+    max-width: 70%;
+    text-align: justify;
+}

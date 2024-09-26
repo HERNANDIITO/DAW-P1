@@ -1,0 +1,79 @@
+<!--
+    Archivo: card_details.html
+    En este archivo se mostraran los detalles del anuncio que quiera ver el usuario
+    Creado por: David González Moreno el 26/09/2024
+    Historial de cambios:
+    26/09/2024 - Creado
+    26/09/2024 - Layout desarrollado
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <script src="../js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles/common.css">
+    <link rel="stylesheet" type="text/css" href="../styles/card_details.css">
+    <link rel="stylesheet" type="text/css" href="../styles/profile.css">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <main id="main-content">
+        <section class="card-photo-big">
+            <img src="../assets/img/houses/house1.png">
+        </section>
+
+        <h1>Piso en Madrid</h1>
+
+        <h2>Características</h2>
+
+        <section class="info-wrapper">
+            <section class="info">
+                <p><i class="fa-solid fa-location-dot"></i>Madrid, c/Alfonso XI</p>
+                <p><i class="fa-solid fa-tag"></i>800.000€</p>
+                <a href="profile.html">
+                    <p><i class="fa-solid fa-user"></i>Paco Moreno</p>
+                </a>
+                <p><i class="fa-solid fa-calendar-days"></i>Hombre</p>
+            </section>
+
+            <section class="info">
+                <p><i class="fa-solid fa-expand"></i> 90m²</p>
+                <p><i class="fa-solid fa-toilet"></i>2</p>
+                <p><i class="fa-solid fa-bed"></i>4</p>
+                <p><i class="fa-solid fa-suitcase"></i>venta</p>
+            </section>
+        </section>
+
+            <section>
+                <button>Mas información</button>
+                <a href="sendMessage.html">
+                    <button type="button">Solicitar cita</button>
+                </a>   
+                <a href="sendMessage.html">
+                    <button type="button">Hacer oferta</button>
+                </a>               
+            </section>
+
+        <h2>Descripción</h2>
+
+        <p class="desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam repudiandae soluta harum
+            perspiciatis corrupti, reiciendis illo doloremque ut, omnis earum distinctio porro magnam maiores
+            exercitationem repellat ab. Asperiores iure reiciendis ducimus voluptates a pariatur sapiente veniam
+            voluptate, eum praesentium quibusdam animi cupiditate nemo ipsam mollitia inventore vero architecto ipsum,
+            odio quisquam nobis?
+        </p>
+
+        <section class="houses"></section>
+    </main>
+    <script>
+        getHeader();
+        getFooter();
+    </script>
+</body>
+
+</html>
