@@ -1,0 +1,75 @@
+<!--
+    Archivo: navbar.html
+    En este archivo se define el formulario de busqueda avanzada
+    Creado por: Pablo Hernández García el 26/09/2024
+    Historial de cambios:
+    26/09/2024 - Creado
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda avanzada</title>
+    <script src="../js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles/common.css">
+    <link rel="stylesheet" type="text/css" href="../styles/card.css">
+    <link rel="stylesheet" type="text/css" href="../styles/search.css">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main id="main-content">
+        <aside class="filters">
+            <form action="">
+                <section>
+                    <label for="ad-type">Tipo de anuncio</label>
+                    <select name="ad-type" id="ad-type">
+                        <option value="">Todos</option>
+                        <option value="venta">Venta</option>
+                        <option value="alquiler">Alquiler</option>
+                    </select>
+                </section>
+                <section>
+                    <label for="ad-type">Tipo de obra</label>
+                    <select name="ad-type" id="ad-type" aria-placeholder="aa">
+                        <option value="">Cualquiera</option>
+                        <option value="nueva">Obra nueva</option>
+                        <option value="vivienda">Vivienda</option>
+                        <option value="oficina">Oficina</option>
+                        <option value="local">Local</option>
+                        <option value="garaje">Garaje</option>
+                    </select>
+                </section>
+                <section>
+                    <label for="city">Ciudad</label>
+                    <input type="text" name="city" id="city">
+                    <label for="country">País</label>
+                    <input type="text" name="country" id="country">
+                </section>
+                <section>
+                    <label for="min-price">Precio mínimo</label>
+                    <input type="number" name="min-price" id="min-price">
+                    <label for="max-price">Precio máximo</label>
+                    <input type="number" name="max-price" id="max-price">
+                </section>
+                <section>
+                    <label for="min-date">Fecha de publicación mínima</label>
+                    <input type="date" name="min-date" id="min-date">
+                    <label for="max-date">Fecha de publicación máxima</label>
+                    <input type="date" name="max-date" id="max-date">
+                </section>
+                <button type="submit">Buscar</button>
+            </form>
+        </aside>
+        <section class="houses">
+
+        </section>
+    </main>
+    <script>
+       getHeader();
+       getFooter();
+       fillHouses();
+    </script>
+</body>
+</html>

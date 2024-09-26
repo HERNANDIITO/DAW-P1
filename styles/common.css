@@ -5,6 +5,7 @@
     Historial de cambios:
     20/09/2024 - Creado
     24/09/2024 - Añadidas las clases del navbar y el footer
+    26/09/2024 - Añadidas estilos para .houses
 */
 
 /* General */
@@ -35,6 +36,7 @@ p, h1, h2, h3, h4, h5, h6, strong {
     top: 0;
     padding: 1rem 0;
     background-color: white;
+    z-index: 100;
 
     .links, .profile {
         display: flex;
@@ -56,11 +58,11 @@ p, h1, h2, h3, h4, h5, h6, strong {
 }
 
 #footer {
-
     display: flex;
     flex-flow: row;
     justify-content: center;
     gap: 1rem;
+    z-index: 100;
 
     .logo {
         width: 128px;
@@ -89,5 +91,65 @@ p, h1, h2, h3, h4, h5, h6, strong {
 #main-content {
     flex-grow: 1;
     min-height: 100vh;
-    height: 100%;
+    min-height: calc(100vh - 128px - 50px - 75px);
+    padding: 25px 0 50px 0;
+}
+
+/* Contenidos y contenedores */
+
+.houses {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    width: fit-content;
+
+}
+
+.card {
+    height: 400px;
+    width: 300px;
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    gap: 5px;
+
+    .mainImg {
+        height: 70%;
+        width: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    .title {
+        font-size: xx-large;
+    }
+
+    .author {
+        display: flex;
+        flex-flow: row;
+        gap: 10px;
+
+        img {
+            width: 64px;
+            height: 64px;
+            background: blue;
+        }
+
+        strong {
+            margin: auto 0;
+            font-size: x-large;
+        }
+    }
+
+    .info {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-around;
+        gap: 15px;
+        font-size: x-large;
+        margin: 20px;
+    }
 }

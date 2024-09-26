@@ -1,0 +1,43 @@
+<!--
+    Archivo: login.html
+    En este archivo se define el formulario de busqueda avanzada
+    Creado por: Pablo Hernández García el 26/09/2024
+    Historial de cambios:
+    26/09/2024 - Creado
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión</title>
+    <script src="../js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles/common.css">
+    <link rel="stylesheet" type="text/css" href="../styles/card.css">
+    <link rel="stylesheet" type="text/css" href="../styles/login.css">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main id="main-content">
+        <h1>Inicio de sesión</h1>
+        <form action="">
+            <section>
+                <label for="user">Nombre de usuario</label>
+                <input type="text" name="user" placeholder="nombreUsuario" id="">
+            </section>
+            <section>
+                <label for="pass">Contraseña</label>
+                <input type="text" name="pass" placeholder="contrasenyaMuySegura" id="">
+            </section>
+            <button type="submit">Entrar</button>
+        </form>
+        <a href="/public/register.html">¿Todavía no tienes cuenta?</a>
+
+    </main>
+    <script>
+       getHeader();
+       getFooter();
+    </script>
+</body>
+</html>

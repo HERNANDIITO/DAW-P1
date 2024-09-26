@@ -3,10 +3,24 @@
     En este archivo se definen los estilos que se usaran a en index.html
     Historial de cambios:
     25/09/2024 - Creado
+    26/09/2024 - Se le ha dado estilo de .sreach y el h1
 */
 
 .houses {
+    margin: 0 auto;
+}
+
+.search {
+    width: fit-content;
+    margin: 20px auto;
     display: flex;
-    flex-flow: row;
-    gap: 1rem;
+    flex-flow: column;
+
+    label {
+        text-align: center;
+    }
+}
+
+h1 {
+    text-align: center;
 }
