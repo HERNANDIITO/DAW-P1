@@ -12,13 +12,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Búsqueda avanzada</title>
-    <script src="../js/common.js"></script>
-    <link rel="stylesheet" type="text/css" href="../styles/common.css">
-    <link rel="stylesheet" type="text/css" href="../styles/card.css">
-    <link rel="stylesheet" type="text/css" href="../styles/search.css">
-    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <header>
+        <section class="links">
+            <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
+            <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
+        </section>
+        <section class="profile">
+            <a class="navLink" href="/public/login.html"> <i class="fa-solid fa-user"></i> Iniciar sesión </a>
+            <a class="navLink" href="/public/register.html"> <i class="fa-solid fa-right-to-bracket"></i> Registrarse </a>
+        </section>
+    </header>
     <main id="main-content">
         <aside class="filters">
             <form action="">
@@ -63,13 +68,50 @@
             </form>
         </aside>
         <section class="houses">
+            <a href="../restricted/card_details.html"> 
+                <section class="card">
+                    <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
+                    <h1 class="title">Piso en Madrid</h1>
 
+                    <section class="info">
+                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
+                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
+                    </section>
+                </section>
+            </a>
+            <a href="../restricted/card_details.html"> 
+                <section class="card">
+                    <img class="mainImg" src="../assets/img/houses/house2.png" alt="">
+                    <h1 class="title">Piso en Madrid</h1>
+
+                    <section class="info">
+                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
+                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
+                    </section>
+                </section>
+            </a>
+            <a href="../restricted/card_details.html"> 
+                <section class="card">
+                    <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
+                    <h1 class="title">Piso en Madrid</h1>
+
+                    <section class="info">
+                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
+                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
+                    </section>
+                </section>
+            </a>               
         </section>
     </main>
-    <script>
-       getHeader();
-       getFooter();
-       fillHouses();
-    </script>
+    <footer id="footer">
+        <img src="../assets/img/logo.png" class="logo">
+        <section class="index-column">
+            <strong>Contacto</strong>
+            <ul>
+                <li>contacto@gmail.com</li>
+                <li>644 78 58 95</li>
+            </ul>
+        </section>
+    </footer>
 </body>
 </html>

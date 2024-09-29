@@ -1,10 +1,11 @@
 <!--
-    Archivo: profile.html
-    En este archivo se mostrara el perfil de un usuario diferente del usuario
+    Archivo: index.html
+    En este archivo se define la página principal del sitio web
     Creado por: Pablo Hernández García el 20/09/2024
     Historial de cambios:
     20/09/2024 - Creado
-    26/09/2024 - Layout desarrollado
+    24/09/2024 - Añadido navbar y footer mediante peticiones
+    26/09/2024 - Añadido titulo y barra de busqueda
 -->
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>FOTOCASA 2</title>
 </head>
 <body>
     <header>
@@ -21,26 +22,15 @@
             <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
         </section>
         <section class="profile">
-            <a class="navLink" href="/public/login.html"> <i class="fa-solid fa-user"></i> Iniciar sesión </a>
-            <a class="navLink" href="/public/register.html"> <i class="fa-solid fa-right-to-bracket"></i> Registrarse </a>
+            <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-right-to-bracket"></i> Mi perfil </a>
         </section>
     </header>
     <main id="main-content">
-        <section class="pfp">
-            <img src="../assets/img/logo.png" class="logo">
-            <h1>Paco Moreno</h1>
+        <h1>FOTOCASA 2</h1>
+        <section class="search">
+            <label for="search">Búsqueda rápida</label>
+            <input name="search" type="text">
         </section>
-        <section class="info-wrapper">
-            <section class="info">
-                <p><i class="fa-solid fa-at"></i>paco@moreno.com</p>
-                <p><i class="fa-solid fa-user"></i>Hombre</p>
-            </section>
-            <section class="info">
-                <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
-                <p><i class="fa-solid fa-calendar-days"></i>paco@moreno.com</p>
-            </section>
-        </section>
-        <h1>Anuncios</h1>
         <section class="houses">
             <a href="../restricted/card_details.html"> 
                 <section class="card">
@@ -66,6 +56,7 @@
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
+
                     <section class="info">
                         <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
                         <p><i class="fa-solid fa-tag"></i> 200.000€</p>
@@ -74,15 +65,5 @@
             </a>               
         </section>
     </main>
-    <footer id="footer">
-        <img src="../assets/img/logo.png" class="logo">
-        <section class="index-column">
-            <strong>Contacto</strong>
-            <ul>
-                <li>contacto@gmail.com</li>
-                <li>644 78 58 95</li>
-            </ul>
-        </section>
-    </footer>
 </body>
 </html>
