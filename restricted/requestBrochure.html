@@ -62,7 +62,7 @@
                 <td>0.5€ por foto</td>
             </tr>
             <tr>
-                <td>Resolución &lt; de 300dpi</td>
+                <td>Resolución &lt;= de 300dpi</td>
                 <td>0€ por foto</td>
             </tr>
             <tr>
@@ -72,26 +72,114 @@
         </table>
 
         <h2>fomulario solicitud</h2>
-        <p>rellena el sigueitne blablalba</p>
-        <p>los campos marcados con * son obligatorios</p>
+        <p>rellena el siguiente formulario aportando todos los detalles para confeccionar tu folleto publicitario   </p>
+        <p>los campos marcados con un asterisco (*) son obligatorios</p>
 
         <form action="Solicitar-album.html" method="get">
-        <p>
-            <label for="titulo">Nombre</label><input type="text" name="titulo" id="titulo">
-        </p>
-
-        <p>
-            <label for="titulo">Tituo del album</label><input type="text" name="titulo" id="titulo">
-        </p>
-
-        <p>
-            <label for="titulo">Texto adicional</label><textarea type="text" name="titulo" id="titulo"></textarea>
-        </p>
-        <p>
-            sexo: 
-            <input type="radio" name="sexo" value="1">Mujer
-            <input type="radio" name="sexo" value="2">Hombre
-        </p>
+            <!-- Nombre -->
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" maxlength="200" required>
+            <br><br>
+    
+            <!-- Correo electrónico -->
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" maxlength="200" required>
+            <br><br>
+    
+            <!-- Texto adicional -->
+            <label for="textoAdicional">Texto adicional</label>
+            <textarea id="textoAdicional" name="textoAdicional" maxlength="4000" rows="6"></textarea>
+            <br><br>
+    
+            <!-- Dirección -->
+            <fieldset>
+                <legend>Dirección:</legend>
+                <label for="calle">Calle:</label>
+                <input type="text" id="calle" name="calle" required><br><br>
+    
+                <label for="numero">Número:</label>
+                <input type="text" id="numero" name="numero" required><br><br>
+    
+                <label for="piso">Piso:</label>
+                <input type="text" id="piso" name="piso"><br><br>
+    
+                <label for="puerta">Puerta:</label>
+                <input type="text" id="puerta" name="puerta"><br><br>
+    
+                <label for="codigoPostal">Código Postal:</label>
+                <input type="text" id="codigoPostal" name="codigoPostal" required><br><br>
+    
+                <label for="localidad">Localidad:</label>
+                <input type="text" id="localidad" name="localidad" required><br><br>
+    
+                <label for="provincia">Provincia:</label>
+                <input type="text" id="provincia" name="provincia" required><br><br>
+    
+                <label for="pais">País:</label>
+                <input type="text" id="pais" name="pais" required><br><br>
+            </fieldset>
+            <br>
+    
+            <!-- Teléfono -->
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono">
+            <br><br>
+    
+            <!-- Color de la portada -->
+            <label for="colorPortada">Color de la portada</label>
+            <input type="color" id="colorPortada" name="colorPortada" value="#000000" disabled>
+            <br><br>
+    
+            <!-- Número de copias -->
+            <label for="numCopias">Número de copias</label>
+            <input type="number" id="numCopias" name="numCopias" min="1" max="99" value="1">
+            <br><br>
+    
+            <!-- Resolución de las fotos -->
+            <label for="resFotos">Resolución de las fotos</label>
+            <select id="resFotos" name="resFotos" required>
+                <option value="anuncio1">150</option>
+                <option value="anuncio2">300</option>
+                <option value="anuncio2">450</option>
+                <option value="anuncio2">600</option>
+                <option value="anuncio2">750</option>
+                <option value="anuncio2">900</option>
+                <!-- Aquí se añadirán dinámicamente los anuncios del usuario -->
+            </select>
+            <br><br>
+    
+            <!-- Anuncio del usuario -->
+            <label for="anuncioUsuario">Anuncio del usuario</label>
+            <select id="anuncioUsuario" name="anuncioUsuario" required>
+                <option value="anuncio1">Anuncio 1</option>
+                <option value="anuncio2">Anuncio 2</option>
+                <!-- Aquí se añadirán dinámicamente los anuncios del usuario -->
+            </select>
+            <br><br>
+    
+            <!-- Fecha de recepción -->
+            <label for="fechaRecepcion">Fecha de recepción</label>
+            <input type="date" id="fechaRecepcion" name="fechaRecepcion">
+            <br><br>
+    
+            <!-- Impresión a color -->
+            <label>Impresión a color:</label>
+            <input type="radio" id="blancoNegro" name="impresionColor" value="blancoNegro" checked>
+            <label for="blancoNegro">Blanco y negro</label>
+            <input type="radio" id="color" name="impresionColor" value="color">
+            <label for="color">A todo color</label>
+            <br><br>
+    
+            <!-- Impresión del precio -->
+            <label>Impresión del precio:</label>
+            <input type="radio" id="conPrecio" name="impresionPrecio" value="conPrecio" checked>
+            <label for="conPrecio">Con precio</label>
+            <input type="radio" id="sinPrecio" name="impresionPrecio" value="sinPrecio">
+            <label for="sinPrecio">Sin precio</label>
+            <br><br>
+    
+            <button type="submit">Enviar solicitud</button> 
+        </form>
     </main>
     <footer id="footer">
         <img src="../assets/img/logo.png" class="logo">
