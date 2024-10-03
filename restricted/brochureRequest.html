@@ -1,0 +1,227 @@
+<!--
+    Archivo: profile.html
+    En este archivo se la solicitud de folleto
+    Creado por: David González Moreno el 03/10/2024
+    Historial de cambios:
+    03/10/2024 - Creado
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <section class="links">
+                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
+                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
+            </section>
+            <section class="profile">
+                <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-right-to-bracket"></i> Mi perfil </a>
+            </section>
+        </nav>
+    </header>
+    <main id="main-content">
+        <h1>Solicitar folleto</h1>
+
+        <h2>Tarifas</h2>
+        <table>
+            <tr>
+                <th>Concepto</th>
+                <th>Tarifa</th>
+            </tr>
+            <tr>
+                <td>Coste procesamiento y envio</td>
+                <td>10€</td>
+            </tr>
+            <tr>
+                <td>&lt; 5 paginas</td>
+                <td>2€ por pagina</td>
+            </tr>
+            <tr>
+                <td>Entre 5 y 10 paginas</td>
+                <td>1.8€ por pagina</td>
+            </tr>
+            <tr>
+                <td>&gt; 10 paginas</td>
+                <td>1.8€ por pagina</td>
+            </tr>
+            <tr>
+                <td>Blanco y negro</td>
+                <td>0€ </td>
+            </tr>
+            <tr>
+                <td>Color</td>
+                <td>0.5€ por foto</td>
+            </tr>
+            <tr>
+                <td>Resolución &lt;= de 300dpi</td>
+                <td>0€ por foto</td>
+            </tr>
+            <tr>
+                <td>Resolución &gt; de 300dpi</td>
+                <td>0.2€ por foto</td>
+            </tr>
+        </table>
+
+        <h2>Fomulario solicitud</h2>
+        <p>Rellena el siguiente formulario aportando todos los detalles para confeccionar tu folleto publicitario</p>
+        <p>Los campos marcados con un asterisco (*) son obligatorios</p>
+
+        <form action="brochureResponse.html" method="get">
+            <!-- Nombre -->
+            <section>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" maxlength="200" required>
+            </section>
+            
+            <!-- Correo electrónico -->
+            <section>
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" maxlength="200" required>
+            </section>
+            
+    
+            <!-- Texto adicional -->
+            <section>
+                <label for="textoAdicional">Texto adicional</label>
+                <textarea id="textoAdicional" name="textoAdicional" maxlength="4000" rows="6"></textarea>
+            </section>
+            
+    
+            <!-- Dirección -->
+            <fieldset>
+                <legend>Dirección:</legend>
+                <section>
+                    <label for="calle">Calle:</label>
+                    <input type="text" id="calle" name="calle" required>
+                </section>
+    
+                <section>
+                    <label for="numero">Número:</label>
+                    <input type="text" id="numero" name="numero" required>
+                </section>
+    
+                <section>
+                    <label for="piso">Piso:</label>
+                    <input type="text" id="piso" name="piso">
+                </section>
+    
+                <section>
+                    <label for="puerta">Puerta:</label>
+                    <input type="text" id="puerta" name="puerta">
+                </section>
+    
+                <section>
+                    <label for="codigoPostal">Código Postal:</label>
+                    <input type="text" id="codigoPostal" name="codigoPostal" required>
+                </section>
+    
+                <section>
+                    <label for="localidad">Localidad:</label>
+                    <input type="text" id="localidad" name="localidad" required>
+                </section>
+    
+                <section>
+                    <label for="provincia">Provincia:</label>
+                    <input type="text" id="provincia" name="provincia" required>
+                </section>
+    
+                <section>
+                    <label for="pais">País:</label>
+                    <input type="text" id="pais" name="pais" required>
+                </section>
+            </fieldset>
+    
+            <!-- Teléfono -->
+            <section>
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono">
+            </section>
+            
+    
+            <!-- Color de la portada -->
+            <section>
+                <label for="colorPortada">Color de la portada</label>
+                <input type="color" id="colorPortada" name="colorPortada" value="#000000" disabled>
+            </section>
+            
+    
+            <!-- Número de copias -->
+            <section>
+                <label for="numCopias">Número de copias</label>
+                <input type="number" id="numCopias" name="numCopias" min="1" max="99" value="1">
+            </section>
+            
+    
+            <!-- Resolución de las fotos -->
+            <section>
+                <label for="resFotos">Resolución de las fotos</label>
+                <select id="resFotos" name="resFotos" required>
+                    <option value="anuncio1">150</option>
+                    <option value="anuncio2">300</option>
+                    <option value="anuncio2">450</option>
+                    <option value="anuncio2">600</option>
+                    <option value="anuncio2">750</option>
+                    <option value="anuncio2">900</option>
+                    <!-- Aquí se añadirán dinámicamente los anuncios del usuario -->
+                </select>
+            </section>
+            
+    
+            <!-- Anuncio del usuario -->
+            <section>
+                <label for="anuncioUsuario">Anuncio del usuario</label>
+                <select id="anuncioUsuario" name="anuncioUsuario" required>
+                    <option value="anuncio1">Anuncio 1</option>
+                    <option value="anuncio2">Anuncio 2</option>
+                    <!-- Aquí se añadirán dinámicamente los anuncios del usuario -->
+                </select>
+            </section>
+            
+    
+            <!-- Fecha de recepción -->
+            <section>
+                <label for="fechaRecepcion">Fecha de recepción</label>
+                <input type="date" id="fechaRecepcion" name="fechaRecepcion">
+            </section>
+            
+    
+            <!-- Impresión a color -->
+            <section>
+                <label>Impresión a color:</label>
+                <input type="radio" id="blancoNegro" name="impresionColor" value="blancoNegro" checked>
+                <label for="blancoNegro">Blanco y negro</label>
+                <input type="radio" id="color" name="impresionColor" value="color">
+                <label for="color">A todo color</label>
+            </section>
+            
+    
+            <!-- Impresión del precio -->
+            <section>
+                <label>Impresión del precio:</label>
+                <input type="radio" id="conPrecio" name="impresionPrecio" value="conPrecio" checked>
+                <label for="conPrecio">Con precio</label>
+                <input type="radio" id="sinPrecio" name="impresionPrecio" value="sinPrecio">
+                <label for="sinPrecio">Sin precio</label>
+            </section>
+            
+            <button type="submit">Enviar solicitud</button> 
+        </form>
+    </main>
+    <footer id="footer">
+        <img src="../assets/img/logo.png" class="logo">
+        <section class="index-column">
+            <strong>Contacto</strong>
+            <ul>
+                <li>contacto@gmail.com</li>
+                <li>644 78 58 95</li>
+            </ul>
+        </section>
+    </footer>
+</body>
+</html>
