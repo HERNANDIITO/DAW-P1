@@ -8,6 +8,13 @@
     26/09/2024 - Añadidas estilos para .houses
 */
 
+/* var declaration */
+
+:root {
+    --color-light-gray: #d8d8d8;
+    --color-semi-white: #f4f4f4;
+}
+
 /* General */
 
 body {
@@ -15,6 +22,7 @@ body {
     flex-flow: column;
     margin: 0;
     flex-grow: 1;
+    background-color: var(--color-light-gray);
 }
 
 html {
@@ -23,6 +31,7 @@ html {
 
 p, h1, h2, h3, h4, h5, h6, strong {
     margin: 0;
+    font-family:  'Playfair Display';
 }
 
 /* Navegacion */
@@ -115,6 +124,8 @@ p, h1, h2, h3, h4, h5, h6, strong {
     border: 1px solid black;
     border-radius: 15px;
     gap: 5px;
+    background-color: var(--color-semi-white);
+
 
     .mainImg {
         height: 70%;
@@ -151,5 +162,21 @@ p, h1, h2, h3, h4, h5, h6, strong {
         gap: 15px;
         font-size: x-large;
         margin: 20px;
+    }
+}
+.card:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
+    filter: brightness(1.2);
+    scale: 1.05;
+    transition: all .1s;
+}
+
+
+
+
+@media screen and (width <= 720px) {
+    .houses {
+        display: flex;
+        flex-flow: column;
     }
 }
