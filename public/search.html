@@ -5,6 +5,7 @@
     Historial de cambios:
     26/09/2024 - Creado
     28/09/2024 - Correciones del profesor
+    08/10/2024 - CSS Aplicado
 -->
 
 <!DOCTYPE html>
@@ -12,11 +13,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/search.css">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <title>Búsqueda avanzada</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="mainHeader">
+        <nav id="navBar">
             <section class="links">
                 <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
                 <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
@@ -30,7 +34,7 @@
     <main id="main-content">
         <aside class="filters">
             <form action="">
-                <section>
+                <section class="inputGroup">
                     <label for="ad-type">Tipo de anuncio</label>
                     <select name="ad-type" id="ad-type">
                         <option value="">Todos</option>
@@ -38,7 +42,7 @@
                         <option value="alquiler">Alquiler</option>
                     </select>
                 </section>
-                <section>
+                <section class="inputGroup">
                     <label for="ad-type">Tipo de obra</label>
                     <select name="ad-type" id="ad-type" aria-placeholder="aa">
                         <option value="">Cualquiera</option>
@@ -49,25 +53,25 @@
                         <option value="garaje">Garaje</option>
                     </select>
                 </section>
-                <section>
+                <section class="inputGroup">
                     <label for="city">Ciudad</label>
                     <input type="text" name="city" id="city">
                     <label for="country">País</label>
                     <input type="text" name="country" id="country">
                 </section>
-                <section>
+                <section class="inputGroup">
                     <label for="min-price">Precio mínimo</label>
                     <input type="number" name="min-price" id="min-price">
                     <label for="max-price">Precio máximo</label>
                     <input type="number" name="max-price" id="max-price">
                 </section>
-                <section>
+                <section class="inputGroup">
                     <label for="min-date">Fecha de publicación mínima</label>
                     <input type="date" name="min-date" id="min-date">
                     <label for="max-date">Fecha de publicación máxima</label>
                     <input type="date" name="max-date" id="max-date">
                 </section>
-                <button type="submit">Buscar</button>
+                <button class="greenButton" type="submit">Buscar</button>
             </form>
         </aside>
         <section class="houses">

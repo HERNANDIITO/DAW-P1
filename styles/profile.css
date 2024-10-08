@@ -3,51 +3,43 @@
     En este archivo se definen los estilos que se usaran a en profile.html
     Historial de cambios:
     26/09/2024 - Creado
+    08/10/2024 - Desarrollado
 */
 
-.houses {
+#main-content {
     margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 20px;
+
 }
 
 .pfp {
     display: flex;
     flex-flow: row;
-    justify-content: center;
-    gap: 25px;
-    margin-bottom: 5px;
+    gap: 10px;
 
     h1 {
         height: fit-content;
-        margin: auto 0;
-        font-size: xx-large;
-    }
-
-    img {
-        height: 86px;
+        margin: auto 0 0 0;    
     }
 }
 
 .info-wrapper {
     display: flex;
     flex-flow: row;
-    
-    justify-content: center;
-    gap: 50px;
-    
+    gap: 100px;
+    margin: 50px 0;
+
     .info {
         display: flex;
         flex-flow: column;
         gap: 5px;
-        width: fit-content;
-        font-size: x-large;
 
-        i {
-            margin: 0 10px;
+        p > i {
+            font-size: 20px;
+            margin-right: 5px;
         }
     }
-}
-
-h1 {
-    text-align: center;
-    margin: 25px 0;
 }

@@ -7,6 +7,8 @@
     24/09/2024 - Añadido navbar y footer mediante peticiones
     26/09/2024 - Añadido titulo y barra de busqueda
     28/09/2024 - Correciones del profesor
+    05/10/2024 - Añadidos los estilos css
+    08/10/2024 - Terminados los estilos css
 -->
 
 <!DOCTYPE html>
@@ -14,33 +16,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/index.css">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <title>FOTOCASA 2</title>
 </head>
 <body>
-    <header>
+    <header class="mainHeader">
         <nav id="navBar">
             <section class="links">
-                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
-                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
+                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
+                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
             </section>
             <section class="profile">
-                <a class="navLink" href="/public/login.html"> <i class="fa-solid fa-user"></i> Iniciar sesión </a>
-                <a class="navLink" href="/public/register.html"> <i class="fa-solid fa-right-to-bracket"></i> Registrarse </a>
+                <a class="navLink" href="/public/login.html"> <i class="fa-solid fa-user"></i> <span>Iniciar sesión</span> </a>
+                <a class="navLink" href="/public/register.html"> <i class="fa-solid fa-right-to-bracket"></i> <span>Registrarse</span> </a>
             </section>
         </nav>
     </header>
     <main id="main-content">
-        <h1>FOTOCASA 2</h1>
+        <h1 class="mainTitle">FOTOCASA 2</h1>
         <section class="search">
             <label for="search">Búsqueda rápida</label>
             <input name="search" type="text">
         </section>
         <section class="houses">
-            <a href="../restricted/cardDetails.html"> 
+            <a class="cardLink" href="../restricted/cardDetails.html"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -50,7 +51,7 @@
                     </section>
                 </section>
             </a>
-            <a href="../restricted/cardDetails.html"> 
+            <a class="cardLink" href="../restricted/cardDetails.html"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house2.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -60,11 +61,40 @@
                     </section>
                 </section>
             </a>
-            <a href="../restricted/cardDetails.html"> 
+            <a class="cardLink" href="../restricted/cardDetails.html"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
-
+                    <section class="info">
+                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
+                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
+                    </section>
+                </section>
+            </a>               
+            <a class="cardLink" href="../restricted/cardDetails.html"> 
+                <section class="card">
+                    <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
+                    <h1 class="title">Piso en Madrid</h1>
+                    <section class="info">
+                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
+                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
+                    </section>
+                </section>
+            </a>
+            <a class="cardLink" href="../restricted/cardDetails.html"> 
+                <section class="card">
+                    <img class="mainImg" src="../assets/img/houses/house2.png" alt="">
+                    <h1 class="title">Piso en Madrid</h1>
+                    <section class="info">
+                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
+                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
+                    </section>
+                </section>
+            </a>
+            <a class="cardLink" href="../restricted/cardDetails.html"> 
+                <section class="card">
+                    <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
+                    <h1 class="title">Piso en Madrid</h1>
                     <section class="info">
                         <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
                         <p><i class="fa-solid fa-tag"></i> 200.000€</p>
@@ -73,5 +103,15 @@
             </a>               
         </section>
     </main>
+    <footer id="footer">
+        <img src="../assets/img/logo.png" class="logo">
+        <section class="index-column">
+            <strong>Contacto</strong>
+            <ul>
+                <li>contacto@gmail.com</li>
+                <li>644 78 58 95</li>
+            </ul>
+        </section>
+    </footer>
 </body>
 </html>

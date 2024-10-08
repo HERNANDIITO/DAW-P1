@@ -3,9 +3,11 @@
     En este archivo se definen los estilos que se usaran a en login.html y register.html
     Historial de cambios:
     26/09/2024 - Creado
+    08/10/2024 - Desarrollado
 */
 
 #main-content {
+    
     display: flex;
     flex-flow: column;
     width: fit-content;
@@ -15,11 +17,6 @@
         display: flex;
         flex-flow: column;
         gap: 10px;
-
-        section {
-            display: flex;
-            flex-flow: column;
-        }
     }
 
     a {

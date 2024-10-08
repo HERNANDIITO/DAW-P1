@@ -4,23 +4,55 @@
     Historial de cambios:
     25/09/2024 - Creado
     26/09/2024 - Se le ha dado estilo de .sreach y el h1
+    08/10/2024 - Desarrollado
 */
 
 .houses {
     margin: 0 auto;
 }
 
+.mainTitle {
+    font-size: 4.75rem;
+}
+
 .search {
     width: fit-content;
-    margin: 20px auto;
     display: flex;
     flex-flow: column;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem 0;
+    gap: 5px;
+    
+    input {
+        padding: 10px 20px;
+        border-radius: 20px;
+        height: 30px;
+        width: 50%;
+        outline: none;
+        border: 5px solid var(--alt-color);
+        background: var(--photo-bg);
+        font-size: 20px;
+        margin: 0 auto;
+            
+        &:focus {
+            
+        }
+    }
+
 
     label {
         text-align: center;
+        font-size: 25px;
     }
 }
 
 h1 {
     text-align: center;
+}
+
+@media screen and (width <= 480px) {
+    .mainTitle {
+        font-size: 3.75rem;
+    }
 }

@@ -4,6 +4,7 @@
     Creado por: Pablo Hernández el 26/09/2024
     Historial de cambios:
     25/09/2024 - Creado
+    08/10/2024 - Desarrollado
 */
 
 #main-content {
@@ -29,4 +30,28 @@
             }
         }
     }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Para Firefox */
+}
+
+
+
+@media screen and (width <= 740px) {
+    #main-content {
+        flex-flow: column;
+        .filters {
+            position: static ;
+            width: 70%;
+            margin: 0 auto;
+        }
+    }
+
 }

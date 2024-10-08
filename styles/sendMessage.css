@@ -3,22 +3,13 @@
     En este archivo se definen los estilos que se usaran a en sendMessage.html
     Historial de cambios:
     26/09/2024 - Creado
+    08/10/2024 - Desarrollado
 */
 
-textarea {
-    width: 70%;             /* Ajusta el ancho al 100% del contenedor */
-    height: 150px;           /* Altura fija */
-    padding: 10px;           /* Espacio interno para que el texto no toque los bordes */
-    border: 1px solid #ccc;  /* Borde gris claro */
-    border-radius: 8px;      /* Bordes redondeados */
-    font-family: Arial, sans-serif;  /* Fuente */
-    font-size: 16px;         /* Tamaño de la letra */
-    outline: none;           /* Eliminar el borde azul al hacer clic */
-    resize: none;            /* Elimina la capacidad de cambiar el tamaño */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
-}
-
-textarea:focus {
-    border-color: #007bff;  /* Cambia el color del borde al hacer clic */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);  /* Sombra azul cuando está activo */
+form {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    gap: 15px;
 }

@@ -1,0 +1,67 @@
+/*
+    Archivo: message.css
+    En este archivo se definen los estilos que se usaran para darle estilo a los mensajes
+    Creado por: Pablo Hernández el 08/10/2024
+    Historial de cambios:
+    25/09/2024 - Creado
+    08/10/2024 - Desarrollado
+*/
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    .inMessages, outMessages {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.messages {
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+}
+
+.type {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+
+    h2 {
+        width: fit-content;
+    }
+
+    i {
+        font-size: 25px;
+        margin-left: 10px;
+    }
+}
+
+.message {
+    width: 60%;
+    border: 5px solid var(--alt-color);
+    border-radius: 15px;
+    padding: 15px 15px;
+    margin: 0 auto;
+
+    .messageInfo {
+        display: flex;
+        gap: 15px;
+        
+        span, i {
+            font-size: larger;
+            margin: 0 10px;
+            vertical-align: baseline;
+        }
+    }
+}
+
+@media screen and (width <= 480px) {
+    .messageInfo {
+        flex-flow: column;
+        gap: 5px !important;
+    }
+}

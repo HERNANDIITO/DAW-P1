@@ -4,6 +4,7 @@
     Creado por: David González Moreno el 02/10/2024
     Historial de cambios:
     02/10/2024 - Creado
+    08/10/2024 - CSS Aplicado
 -->
 
 <!DOCTYPE html>
@@ -11,34 +12,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myMessages</title>
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/message.css">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+    <title>Mis mensajes</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="mainHeader">
+        <nav id="navBar">
             <section class="links">
-                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
-                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
+                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
+                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
             </section>
             <section class="profile">
-                <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-right-to-bracket"></i> Mi perfil </a>
+                <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-user"></i> <span>Perfil</span> </a>
+                <a class="navLink" href="/public/index.html"> <i class="fa-solid fa-right-to-bracket"></i> <span>Cerrar sesión</span> </a>
             </section>
         </nav>
     </header>
-    <main>
-        <section>
-            <h1>Propuesta</h1>
-        </section>
+    <main id="main-content">
+        <h1 class="title">Propuesta</h1>
 
-        <section>
-            <p>He visto que usted vende un piso en Madrid, me gustaría saber si puedo alquilarlo por unos 3 meses para que Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga consequatur possimus dolorem.</p>
-        </section>
-
-        <section>
-            <p>12/10/2024</p>
-        </section>
-        <section>
-            <p>Luis Amoeba</p>
+        <section class="content">
+            <section class="inMessages">
+                <h2 class="title">Recibidos</h2>
+                <section class="messages">
+                    <section class="message">
+                        <section class="messageContent">
+                            <p>He visto que usted vende un piso en Madrid, me gustaría saber si puedo alquilarlo por unos 3 meses para que Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga consequatur possimus dolorem.</p>
+                        </section>
+                        <hr class="solid">
+                        <section class="messageInfo">
+                            <span>12/10/2024</span> <span>Louis Amoeba</span><i class="fa-solid fa-circle-info"></i> 
+                        </section>
+                    </section>
+                    <section class="message">
+                        <section class="messageContent">
+                            <p>He visto que usted vende un piso en Madrid, me gustaría saber si puedo alquilarlo por unos 3 meses para que Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga consequatur possimus dolorem.</p>
+                        </section>
+                        <hr class="solid">
+                        <section class="messageInfo">
+                            <span>12/10/2024</span> <span>Louis Amoeba</span><i class="fa-solid fa-user-group"></i>
+                        </section>
+                    </section>
+                    <section class="message">
+                        <section class="messageContent">
+                            <p>He visto que usted vende un piso en Madrid, me gustaría saber si puedo alquilarlo por unos 3 meses para que Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga consequatur possimus dolorem.</p>
+                        </section>
+                        <hr class="solid">
+                        <section class="messageInfo">
+                            <span>12/10/2024</span> <span>Louis Amoeba</span><i class="fa-solid fa-money-bills"></i> 
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="outMessages">
+                <h2 class="title">Enviados</h2>
+                <section class="messages">
+                    <section class="message">
+                        <section class="messageContent">
+                            <p>He visto que usted vende un piso en Madrid, me gustaría saber si puedo alquilarlo por unos 3 meses para que Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga consequatur possimus dolorem.</p>
+                        </section>
+                        <hr class="solid">
+                        <section class="messageInfo">
+                            <span>12/10/2024</span> <span>Louis Amoeba</span><i class="fa-solid fa-circle-info"></i> 
+                        </section>
+                    </section>
+                    <section class="message">
+                        <section class="messageContent">
+                            <p>He visto que usted vende un piso en Madrid, me gustaría saber si puedo alquilarlo por unos 3 meses para que Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga consequatur possimus dolorem.</p>
+                        </section>
+                        <hr class="solid">
+                        <section class="messageInfo">
+                            <span>12/10/2024</span> <span>Louis Amoeba</span><i class="fa-solid fa-user-group"></i>
+                        </section>
+                    </section>
+                    <section class="message">
+                        <section class="messageContent">
+                            <p>He visto que usted vende un piso en Madrid, me gustaría saber si puedo alquilarlo por unos 3 meses para que Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga consequatur possimus dolorem.</p>
+                        </section>
+                        <hr class="solid">
+                        <section class="messageInfo">
+                            <span>12/10/2024</span> <span>Louis Amoeba</span><i class="fa-solid fa-money-bills"></i> 
+                        </section>
+                    </section>
+                </section>
+            </section>
         </section>
     </main>
 

@@ -6,6 +6,7 @@
     26/09/2024 - Creado
     26/09/2024 - Layout desarrollado
     28/09/2024 - Correciones del profesor
+    08/10/2024 - CSS Aplicado
 -->
 
 
@@ -14,25 +15,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/message.css">
+    <link rel="stylesheet" href="../styles/sendMessage.css">
     <title>Registro</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="mainHeader">
+        <nav id="navBar">
             <section class="links">
-                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
-                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
+                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
+                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
             </section>
             <section class="profile">
-                <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-right-to-bracket"></i> Mi perfil </a>
+                <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-user"></i> <span>Perfil</span> </a>
+                <a class="navLink" href="/public/index.html"> <i class="fa-solid fa-right-to-bracket"></i> <span>Cerrar sesión</span> </a>
             </section>
         </nav>
     </header>
     <main id="main-content">
-        <h1>Mensaje para Paco Moreno</h1>
+        <h1 class="title">Mensaje para Paco Moreno</h1>
         <form action="messageResponse.html" >
-            <textarea name="message" placeholder="Aqui puedes escribir un mensaje al arrendador" ></textarea>
-            <button type="submit">Enviar</button>
+            <section class="inputGroup">
+                <label for="message">Mensaje</label>
+                <textarea name="message" placeholder="Aqui puedes escribir un mensaje al arrendador" ></textarea>
+            </section>
+            <section class="inputGroup">
+                <label for="option">Tipo de mensaje</label>
+                <select name="option" id="option">
+                    <option value="info" >Más información</option>
+                    <option value="date" >Concretar cita</option>
+                    <option value="offer">Hacer oferta</option>
+                </select>
+            </section>
+            <button class="greenButton" type="submit">Enviar</button>
         </form>
     </main>
     <footer id="footer">

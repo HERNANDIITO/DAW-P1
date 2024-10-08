@@ -5,6 +5,7 @@
     Historial de cambios:
     20/09/2024 - Creado
     01/10/2024 - Desarrollado
+    08/10/2024 - CSS Aplicado
 -->
 
 <!DOCTYPE html>
@@ -12,45 +13,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/profile.css">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <title>myProfile</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="mainHeader">
+        <nav id="navBar">
             <section class="links">
-                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
-                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
+                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
+                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
             </section>
             <section class="profile">
-                <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-right-to-bracket"></i> Mi perfil </a>
+                <a class="navLink" href="/public/login.html"> <i class="fa-solid fa-user"></i> <span>Iniciar sesión</span> </a>
+                <a class="navLink" href="/public/register.html"> <i class="fa-solid fa-right-to-bracket"></i> <span>Registrarse</span> </a>
             </section>
         </nav>
     </header>
-    <main>
-        <nav>
-            <ul>
-                <li>
-                    <a href="">Modificar mi perfil</a>
-                </li>
-                <li>
-                    <a href="">Darme de baja</a>
-                </li>    
-                <li>
-                    <a href="">Visualizar mis anuncios</a>
-                </li>
-                <li>
-                    <a href="">Crear un anuncio nuevo</a>
-                </li>
-                <li>
-                    <a href="../private/myMessages.html">Mis mensajes</a>
-                </li>
-                <li>
-                    <a href="../restricted/brochureRequest.html">Solicitar folleto</a>
-                </li>
-                <li>
-                    <a href="../index.html">Cerrar sesión</a>
-                </li>
-            </ul>
+    <main id="main-content">
+        <nav id="userMenu">
+            <a href="">
+                <i class="fa-solid fa-pencil"></i>
+                <span>Modificar mi perfil</span>
+            </a>
+            <a href="">
+                <i class="fa-solid fa-trash"></i>
+                <span>Darme de baja</span>
+            </a>
+            <a href="">
+                <i class="fa-solid fa-house"></i>
+                <span>Visualizar mis anuncios</span>
+            </a>
+            <a href="">
+                <i class="fa-solid fa-plus"></i>
+                <span>Crear un anuncio nuevo</span>
+            </a>
+            <a href="../private/myMessages.html">
+                <i class="fa-solid fa-message"></i>
+                <span>Mis mensajes</span>
+            </a>
+            <a href="../restricted/brochureRequest.html">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Solicitar folleto</span>
+            </a>
+            <a href="../index.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Cerrar sesión</span>
+            </a>
         </nav>
     </main>
     <footer id="footer">

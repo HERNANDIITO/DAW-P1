@@ -5,6 +5,7 @@
     Historial de cambios:
     26/09/2024 - Creado
     28/09/2024 - Correciones del profesor
+    08/10/2024 - CSS Aplicado
 -->
 
 <!DOCTYPE html>
@@ -12,11 +13,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/login.css">
     <title>Registro</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="mainHeader">
+        <nav id="navBar">
             <section class="links">
                 <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
                 <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
@@ -28,46 +32,48 @@
         </nav>
     </header>
     <main id="main-content">
-        <h1>Registro</h1>
+        <h1 class="title">Registro</h1>
         <form action="login.html">
-            <section>
+            <section class="inputGroup">
                 <label for="user">Email</label>
                 <input type="email" name="user" placeholder="usu@email.com">
             </section>
-            <section>
+            <section class="inputGroup">
                 <label for="user">Nombre de usuario</label>
                 <input type="text" name="user" placeholder="nombreUsuario">
             </section>
-            <section>
+            <section class="inputGroup">
                 <label for="pass">Contraseña</label>
                 <input type="password" name="pass" placeholder="contrasenyaMuySegura">
             </section>
-            <section>
+            <section class="inputGroup">
                 <label for="pass">Repetir ontraseña</label>
                 <input type="password" name="pass2" placeholder="contrasenyaMuySegura">
             </section>
-            <section>
+            <section class="inputGroup">
                 <label for="sex">Sexo</label>
                 <select name="sex" id="sex">
                     <option value="hombre">Hombre</option>
                     <option value="mujer">Mujer</option>
                 </select>
             </section>
-            <section>
+            <section class="inputGroup">
                 <label for="birthdate">Fecha de nacimiento</label>
                 <input type="date" name="birthdate">
             </section>
-            <section>
+            <section class="inputGroup">
                 <label for="pass">Ciudad</label>
                 <input type="text" name="city" placeholder="Sant Vicent del Raspeig">
+            </section>
+            <section class="inputGroup">
                 <label for="pass">País de residencia</label>
                 <input type="text" name="country" placeholder="España">
             </section>
-            <section>
+            <section class="inputGroup">
                 <label for="pass">Foto de perfil</label>
                 <input type="file" name="pfp">
             </section>
-            <button type="submit">Entrar</button>
+            <button class="greenButton" type="submit">Entrar</button>
         </form>
         <a href="/public/login.html">¿Ya tienes cuenta?</a>
     </main>

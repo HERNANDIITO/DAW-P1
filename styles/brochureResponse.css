@@ -1,0 +1,26 @@
+/*
+    Archivo: brochureResponse.css
+    En este archivo se definen los estilos que se usaran a en brochureResponse.html
+    Historial de cambios:
+    08/10/2024 - Creado
+    08/10/2024 - Desarrollado
+*/
+
+span {
+    width: fit-content;
+    min-width: 250px;
+}
+
+.formResult, fieldset {
+    display: flex;
+    flex-flow: column;
+    gap: 15px;
+
+    width: fit-content;
+    margin: 1rem auto;
+}
+
+fieldset {
+    border: 5px solid var(--alt-color);
+    font-size: 25px;
+}

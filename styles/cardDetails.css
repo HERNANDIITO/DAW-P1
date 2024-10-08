@@ -3,6 +3,7 @@
     En este archivo se definen los estilos que se usaran a en cardDetails.html
     Historial de cambios:
     26/09/2024 - Creado
+    08/10/2024 - Desarrollado
 */
 
 #main-content{
@@ -22,11 +23,12 @@
     flex-flow: row;
     justify-content: center;
     gap: 25px;
-    width: 100%;
-    margin-bottom: 5px;
+    width: 70%;
+    margin: 0 20em 5px 20em; /* Añade margen de 20em a los lados */
 
     img {
-        height: 360px;
+        width: 70%;
+        height: auto;
         display: block;
         margin: 0 auto;
     }
@@ -35,4 +37,41 @@
 .desc{
     max-width: 70%;
     text-align: justify;
+}
+
+p{
+    text-align: justify;
+}
+
+.info-wrapper {
+    display: flex;
+    flex-flow: row;
+    gap: 5rem;
+}
+
+h1{
+    display: flex;
+    text-align: center;
+}
+
+.buttonWrapper {
+    display: flex;
+    text-align: center;
+    gap: 1rem;
+}
+
+
+@media screen and (width <= 790px) {  
+
+    .buttonWrapper {
+        display: flex;
+        text-align: center;
+        flex-flow: column;
+        gap: 0.5rem;
+    }
+}
+
+
+@media screen and (width <= 480px) {
+
 }

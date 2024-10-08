@@ -5,6 +5,7 @@
     Historial de cambios:
     26/09/2024 - Creado
     28/09/2024 - Correciones del profesor
+    08/10/2024 - CSS Aplicado
 -->
 
 <!DOCTYPE html>
@@ -12,11 +13,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/login.css">
     <title>Inicio de sesión</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="mainHeader">
+        <nav id="navBar">
             <section class="links">
                 <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
                 <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
@@ -28,17 +32,17 @@
         </nav>
     </header>
     <main id="main-content">
-        <h1>Inicio de sesión</h1>
+        <h1 class="title">Inicio de sesión</h1>
         <form action="../restricted/logged.html">
-            <section>
+            <section class="inputGroup">
                 <label for="user">Nombre de usuario</label>
                 <input type="text" name="user" placeholder="nombreUsuario" id="">
             </section>
-            <section>
+            <section class="inputGroup">
                 <label for="pass">Contraseña</label>
                 <input type="text" name="pass" placeholder="contrasenyaMuySegura" id="">
             </section>
-            <button type="submit">Entrar</button>
+            <button class="greenButton" type="submit">Entrar</button>
         </form>
         <a href="/public/register.html">¿Todavía no tienes cuenta?</a>
 

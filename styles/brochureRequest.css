@@ -1,0 +1,73 @@
+/*
+    Archivo: brochureRequests.css
+    En este archivo se definen los estilos que se usaran a en brochureRequests.html
+    Historial de cambios:
+    08/10/2024 - Creado
+    08/10/2024 - Desarrollado
+*/
+
+#main-content {
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    gap: 1rem;
+    
+    .payTable {
+        margin: 0 auto;
+    }
+
+    form {
+        display: flex;
+        flex-flow: column;
+        gap: 10px;
+    }
+
+    .payTable > table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        text-align: left;
+ 
+        th, td {
+            padding: 12px;
+
+        }
+        
+        th {
+            background-color: var(--alt-color);
+            color: var(--main-bg-color);
+        }
+
+        tr {
+            border: 5px solid var(--alt-color);
+        }
+        
+        tr:nth-child(odd) {
+            background-color: var(--photo-bg);
+            color: var(--alt-color);
+            transition: all .15s ease-in-out;
+        }
+        
+        tr:hover {
+            background-color: var(--alt-color);
+            color: var(--main-bg-color);
+
+            transition: all .15s ease-in-out;
+        }
+    }
+
+    form, fieldset {
+        display: flex;
+        flex-flow: column;
+        gap: 15px;
+    
+        width: fit-content;
+        margin: 1rem auto;
+    }
+    
+    fieldset {
+        border: 5px solid var(--alt-color);
+        font-size: 25px;
+    }
+}

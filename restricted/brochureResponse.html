@@ -4,6 +4,7 @@
     Creado por: Pablo Hernández García el 03/10/2024
     Historial de cambios:
     20/09/2024 - Creado
+    08/10/2024 - CSS Aplicado
 -->
 
 <!DOCTYPE html>
@@ -11,38 +12,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/brochureResponse.css">
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+    <title>Folleto</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="mainHeader">
+        <nav id="navBar">
             <section class="links">
-                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
-                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
+                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
+                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
             </section>
             <section class="profile">
-                <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-right-to-bracket"></i> Mi perfil </a>
+                <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-user"></i> <span>Perfil</span> </a>
+                <a class="navLink" href="/public/index.html"> <i class="fa-solid fa-right-to-bracket"></i> <span>Cerrar sesión</span> </a>
             </section>
         </nav>
     </header>
     <main>
-        <section>
+        <section class="formResult">
             <!-- Nombre -->
-            <section>
-                <label for="nombre">Nombre:</label>
+            <section class="inputGroup">
+                <label>Nombre:</label>
                 <span>Paco Moreno</span>
             </section>
             
             <!-- Correo electrónico -->
-            <section>
-                <label for="email">Correo electrónico</label>
+            <section class="inputGroup">
+                <label>Correo electrónico</label>
                 <span>pacomoreno@gmail.com</span>
             </section>
             
     
             <!-- Texto adicional -->
-            <section>
-                <label for="textoAdicional">Texto adicional</label>
+            <section class="inputGroup">
+                <label>Texto adicional</label>
                 <span>Lorem ipsum dolor sit.</span>
             </section>
             
@@ -50,109 +55,109 @@
             <!-- Dirección -->
             <fieldset>
                 <legend>Dirección:</legend>
-                <section>
-                    <label for="calle">Calle:</label>
+                <section class="inputGroup">
+                    <label>Calle:</label>
                     <span>Avenida Ancha de Castelar</span>
                 </section>
     
-                <section>
-                    <label for="numero">Número:</label>
+                <section class="inputGroup">
+                    <label>Número:</label>
                     <span>204</span>
                 </section>
     
-                <section>
-                    <label for="piso">Piso:</label>
+                <section class="inputGroup">
+                    <label>Piso:</label>
                     <span>1º</span>
                 </section>
     
-                <section>
-                    <label for="puerta">Puerta:</label>
+                <section class="inputGroup">
+                    <label>Puerta:</label>
                     <span>Izquierda</span>
                 </section>
     
-                <section>
-                    <label for="codigoPostal">Código Postal:</label>
+                <section class="inputGroup">
+                    <label>Código Postal:</label>
                     <span>03690</span>
                 </section>
     
-                <section>
-                    <label for="localidad">Localidad:</label>
+                <section class="inputGroup">
+                    <label>Localidad:</label>
                     <span>Sent Vicent del Raspeig</span>
                 </section>
     
-                <section>
-                    <label for="provincia">Provincia:</label>
+                <section class="inputGroup">
+                    <label>Provincia:</label>
                     <span>Alicante</span>
                 </section>
     
-                <section>
-                    <label for="pais">País:</label>
+                <section class="inputGroup">
+                    <label>País:</label>
                     <span>España</span>
                 </section>
             </fieldset>
     
             <!-- Teléfono -->
-            <section>
-                <label for="telefono">Teléfono</label>
+            <section class="inputGroup">
+                <label>Teléfono</label>
                 <span>644789878</span>
             </section>
             
     
             <!-- Color de la portada -->
-            <section>
-                <label for="colorPortada">Color de la portada</label>
+            <section class="inputGroup">
+                <label>Color de la portada</label>
                 <span>Blanco y negro</span>
             </section>
             
     
             <!-- Número de copias -->
-            <section>
-                <label for="numCopias">Número de copias</label>
+            <section class="inputGroup">
+                <label>Número de copias</label>
                 <span>120</span>
             </section>
             
     
             <!-- Resolución de las fotos -->
-            <section>
-                <label for="resFotos">Resolución de las fotos</label>
+            <section class="inputGroup">
+                <label>Resolución de las fotos</label>
                 <span >900</span>
             </section>
             
     
             <!-- Anuncio del usuario -->
-            <section>
-                <label for="anuncioUsuario">Anuncio del usuario</label>
+            <section class="inputGroup">
+                <label>Anuncio del usuario</label>
                 <span>Anuncio 1</span>
             </section>
             
     
             <!-- Fecha de recepción -->
-            <section>
-                <label for="fechaRecepcion">Fecha de recepción</label>
+            <section class="inputGroup">
+                <label>Fecha de recepción</label>
                 <span>04/10/2024</span>
             </section>
             
     
             <!-- Impresión a color -->
-            <section>
+            <section class="inputGroup">
                 <label>Impresión a color:</label>
                 <span>Blanco y negro</span>
             </section>
             
     
             <!-- Impresión del precio -->
-            <section>
+            <section class="inputGroup">
                 <label>Impresión del precio:</label>
                 <span>Con precio</span>
             </section>
             
-            <section>
+            <section class="inputGroup">
                 <label>Coste:</label>
                 <span>70€</span>
             </section>
             
             <a href="cardDetails.html">
-                <button type="submit">Confirmar solicitud</button> 
+                <button class="greenButton" type="submit">Confirmar solicitud</button> 
             </a>
         </section>
     </main>
