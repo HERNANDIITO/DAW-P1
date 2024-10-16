@@ -1,0 +1,11 @@
+/*
+    Archivo: search.css
+    En este archivo se definen los estilos que se usaran a en search.html
+    Creado por: Pablo Hernández el 26/09/2024
+    Historial de cambios:
+    16/10/2024 - Creado
+*/
+
+@import url(../search.css);
+@import url(../common.css);
+@import url(./common.css);

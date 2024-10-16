@@ -1,0 +1,10 @@
+/*
+    Archivo: brochureRequests.css
+    En este archivo se definen los estilos que se usaran a en brochureRequests.html
+    Historial de cambios:
+    16/10/2024 - Creado
+*/
+
+@import url(../brochureRequest.css);
+@import url(../common.css);
+@import url(./common.css);

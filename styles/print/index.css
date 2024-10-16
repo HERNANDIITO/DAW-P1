@@ -2,6 +2,21 @@ header, .search {
     display: none;
 }
 
+p {
+    font-size: 15pt;
+}
+
+a[href] {
+    position: relative;
+
+    &:after {
+        position: absolute;
+        content: attr(href);
+        top: 6.25cm;
+        right: 2.5cm;
+    }
+}
+
 .card {
     width: 100mm;
     text-align: centers;
