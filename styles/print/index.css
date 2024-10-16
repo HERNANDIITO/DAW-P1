@@ -1,0 +1,45 @@
+header, .search {
+    display: none;
+}
+
+.card {
+    width: 100mm;
+    text-align: centers;
+    
+    h1, .info {
+        width: 10cm;
+        text-align: center  ;
+    }
+
+    .info {
+        display: inline-flex;
+        flex-flow: row;
+        justify-content: center;
+        gap: 1cm;
+        margin: 0 auto;
+    }
+}
+
+.houses {
+    display: grid;
+    grid-template-columns: 100mm 100mm;
+}
+
+.mainImg {
+    height: 5cm;
+    width: 5cm;
+    object-fit: contain;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+footer {
+    display: inline-flex;
+    flex-flow: row;
+
+    img {
+        height: 5cm;
+        width: 5cm;
+    }
+}

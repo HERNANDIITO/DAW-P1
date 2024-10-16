@@ -1,0 +1,13 @@
+.buttonWrapper {
+    display: none;
+}
+
+img {
+    width: 15cm;
+    display: block;
+    margin: 0 auto;
+}
+
+i {
+    margin-right: .25cm;
+}
