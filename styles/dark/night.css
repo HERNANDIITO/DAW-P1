@@ -1,11 +1,20 @@
 @import url(../common.css);
 @import url(../index.css);
+@import url(../myProfile.css);
+@import url(../message.css);
+@import url(../login.css);
+@import url(../search.css);
+@import url(../brochureRequest.css);
+@import url(../brochureResponse.css);
+@import url(../cardDetails.css);
+@import url(../profile.css);
+@import url(../sendMessage.css);
 
 :root {
     --main-bg-color: #1e1e1e;  /* Fondo principal oscuro */
-    --photo-bg: #2a2a2a;       /* Fondo de fotos ligeramente más claro */
+    --photo-bg: #6b4c35;       /* Fondo de fotos ligeramente más claro */
     --color2: #8A7D72;         /* Color suave para detalles (grises o marrones suaves) */
-    --color3: #F4E3C3;         /* Texto en colores claros (crema o blanco) */
+    --color3: #43311e;         /* Texto en colores claros (crema o blanco) */
     --color4: #B58D6F;         /* Color para elementos interactivos (botones, etc.) */
-    --alt-color: #EFEFEF;      /* Color alternativo claro para contrastes (blanco claro) */
+    --alt-color: #8c6446;      /* Color alternativo claro para contrastes (blanco claro) */
 }
