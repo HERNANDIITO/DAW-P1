@@ -8,11 +8,11 @@
     08/10/2024 - CSS Aplicado
 -->
 
-<!DOCTYPE html>
-<html lang="es">
+<!DOC<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/register.js"></script>
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="../styles/login.css">
@@ -41,47 +41,47 @@
     </header>
     <main id="main-content">
         <h1 class="title">Registro</h1>
-        <form action="login.html">
+        <form action="">
             <section class="inputGroup">
-                <label for="user">Email</label>
-                <input type="email" name="user" placeholder="usu@email.com">
+                <label for="email">Email</label>
+                <input onblur="checkEmail(this.value)" name="email" placeholder="usu@email.com">
             </section>
             <section class="inputGroup">
                 <label for="user">Nombre de usuario</label>
-                <input type="text" name="user" placeholder="nombreUsuario">
+                <input onblur="checkUser(this.value)" name="user" placeholder="nombreUsuario">
             </section>
             <section class="inputGroup">
                 <label for="pass">Contraseña</label>
-                <input type="password" name="pass" placeholder="contrasenyaMuySegura">
+                <input id="passInput" onblur="checkPass(this.value)" name="pass" placeholder="contrasenyaMuySegura">
             </section>
             <section class="inputGroup">
                 <label for="pass">Repetir ontraseña</label>
-                <input type="password" name="pass2" placeholder="contrasenyaMuySegura">
+                <input onblur="checkPass2(this.value)" name="pass2" placeholder="contrasenyaMuySegura">
             </section>
             <section class="inputGroup">
                 <label for="sex">Sexo</label>
                 <select name="sex" id="sex">
-                    <option value="hombre">Hombre</option>
+                    <option selected value="hombre">Hombre</option>
                     <option value="mujer">Mujer</option>
                 </select>
             </section>
             <section class="inputGroup">
                 <label for="birthdate">Fecha de nacimiento</label>
-                <input type="date" name="birthdate">
+                <input type="date" onblur="checkBirthDate(this.value)" name="birthdate">
             </section>
             <section class="inputGroup">
-                <label for="pass">Ciudad</label>
-                <input type="text" name="city" placeholder="Sant Vicent del Raspeig">
+                <label for="city">Ciudad</label>
+                <input name="city" placeholder="Sant Vicent del Raspeig">
             </section>
             <section class="inputGroup">
-                <label for="pass">País de residencia</label>
-                <input type="text" name="country" placeholder="España">
+                <label for="country">País de residencia</label>
+                <input name="country" placeholder="España">
             </section>
             <section class="inputGroup">
-                <label for="pass">Foto de perfil</label>
-                <input type="file" name="pfp">
+                <label for="pfp">Foto de perfil</label>
+                <input name="pfp">
             </section>
-            <button class="greenButton" type="submit">Entrar</button>
+            <button class="greenButton">Entrar</button>
         </form>
         <a href="/public/login.html">¿Ya tienes cuenta?</a>
     </main>
