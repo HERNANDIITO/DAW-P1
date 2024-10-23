@@ -64,3 +64,4 @@ function fillHouses() {
     };
     xhr.send();
 }
+
