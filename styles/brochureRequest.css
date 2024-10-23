@@ -70,4 +70,19 @@
         border: 5px solid var(--alt-color);
         font-size: 25px;
     }
+
+    .price {
+        display: flex;
+        flex-flow: column;
+        border: 5px solid var(--alt-color);
+        font-size: 25px;
+        border-radius: 15px;
+
+        .label {
+            border-bottom: 5px solid var(--alt-color);
+            background-color: var(--alt-color);
+            color: var(--main-bg-color);
+        }
+
+    }
 }
