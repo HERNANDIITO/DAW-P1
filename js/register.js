@@ -4,6 +4,72 @@
 // Historial de cambios:
 // 23/10/2024 - Creado 
 
+
+
+
+//ERROR MESSAGES
+
+function createErrorMessage(fieldId) { //le asigna la id: fieldId + "Error"
+    let field = document.getElementById(fieldId);
+    const errorMessageElement = document.createElement("p");
+    errorMessageElement.style.color = "red";
+    errorMessageElement.style.fontSize = "20px";
+    errorMessageElement.style.display = "none";  // Oculto inicialmente
+    errorMessageElement.id = field.id + "Error";  // Asigna la ID del campo + 'Error'
+
+    // Insertar el mensaje de error justo después del campo
+    field.parentNode.insertBefore(errorMessageElement, field.nextSibling);
+}
+
+// Función para mostrar mensajes de error
+function setErrorMessage(errorMessageId, message) {
+    const errorMessage = document.getElementById(errorMessageId);
+    if (errorMessage) {
+        errorMessage.textContent = message;  // Asigna el texto al mensaje de error
+        errorMessage.style.display = "block"; // Muestra el mensaje de error
+    } else {
+        console.error("Error: No se encontró el elemento con ID " + errorMessageId);
+    }
+}
+
+// Función para ocultar el mensaje de error
+function HideErrorMessage(errorMessageId) {
+    document.getElementById(errorMessageId).style.display = "none";
+}
+
+
+
+// creacion de errorMessages
+createErrorMessage("email");
+createErrorMessage("user");
+createErrorMessage("passInput");
+createErrorMessage("pass2");
+createErrorMessage("birth");
+
+
+
+// Función para comprobar si todos los mensajes de error están ocultos y se habilita el submit button
+function checkFormValidity() {
+    const errorMessages = document.querySelectorAll('p[id$="Error"]');
+    let allErrorsHidden = true;
+
+    errorMessages.forEach(function (errorMessage) {
+        if (errorMessage.style.display === "block") {
+            allErrorsHidden = false;
+        }
+    });
+
+    // Habilitar el botón de submit solo si no hay errores visibles
+    document.getElementById("submitLoginButton").disabled = !allErrorsHidden;
+}
+
+
+
+
+
+
+// FORM CHECKS-------------------------------------------------------------------------------------------------
+
 function checkEnglish(word, slash) {
     value = true;
     for (const letter in word) {
@@ -50,16 +116,21 @@ function checkMayusNum(word) {
 }
 
 function checkEmail(value) {
+    HideErrorMessage("emailError");
 
     if ( value.length > 254 ) {
-        console.log("Demasiado largo");
+        setErrorMessage("emailError", "demasiado largo");
+
+        checkFormValidity();
         return;
     }
     
     splittedEmail = value.split('@')
 
     if ( splittedEmail.length < 2 ) {
-        console.log("Falta un @");
+        setErrorMessage("emailError", "Falta un @");
+
+        checkFormValidity();
         return;
     }
 
@@ -67,17 +138,21 @@ function checkEmail(value) {
     domain = splittedEmail[1]
     
     if ( !checkLocal(local) ) {
-        console.log("Parte local equivocada");
+        setErrorMessage("emailError", "Parte local equivocada");
+        
+        checkFormValidity();
         return;
     }
 
     if ( !checkDomain(domain) ) {
-        console.log("Dominio equivocado");
+        setErrorMessage("emailError", "Dominio equivocado");
+        
+        checkFormValidity();
         return;
     }
 
     console.log("Correo apropiado!");
-    
+    checkFormValidity();
 
 }
 
@@ -168,69 +243,95 @@ function checkDomain(domain) {
 
 
 function checkUser(value) {
+    HideErrorMessage("userError");
+
     if ( value.length < 3 ) {
-        console.log("Demasiado corto");
+        setErrorMessage("userError", "Demasiado corto");
+
+        checkFormValidity();
         return;
     }
     
     if ( value.length > 15 ) {
-        console.log("Demasiado largo");
+        setErrorMessage("userError", "Demasiado largo");
+
+        checkFormValidity();
         return;
     }
 
     if ( !checkEnglish(value, false) ) {
-        console.log("Caracteres inapropiados");
+        setErrorMessage("userError", "Carácteres inapropiados");
+
+        checkFormValidity();
         return;
     }
 
     console.log("Buen usuario!");
+    checkFormValidity();
 
 }
 
 function checkPass(value) {
+    HideErrorMessage("passInputError");
+
     if ( value.length < 6 ) {
-        console.log("Demasiado corto");
+        setErrorMessage("passInputError", "Demasiado corto");
+
+        checkFormValidity();
         return;
     }
     
     if ( value.length > 15 ) {
-        console.log("Demasiado largo");
+        setErrorMessage("passInputError", "Demasiado largo");
+
+        checkFormValidity();
         return;
     }
     
     if ( !checkEnglish(value, true) ) {
-        console.log("Caracteres inapropiados");
+        setErrorMessage("passInputError", "Carácteres inapropiados");
+
+        checkFormValidity();
         return;
     }
 
     if ( !checkMayusNum(value) ) {
-        console.log("Minimo una mayuscula, una minuscula y un número");
+        setErrorMessage("passInputError", "Minimo una mayuscula, una minuscula y un número");
+
+
+        checkFormValidity();
         return;
     }
 
     console.log("Buen password!");
-
+    checkFormValidity();
 }
 
 function checkPass2(value) {
+    HideErrorMessage("pass2Error");
     pass1 = document.getElementById("passInput").value
 
     if (!(pass1 === value)) {
-        console.log("Contraseñas no coinciden");
+        setErrorMessage("pass2Error", "Contraseñas no coinciden");
+
+        checkFormValidity();
         return;
     }
 
     console.log("Contraseñas coinciden!");
+    checkFormValidity();
 }
 
 function checkBirthDate(value) {
+    HideErrorMessage("birthError");
+
     const now = new Date()
     const birth = new Date(value)
 
     if ( now.getFullYear() - birth.getFullYear() < 18 ) {
-        console.log("Tienes que ser mayor de edad");
+        setErrorMessage("birthError", "Tienes que ser mayor de edad");
         
     }
     
-    
+    checkFormValidity();
 }

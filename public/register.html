@@ -12,7 +12,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/register.js"></script>
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="../styles/login.css">
@@ -44,19 +43,19 @@
         <form action="">
             <section class="inputGroup">
                 <label for="email">Email</label>
-                <input onblur="checkEmail(this.value)" name="email" placeholder="usu@email.com">
+                <input onblur="checkEmail(this.value)" name="email" placeholder="usu@email.com" id="email">
             </section>
             <section class="inputGroup">
                 <label for="user">Nombre de usuario</label>
-                <input onblur="checkUser(this.value)" name="user" placeholder="nombreUsuario">
+                <input onblur="checkUser(this.value)" name="user" placeholder="nombreUsuario" id="user">
             </section>
             <section class="inputGroup">
                 <label for="pass">Contraseña</label>
-                <input id="passInput" onblur="checkPass(this.value)" name="pass" placeholder="contrasenyaMuySegura">
+                <input onblur="checkPass(this.value)" name="pass" placeholder="contrasenyaMuySegura" id="passInput">
             </section>
             <section class="inputGroup">
                 <label for="pass">Repetir ontraseña</label>
-                <input onblur="checkPass2(this.value)" name="pass2" placeholder="contrasenyaMuySegura">
+                <input onblur="checkPass2(this.value)" name="pass2" placeholder="contrasenyaMuySegura" id="pass2">
             </section>
             <section class="inputGroup">
                 <label for="sex">Sexo</label>
@@ -67,7 +66,7 @@
             </section>
             <section class="inputGroup">
                 <label for="birthdate">Fecha de nacimiento</label>
-                <input type="date" onblur="checkBirthDate(this.value)" name="birthdate">
+                <input type="date" onblur="checkBirthDate(this.value)" name="birthdate" id="birth">
             </section>
             <section class="inputGroup">
                 <label for="city">Ciudad</label>
@@ -81,7 +80,7 @@
                 <label for="pfp">Foto de perfil</label>
                 <input name="pfp">
             </section>
-            <button class="greenButton">Entrar</button>
+            <button class="greenButton" id="submitLoginButton">Entrar</button>
         </form>
         <a href="/public/login.html">¿Ya tienes cuenta?</a>
     </main>
@@ -95,5 +94,7 @@
             </ul>
         </section>
     </footer>
+
+    <script src="../js/register.js"></script>
 </body>
 </html>
