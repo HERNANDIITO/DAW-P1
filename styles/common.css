@@ -211,7 +211,7 @@ p, h2, h3, h4, h5, h6, strong {
 }
 
 
-.greenButton{
+.greenButton {
     background-color: #4d924e;
     border: none;
     color: white;
@@ -224,6 +224,10 @@ p, h2, h3, h4, h5, h6, strong {
     cursor: pointer;
     border-radius: 12px;
     font-size: 25px;
+
+    &:disabled {
+        background-color: #1d321d; /* Verde */
+    }
 
     &:hover{
         background-color: #1d321d; /* Verde */

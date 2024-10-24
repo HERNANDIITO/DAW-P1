@@ -37,71 +37,64 @@ function HideErrorMessage(errorMessageId) {
     document.getElementById(errorMessageId).style.display = "none";
 }
 
+// Función para comprobar si todos los mensajes de error están ocultos y se puede enviar el form
+function checkFormValidity() {
+    const errorMessages = document.querySelectorAll('p[id$="Error"]');
+    let allErrorsHidden = true;
+
+    errorMessages.forEach(function (errorMessage) {
+        if (errorMessage.style.display === "block") {
+            allErrorsHidden = false;
+        }
+    });
+
+    // Habilitar el botón de submit solo si no hay errores visibles
+    document.getElementById("submitLoginButton").disabled = !allErrorsHidden;
+}
+
+function checkUser(value) {
+    // reset
+    HideErrorMessage("userError");
+
+    // comprobacion espacios
+    if (value.includes(" ") || value.includes("\t")) {
+        setErrorMessage("userError", "Este campo no puede incluir espacios")
+    }
+
+    // comprobacion campo vacio
+    const username = value.trim();
+    if (!username) {
+        setErrorMessage("userError", "Por favor, rellene este campo")
+    }
+
+    checkFormValidity();
+}
+
+function checkPassword(value) {
+    // reset
+    HideErrorMessage("passError");
+
+    // comprobacion espacios
+    if (value.includes(" ") || value.includes("\t")) {
+        setErrorMessage("passError", "Este campo no puede incluir espacios");
+    }
+
+    // comprobacion campo vacio
+    const password = value.trim();
+    if (!password) {
+        setErrorMessage("passError", "Por favor, rellene este campo");
+    }
+
+    checkFormValidity();
+}
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const submitButton = document.getElementById("submitLoginButton");
-    const usernameInput = document.getElementById("user");
-    const passwordInput = document.getElementById("pass");
-
     // creacion de errorMessages
     createErrorMessage("user");
     createErrorMessage("pass");
 
-
-    // APARTADO DE COMPROBACIONES DE FORMULARIO
-    usernameInput.addEventListener("blur", function () {
-        // reset
-        HideErrorMessage("userError");
-
-        // comprobacion espacios
-        if (document.getElementById("user").value.includes(" ") || document.getElementById("user").value.includes("\t")) {
-            setErrorMessage("userError", "Este campo no puede incluir espacios")
-        }
-
-        // comprobacion campo vacio
-        const username = usernameInput.value.trim();
-        if (!username) {
-            setErrorMessage("userError", "Por favor, rellene este campo")
-        }
-
-        checkFormValidity();
-    });
-
-
-    passwordInput.addEventListener("blur", function () {
-        // reset
-        HideErrorMessage("passError");
-
-        // comprobacion espacios
-        if (document.getElementById("pass").value.includes(" ") || document.getElementById("pass").value.includes("\t")) {
-            setErrorMessage("passError", "Este campo no puede incluir espacios");
-        }
-
-
-        // comprobacion campo vacio
-        const password = passwordInput.value.trim();
-        if (!password) {
-            setErrorMessage("passError", "Por favor, rellene este campo");
-        }
-
-        checkFormValidity();
-    });
-
-
-    // Función para comprobar si todos los mensajes de error están ocultos y se puede enviar el form
-    function checkFormValidity() {
-        const errorMessages = document.querySelectorAll('p[id$="Error"]');
-        let allErrorsHidden = true;
-
-        errorMessages.forEach(function (errorMessage) {
-            if (errorMessage.style.display === "block") {
-                allErrorsHidden = false;
-            }
-        });
-
-        // Habilitar el botón de submit solo si no hay errores visibles
-        document.getElementById("submitLoginButton").disabled = !allErrorsHidden;
-    }
+    checkUser("");
+    checkPassword("")
 
 });

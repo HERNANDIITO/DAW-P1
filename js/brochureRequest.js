@@ -9,13 +9,10 @@ function init() {
 }
 
 function getPrecioCopias(copias) {
-    if ( copias < 5 ) {
-        return 2;
-    } else if ( copias >= 5 && copias <= 10 ) {
-        return 1.8;
-    } else {
-        return 1.6
-    }
+
+    // Hagan esto 
+
+    return precio;
 }
 
 function updatePrice() {
@@ -29,7 +26,7 @@ function updatePrice() {
     
     const precioFotos   = resFotos <= 300 ? 0 : 0.2
     const precioCopias  = getPrecioCopias(numCopias);
-    const precioColor   = color ? 0.5 : 0
+    const precioColor   = color ? 0.5 : 0 
 
     console.log("numCopias",numCopias);
     console.log("numFotos ",numFotos );

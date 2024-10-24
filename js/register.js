@@ -63,12 +63,15 @@ function checkFormValidity() {
     document.getElementById("submitLoginButton").disabled = !allErrorsHidden;
 }
 
-
-
-
-
-
 // FORM CHECKS-------------------------------------------------------------------------------------------------
+
+function init() {
+    checkEmail("");
+    checkUser("");
+    checkPass("");
+    checkPass2("");
+    checkBirthDate("");
+}
 
 function checkEnglish(word, slash) {
     value = true;
@@ -115,6 +118,8 @@ function checkMayusNum(word) {
 
 }
 
+// Email
+
 function checkEmail(value) {
     HideErrorMessage("emailError");
 
@@ -158,6 +163,9 @@ function checkEmail(value) {
 
 function checkLocal(local) {
     value = true;
+
+    if (local.length <= 0) { return false; }
+
     for (const letter in local) {
         if (!Object.prototype.hasOwnProperty.call(local, letter)) { return; }
         const element = `${(local[letter])}`;
@@ -241,6 +249,7 @@ function checkDomain(domain) {
     return true;
 }
 
+// User
 
 function checkUser(value) {
     HideErrorMessage("userError");
@@ -270,6 +279,8 @@ function checkUser(value) {
     checkFormValidity();
 
 }
+
+// Pass
 
 function checkPass(value) {
     HideErrorMessage("passInputError");
@@ -318,20 +329,38 @@ function checkPass2(value) {
         return;
     }
 
+    if ( (value.length == 0) ) {
+        setErrorMessage("pass2Error", "Demasiado corto");
+    }
+
     console.log("Contraseñas coinciden!");
     checkFormValidity();
 }
 
+// Birthday
+
 function checkBirthDate(value) {
     HideErrorMessage("birthError");
+
+    if ( value.length <= 0 ) {
+        setErrorMessage("birthError", "Tienes que ser mayor de edad");
+        return;
+    }
+    
 
     const now = new Date()
     const birth = new Date(value)
 
     if ( now.getFullYear() - birth.getFullYear() < 18 ) {
         setErrorMessage("birthError", "Tienes que ser mayor de edad");
-        
+        return;
     }
     
     checkFormValidity();
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    // creacion de errorMessages
+    init()
+
+});
