@@ -82,6 +82,8 @@
                     <td>0.2€ por foto</td>
                 </tr>
             </table>
+
+            <button onclick="showModal()" class="greenButton">Ver precios</button>
         </section>
 
         <h2>Fomulario solicitud</h2>
@@ -265,6 +267,19 @@
             </ul>
         </section>
     </footer>
+
+    <dialog id="details">
+
+        <header>
+            <h2>Detalles de los precios</h2>
+            <button onclick="closeModal()"><i class="fa-solid fa-x"></i></button>
+        </header>
+        <main>
+            <table id="price-table"></table>
+        </main>
+        <footer></footer>
+      </dialog>
+
     <script>
         init()
     </script>
