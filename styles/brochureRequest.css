@@ -86,6 +86,20 @@
     }
 }
 
+#price-table {
+    margin: 0;
+
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        height: 75px;
+
+        &:nth-child(2) {
+            top: 75px;
+        }
+    }
+}
+
 dialog {
     background-color: var(--main-bg-color);
     color: var(--alt-color);
@@ -99,7 +113,9 @@ dialog {
         gap: 1rem;
         background-color: var(--alt-color);
         padding: 5px;
-
+        justify-content: space-between;
+        padding: 15px 50px;
+        
         h2 {
             color: var(--main-bg-color);
             margin: auto 0;

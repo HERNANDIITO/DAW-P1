@@ -12,34 +12,54 @@ function init() {
     generateTable()
 }
 
+function insertTH(row, text) {
+    const th = document.createElement("th");
+    th.innerHTML = text;
+
+    row.appendChild(th);
+}
+
+function fillRow( row, numPag, numFot ) {
+    row.insertCell().innerText = numPag
+    row.insertCell().innerText = numFot
+    row.insertCell().innerText = getPrecio( numPag, numFot, false, false )
+    row.insertCell().innerText = getPrecio( numPag, numFot, false, true  )
+    row.insertCell().innerText = getPrecio( numPag, numFot, true , false )
+    row.insertCell().innerText = getPrecio( numPag, numFot, true , true  )
+}
+
 function generateTable() {
     const table = document.getElementById("price-table")
-    table.insertRow()
 
-    table.insertCell()
-    table.insertCell()
+    var row = table.insertRow(0)
+    row.classList.add("sticky-header")
 
-    table.insertCell().innerText = "Blanco y negro"
-    table.insertCell().innerText = "Color"
+    insertTH(row, "")
+    insertTH(row, "")
+    insertTH(row, "Blanco y negro")
+    insertTH(row, "Color")
+    insertTH(row, "")
+    insertTH(row, "")
 
-    table.insertRow()
+    row = table.insertRow(1)
+    row.classList.add("sticky-header")
 
-    table.insertCell().innerText = "Número de páginas"
-    table.insertCell().innerText = "Número de fotos"
-    table.insertCell().innerText = "150 - 300 dpi"
-    table.insertCell().innerText = "450 - 900 dpi"
-    table.insertCell().innerText = "150 - 300 dpi"
-    table.insertCell().innerText = "450 - 900 dpi"
-
-    for (let index = 0; index <= 15; index++) {
-        table.insertRow(index)
-    }
+    insertTH(row, "Número de páginas")
+    insertTH(row, "Número de fotos")
+    insertTH(row, "150 - 300 dpi")
+    insertTH(row, "450 - 900 dpi")
+    insertTH(row, "150 - 300 dpi")
+    insertTH(row, "450 - 900 dpi")
     
-    table.appendChild()
+    for (let index = 0; index <= 17; index++) {
+        row = table.insertRow()
+        fillRow( row, index, index * 3 )
+    }
 }
 
 function showModal() {
     modal.showModal()
+    modal.focus()
 }
 
 function closeModal() {
