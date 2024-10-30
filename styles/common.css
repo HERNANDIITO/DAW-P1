@@ -288,7 +288,7 @@ p, h2, h3, h4, h5, h6, strong {
         }
     }
 
-    > label {
+    > label, .radioGroup > label {
         background-color: var(--alt-color);
         color: var(--main-bg-color);
         font-size: 25px;
@@ -298,6 +298,11 @@ p, h2, h3, h4, h5, h6, strong {
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
         width: fit-content;
+    }
+
+    .radioGroup > label {
+        border-bottom-left-radius: 15px;
+        border-top-right-radius: 0px;
     }
 
     input:not(input[type="radio"]), select, option:hover, textarea, span {

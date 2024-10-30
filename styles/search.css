@@ -42,6 +42,25 @@ input[type="number"] {
     -moz-appearance: textfield; /* Para Firefox */
 }
 
+.search-result {
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+
+    .inputGroup {
+        display: flex;
+        flex-flow: column;
+
+        .radioGroup {
+            margin-bottom: 10px;
+
+            .radio {
+                min-width: fit-content;
+                gap: 10px;
+            }
+        }
+    }
+}
 
 
 @media screen and (width <= 740px) {
@@ -53,5 +72,36 @@ input[type="number"] {
             margin: 0 auto;
         }
     }
+}
 
+@media screen and (width <= 1120px) {
+    #order.inputGroup {
+        flex-flow: row !important;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .radioGroup {
+            flex-flow: column !important;
+            width: fit-content !important;
+
+            > label {
+                border-top-right-radius: 15px;
+                border-bottom-left-radius: 0px;
+            }
+    
+            .radio {
+                min-width: 180px !important;
+    
+                label {
+                    height: fit-content !important;
+                    margin: auto 0;
+                }
+    
+                &:last-child {
+                    border-bottom-left-radius: 15px !important;
+                }
+            }
+        }
+    }
 }

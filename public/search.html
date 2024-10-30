@@ -27,6 +27,7 @@
     <!-- big-font-dyslexic -->
     <link rel="alternate stylesheet" media="screen" href="../styles/big-font-dyslexic/search.css"    title="Modo de letras grandes + dislexia">
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+    <script src="../js/search.js" crossorigin="anonymous"></script>
     <title>Búsqueda avanzada</title>
 </head>
 <body>
@@ -85,40 +86,24 @@
                 <button class="greenButton" type="submit">Buscar</button>
             </form>
         </aside>
-        <section class="houses">
-            <a href="../restricted/cardDetails.html"> 
-                <section class="card">
-                    <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
-                    <h1 class="title">Piso en Madrid</h1>
+        <section class="search-result" >
+            <section id="order" class="inputGroup">
 
-                    <section class="info">
-                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
-                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
-                    </section>
+                <section onchange="sortHouses(this)" class="radioGroup">
+                    <label>Ordenar por:</label>
+                    <section class="radio"><label for="title"  >Título          </label><input checked onclick="changeField(this.value)" name="order_by" id="title"   type="radio" value="title"                  ></input></section>
+                    <section class="radio"><label for="date"   >Fecha           </label><input onclick="changeField(this.value)" name="order_by" id="date"    type="radio" value="date"                   ></input></section>
+                    <section class="radio"><label for="city"   >Ciudad          </label><input onclick="changeField(this.value)" name="order_by" id="city"    type="radio" value="city"                   ></input></section>
+                    <section class="radio"><label for="order-country">País      </label><input onclick="changeField(this.value)" name="order_by" id="order-country" type="radio" value="order-country"    ></input></section>
+                    <section class="radio"><label for="order-price"  >Precio    </label><input onclick="changeField(this.value)" name="order_by" id="order-price"   type="radio" value="order-price"      ></input></section>
                 </section>
-            </a>
-            <a href="../restricted/cardDetails.html"> 
-                <section class="card">
-                    <img class="mainImg" src="../assets/img/houses/house2.png" alt="">
-                    <h1 class="title">Piso en Madrid</h1>
-
-                    <section class="info">
-                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
-                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
-                    </section>
+                <section onchange="sortHouses(this)" class="radioGroup">
+                    <label>Tipo de orden:</label>
+                    <section class="radio"><label for="asc"  >Ascendente  </label><input onclick="changeSortType(1)" checked name="order_type" id="asc"   type="radio" value="asc"      ></input></section>
+                    <section class="radio"><label for="desc" >Descendente </label><input onclick="changeSortType(-1)" name="order_type" id="desc"  type="radio" value="desc"     ></input></section>
                 </section>
-            </a>
-            <a href="../restricted/cardDetails.html"> 
-                <section class="card">
-                    <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
-                    <h1 class="title">Piso en Madrid</h1>
-
-                    <section class="info">
-                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
-                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
-                    </section>
-                </section>
-            </a>               
+            </section>
+            <section id="houses" class="houses"></section>
         </section>
     </main>
     <footer id="footer">
@@ -131,5 +116,8 @@
             </ul>
         </section>
     </footer>
+    <script>
+        init()
+    </script>
 </body>
 </html>
