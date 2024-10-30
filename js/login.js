@@ -4,9 +4,6 @@
 // Historial de cambios:
 // 23/10/2024 - Creado
 
-
-
-
 // ERROR MESSAGE
 
 function createErrorMessage(fieldId) {
@@ -56,8 +53,10 @@ function checkUser(value) {
     // reset
     HideErrorMessage("userError");
 
+    const regex = new RegExp("^[^\\s].*")
+
     // comprobacion espacios
-    if (value.includes(" ") || value.includes("\t")) {
+    if (!regex.test(value)) {
         setErrorMessage("userError", "Este campo no puede incluir espacios")
     }
 
@@ -74,8 +73,10 @@ function checkPassword(value) {
     // reset
     HideErrorMessage("passError");
 
+    const regex = new RegExp("^[^\\s].*")
+
     // comprobacion espacios
-    if (value.includes(" ") || value.includes("\t")) {
+    if (!regex.test(value)) {
         setErrorMessage("passError", "Este campo no puede incluir espacios");
     }
 

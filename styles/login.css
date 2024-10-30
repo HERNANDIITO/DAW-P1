@@ -22,4 +22,8 @@
     a {
         text-align: center;
     }
+
+    .inputGroup {
+        max-width: 400px;
+    }
 }

@@ -82,6 +82,7 @@ function createCard(image, title, location, price, link) {
 }
 
 function generateCards() {
+    sortHouses()
     for (let card in cards) {
         createCard(
             cards[card].image,
@@ -161,9 +162,6 @@ function sortString(card1, card2, key) {
 function sortDate(card1, card2) {
     const d1 = new Date(card1.date)
     const d2 = new Date(card2.date)
-    
-    console.log(card1["date"], card2["date"]);
-    console.log(d1, d2);
     
     return d1 - d2
 

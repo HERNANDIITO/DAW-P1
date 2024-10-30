@@ -73,7 +73,7 @@ function init() {
     checkBirthDate("");
 }
 
-function checkEnglish(word, slash) {
+function checkEnglish(word, slash) { // useless
     value = true;
     for (const letter in word) {
         if (!Object.prototype.hasOwnProperty.call(word, letter)) { return; }
@@ -98,7 +98,7 @@ function checkEnglish(word, slash) {
     return value;
 }
 
-function checkMayusNum(word) {
+function checkMayusNum(word) { // useless
     mayus = 0;
     minus = 0;
     nums  = 0;
@@ -123,45 +123,51 @@ function checkMayusNum(word) {
 function checkEmail(value) {
     HideErrorMessage("emailError");
 
+    const regex = new RegExp("^(?!.*\\.\\.)(?!\\.)([A-Za-z0-9!#$%&'*+/=?^_`{|}~.]{1,64})(?<!\\.)@(?=.*\\.)(?!.*\\.\\.)(?!\\-)([A-Za-z0-9!#$%&'*+/=?^_`{|}~.\\-]{1,63})(?<!\\-)$")
+
     if ( value.length > 254 ) {
         setErrorMessage("emailError", "demasiado largo");
-
         checkFormValidity();
         return;
     }
+
+    if ( !regex.test(value) ) {
+        setErrorMessage("emailError", "Email equivocado");
+        checkFormValidity();
+    }
+     
+    // splittedEmail = value.split('@')
+
+    // if ( splittedEmail.length < 2 ) {
+    //     setErrorMessage("emailError", "Falta un @");
+
+    //     checkFormValidity();
+    //     return;
+    // }
+
+    // local = splittedEmail[0]
+    // domain = splittedEmail[1]
     
-    splittedEmail = value.split('@')
-
-    if ( splittedEmail.length < 2 ) {
-        setErrorMessage("emailError", "Falta un @");
-
-        checkFormValidity();
-        return;
-    }
-
-    local = splittedEmail[0]
-    domain = splittedEmail[1]
-    
-    if ( !checkLocal(local) ) {
-        setErrorMessage("emailError", "Parte local equivocada");
+    // if ( !checkLocal(local) ) {
+    //     setErrorMessage("emailError", "Parte local equivocada");
         
-        checkFormValidity();
-        return;
-    }
+    //     checkFormValidity();
+    //     return;
+    // }
 
-    if ( !checkDomain(domain) ) {
-        setErrorMessage("emailError", "Dominio equivocado");
+    // if ( !checkDomain(domain) ) {
+    //     setErrorMessage("emailError", "Dominio equivocado");
         
-        checkFormValidity();
-        return;
-    }
+    //     checkFormValidity();
+    //     return;
+    // }
 
-    console.log("Correo apropiado!");
-    checkFormValidity();
+    // console.log("Correo apropiado!");
+    // checkFormValidity();
 
 }
 
-function checkLocal(local) {
+function checkLocal(local) {  // useless
     value = true;
 
     if (local.length <= 0) { return false; }
@@ -216,7 +222,7 @@ function checkLocal(local) {
     return value;
 }
 
-function checkDomain(domain) {
+function checkDomain(domain) {  // useless
     console.log(domain);
     
     if ( domain.length > 255 ) { console.log("Muy largo"); return false; } // Demasiado largo
@@ -254,23 +260,16 @@ function checkDomain(domain) {
 function checkUser(value) {
     HideErrorMessage("userError");
 
-    if ( value.length < 3 ) {
-        setErrorMessage("userError", "Demasiado corto");
+    const regex = new RegExp("^(?!\\d)[\\w\\d]{3,15}$")
 
-        checkFormValidity();
-        return;
-    }
-    
     if ( value.length > 15 ) {
-        setErrorMessage("userError", "Demasiado largo");
-
+        setErrorMessage("userError", "demasiado largo");
         checkFormValidity();
         return;
     }
 
-    if ( !checkEnglish(value, false) ) {
-        setErrorMessage("userError", "Carácteres inapropiados");
-
+    if ( !regex.test(value) ) {
+        setErrorMessage("userError", "Carácteres inapropiados solo A-Z, a-z, 0-9.");
         checkFormValidity();
         return;
     }
@@ -285,31 +284,16 @@ function checkUser(value) {
 function checkPass(value) {
     HideErrorMessage("passInputError");
 
-    if ( value.length < 6 ) {
-        setErrorMessage("passInputError", "Demasiado corto");
+    const regex = new RegExp("^(?!\\d)(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])[\\w\\d\\-\\_]*$")
 
-        checkFormValidity();
-        return;
-    }
-    
-    if ( value.length > 15 ) {
-        setErrorMessage("passInputError", "Demasiado largo");
+    // if ( value.length > 254 ) {
+    //     setErrorMessage("passInputError", "demasiado largo");
+    //     checkFormValidity();
+    //     return;
+    // }
 
-        checkFormValidity();
-        return;
-    }
-    
-    if ( !checkEnglish(value, true) ) {
-        setErrorMessage("passInputError", "Carácteres inapropiados");
-
-        checkFormValidity();
-        return;
-    }
-
-    if ( !checkMayusNum(value) ) {
-        setErrorMessage("passInputError", "Minimo una mayuscula, una minuscula y un número");
-
-
+    if (  !regex.test(value)  ) {
+        setErrorMessage("passInputError", "La contraseña debe contener un numero, una mayuscula y una minuscula");
         checkFormValidity();
         return;
     }
@@ -324,7 +308,6 @@ function checkPass2(value) {
 
     if (!(pass1 === value)) {
         setErrorMessage("pass2Error", "Contraseñas no coinciden");
-
         checkFormValidity();
         return;
     }
