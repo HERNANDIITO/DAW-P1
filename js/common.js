@@ -171,6 +171,7 @@ function selectStyle(style) {
 
     sessionStorage.setItem("style", style)
     changeStyle();
+    checkCookies();
 }
 
 function swapStyle(styleSheet) {
