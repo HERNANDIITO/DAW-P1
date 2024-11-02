@@ -5,6 +5,8 @@
     26/09/2024 - Creado
     08/10/2024 - Desarrollado
 */
+@import url("./common.css");
+@import url("./message.css");
 
 form {
     width: 70%;

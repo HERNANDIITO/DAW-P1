@@ -13,20 +13,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen" title="Modo claro" href="../styles/common.css">
-    <link rel="stylesheet" media="screen" title="Modo claro" href="../styles/search.css">
+    <link rel="stylesheet" media="screen" title="Modo claro"  href="../styles/search.css">
     <!-- night mode -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dark/night.css" title="Modo Noche">
+    <link rel="alternate stylesheet" media="screen" href="../styles/dark/night.css" title="Modo Noche" id="dark">
     <!-- impresion -->
     <link rel="stylesheet" media="print" href="../styles/print/index.css"/>
     <link rel="stylesheet" media="print" href="../styles/print/search.css"/>
     <!-- dislexicos -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dyslexic/search.css"    title="Modo para dislexicos">
+    <link rel="alternate stylesheet" media="screen" href="../styles/dyslexic/search.css"    title="Modo para dislexicos" id="dyslexia">
     <!-- big-font -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font/search.css"    title="Modo de letras grandes">
+    <link rel="alternate stylesheet" media="screen" href="../styles/big-font/search.css"    title="Modo de letras grandes" id="big_font">
     <!-- big-font-dyslexic -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font-dyslexic/search.css"    title="Modo de letras grandes + dislexia">
+    <link rel="alternate stylesheet" media="screen" href="../styles/big-font-dyslexic/search.css"    title="Modo de letras grandes + dislexia" id="dyslexia_and_big_font">
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+    <script src="../js/common.js"></script>
     <script src="../js/search.js" crossorigin="anonymous"></script>
     <title>Búsqueda avanzada</title>
 </head>
@@ -119,5 +119,6 @@
     <script>
         init()
     </script>
-</body>
-</html>
+<script>
+    changeStyle();
+</script>

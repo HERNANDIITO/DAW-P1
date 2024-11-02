@@ -5,8 +5,9 @@
     08/10/2024 - Creado
     08/10/2024 - Desarrollado
 */
+@import url("./common.css");
 
-span {
+.inputGroup > span {
     width: fit-content;
     min-width: 250px;
 }

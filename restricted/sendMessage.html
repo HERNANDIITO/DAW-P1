@@ -16,17 +16,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" media="screen" href="../styles/common.css"       title="Modo claro">
-    <link rel="stylesheet" media="screen" href="../styles/message.css"      title="Modo claro">
+    <script src="../js/common.js" ></script>
     <link rel="stylesheet" media="screen" href="../styles/sendMessage.css"  title="Modo claro">
     <!-- night mode -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dark/night.css" title="Modo Noche">
+    <link rel="alternate stylesheet" media="screen" href="../styles/dark/night.css" title="Modo Noche" id="dark">
     <!-- dislexicos -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dyslexic/sendMessage.css"    title="Modo para dislexicos">
+    <link rel="alternate stylesheet" media="screen" href="../styles/dyslexic/sendMessage.css"    title="Modo para dislexicos" id="dyslexia">
     <!-- big-font -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font/sendMessage.css"  title="Modo de letras grandes">
+    <link rel="alternate stylesheet" media="screen" href="../styles/big-font/sendMessage.css"  title="Modo de letras grandes" id="big_font">
     <!-- big-font-dyslexic -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font-dyslexic/common.css"    title="Modo de letras grandes + dislexia">
+    <link rel="alternate stylesheet" media="screen" href="../styles/big-font-dyslexic/common.css"    title="Modo de letras grandes + dislexia" id="dyslexia_and_big_font">
     <title>Registro</title>
 </head>
 <body>
@@ -70,5 +69,6 @@
             </ul>
         </section>
     </footer>
-</body>
-</html>
+<script>
+    changeStyle();
+</script>

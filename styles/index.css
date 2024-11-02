@@ -6,6 +6,7 @@
     26/09/2024 - Se le ha dado estilo de .sreach y el h1
     08/10/2024 - Desarrollado
 */
+@import url("./common.css");
 
 .houses {
     margin: 0 auto;

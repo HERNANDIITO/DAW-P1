@@ -5,6 +5,8 @@
     08/10/2024 - Creado
     08/10/2024 - Desarrollado
 */
+@import url("./common.css");
+
  table {
 
     width: 100%;
@@ -97,62 +99,5 @@
         &:nth-child(2) {
             top: 75px;
         }
-    }
-}
-
-dialog {
-    background-color: var(--main-bg-color);
-    color: var(--alt-color);
-    border: 5px solid var(--alt-color);
-    border-radius: 15px;
-    padding: 0;
-
-    header {
-        display: flex;
-        flex-flow: row;
-        gap: 1rem;
-        background-color: var(--alt-color);
-        padding: 5px;
-        justify-content: space-between;
-        padding: 15px 50px;
-        
-        h2 {
-            color: var(--main-bg-color);
-            margin: auto 0;
-        }
-
-        button {
-            background-color: transparent;
-            outline: none;
-            border: 5px solid var(--main-bg-color);
-            border-radius: 15px;
-            padding: 5px;
-            transition: all .25s;
-
-            i {
-                width: fit-content;
-                font-size: 25px;
-                color: var(--main-bg-color);
-            }
-
-            &:hover {
-                background-color: var(--main-bg-color);
-                border: 5px solid var(--alt-color);
-                transition: all .25s;
-
-                i {
-                    color: var(--alt-color);
-                }
-            }
-        }
-    }
-
-    footer {
-        min-height: 15px;
-        display: flex;
-        flex-flow: row;
-        gap: 1rem;
-        background-color: var(--alt-color);
-        padding: 5px;
     }
 }

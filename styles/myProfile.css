@@ -6,6 +6,12 @@
     08/10/2024 - Desarrollado
 */
 
+@import url("./common.css");
+
+h2 {
+    text-align: center;
+}
+
 #userMenu {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -16,7 +22,7 @@
     width: fit-content;
     justify-content: center;
 
-    a {
+    a, button {
         color: var(--alt-color);
         text-decoration: none;
         border-radius: 15px;
@@ -27,6 +33,8 @@
         border: 5px solid var(--alt-color);
         margin: 0 auto;
         transition: scale .25s ease-in-out;
+        background-color: transparent;
+        cursor: pointer;
 
         &:hover {
             scale: 1.1;

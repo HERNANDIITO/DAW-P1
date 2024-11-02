@@ -53,6 +53,18 @@ p, h2, h3, h4, h5, h6, strong {
     font-family:  'Playfair Display';
 }
 
+a {
+    color: var(--main-bg-color);
+
+    &:hover {
+        color: var(--color4);
+    }
+
+    &:visited {
+        color: var(--color4);
+    }
+}
+
 /* Navegacion */
 
 .mainHeader {
@@ -99,8 +111,10 @@ p, h2, h3, h4, h5, h6, strong {
     padding: 25px 0;
 
     .logo {
-        width: 128px;
-        height: auto;
+        width: auto;
+        height: 128px;
+        display: block;
+        margin: auto 0;
     }
 
     .index-column {
@@ -117,6 +131,7 @@ p, h2, h3, h4, h5, h6, strong {
             li {
                 text-decoration: none;
                 list-style: none;
+                color: var(--main-bg-color);
             }
         }
     }
@@ -234,6 +249,29 @@ p, h2, h3, h4, h5, h6, strong {
     }
 }
 
+.redButton {
+    background-color: #924d4d;
+    border: none;
+    color: white;
+    padding: 1rem 4rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 25px;
+
+    &:disabled {
+        background-color: #321d1d; /* Verde */
+    }
+
+    &:hover{
+        background-color: #321d1d; /* Verde */
+    }
+}
+
 .inputGroup {
     display: flex;
     flex-flow: column;
@@ -342,7 +380,97 @@ p, h2, h3, h4, h5, h6, strong {
     color: var(--alt-color);
 }
 
+#cookies {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    color: var(--main-bg-color);
+    background: var(--alt-color);
+    padding: 15px 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    filter: drop-shadow(0 0 5px rgb(0, 0, 0));
 
+    .wrapper {
+        margin: 0 auto;
+        width: fit-content;
+    }
+
+    p, h2, ul, li, .buttons {
+        width: fit-content;
+    }
+
+    .buttons {
+        display: flex;
+        flex-flow: row;
+        gap: 20px;
+    }
+}
+
+dialog {
+    background-color: var(--main-bg-color);
+    color: var(--alt-color);
+    border: 5px solid var(--alt-color);
+    border-radius: 15px;
+    padding: 0;
+
+    header {
+        display: flex;
+        flex-flow: row;
+        gap: 1rem;
+        background-color: var(--alt-color);
+        padding: 5px;
+        justify-content: space-between;
+        padding: 15px 50px;
+        
+        h2 {
+            color: var(--main-bg-color);
+            margin: auto 0;
+        }
+
+        button {
+            background-color: transparent;
+            outline: none;
+            border: 5px solid var(--main-bg-color);
+            border-radius: 15px;
+            padding: 5px;
+            transition: all .25s;
+
+            i {
+                width: fit-content;
+                font-size: 25px;
+                color: var(--main-bg-color);
+            }
+
+            &:hover {
+                background-color: var(--main-bg-color);
+                border: 5px solid var(--alt-color);
+                transition: all .25s;
+
+                i {
+                    color: var(--alt-color);
+                }
+            }
+        }
+    }
+
+    main {
+
+        p {
+            padding: 10px 20px;
+        }
+    }
+
+    footer {
+        min-height: 15px;
+        display: flex;
+        flex-flow: row;
+        gap: 1rem;
+        background-color: var(--alt-color);
+        padding: 5px;
+    }
+}
 
 @media screen and (width <= 480px) {
     .mainHeader {

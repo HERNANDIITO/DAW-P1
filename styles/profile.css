@@ -6,6 +6,8 @@
     08/10/2024 - Desarrollado
 */
 
+@import url("./common.css");
+
 #main-content {
     margin: 0 auto;
     display: flex;
