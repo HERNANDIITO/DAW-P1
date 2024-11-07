@@ -26,18 +26,9 @@
     <title>Mis mensajes</title>
 </head>
 <body>
-    <header class="mainHeader">
-        <nav id="navBar">
-            <section class="links">
-                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
-                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
-            </section>
-            <section class="profile">
-                <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-user"></i> <span>Perfil</span> </a>
-                <a class="navLink" href="/index.html"> <i class="fa-solid fa-right-to-bracket"></i> <span>Cerrar sesión</span> </a>
-            </section>
-        </nav>
-    </header>
+    <?php
+        include "../inc/header.php";
+    ?>
     <main id="main-content">
         <h1 class="title">Propuesta</h1>
 
@@ -109,16 +100,10 @@
         </section>
     </main>
 
-    <footer id="footer">
-        <img src="../assets/img/logo.png" class="logo">
-        <section class="index-column">
-            <strong>Contacto</strong>
-            <ul>
-                <li>contacto@gmail.com</li>
-                <li>644 78 58 95</li>
-            </ul>
-        </section>
-    </footer>
+<?php
+    include "../inc/footer.php";
+?>
+
 <script>
     changeStyle();
     checkCookies();
