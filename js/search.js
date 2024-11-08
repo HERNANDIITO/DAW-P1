@@ -190,15 +190,11 @@ function filterCards() {
     if ( minPrice != "" && minPrice != null ) { cards = cards.filter((card) => card.price  >=  parseInt(minPrice)  ) }
     if ( maxPrice != "" && maxPrice != null ) { cards = cards.filter((card) => card.price  <=  parseInt(maxPrice)  ) }
 
-    console.log(cards);
     if ( minDate  != ""  && minDate != null) { cards = cards.filter((card) => {
         const cardDate = new Date(card.date);
         const minDate = new Date(formattedMinDate);
         return cardDate.getTime() >= minDate.getTime();
-    }) }
-
-    console.log(cards);
-    
+    }) }    
     
     if ( maxDate  != ""  && maxDate != null) { cards = cards.filter((card) => {
         const cardDate = new Date(card.date);
@@ -206,7 +202,6 @@ function filterCards() {
         
         return cardDate.getTime() <= maxDate.getTime();
     }) }
-    console.log(cards);
 
 }
 
