@@ -1,5 +1,5 @@
 <!--
-    Archivo: acces_info.html
+    Archivo: acces_info.php
     En este archivo se recopila la información sobre las modificaciones que se han hecho en el codigo para mejorar la accesibilidad
     Creado por: David González Moreno el 17/10/2024
     Historial de cambios:
@@ -29,6 +29,7 @@
     <?php
         include "../inc/header.php";
     ?>
+
     <main id="main-content">
         <h1 class="title">Información sobre accesibilidad</h1>
         
@@ -73,9 +74,12 @@
             <hr class="solid">
         </section>
     </main>
-<?php
-    include "../inc/footer.php";
-?><script>
+    
+    <?php
+        include "../inc/footer.php";
+    ?>
+
+<script>
     changeStyle();
     checkCookies();
 </script>

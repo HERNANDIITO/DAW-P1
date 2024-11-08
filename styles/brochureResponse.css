@@ -18,10 +18,25 @@
     gap: 15px;
 
     width: fit-content;
-    margin: 1rem auto;
+    /* margin: 1rem auto; */
 }
 
 fieldset {
     border: 5px solid var(--alt-color);
     font-size: 25px;
+}
+
+
+img {
+    width: 60%;
+}
+
+.miniaturas {
+    display: flex;
+    flex-flow: row;
+}
+
+.aditional-img {
+    width: 120px;
+    max-height: 120px;
 }

@@ -1,5 +1,5 @@
 <!--
-    Archivo: profile.html
+    Archivo: profile.php
     En este archivo se la solicitud de folleto
     Creado por: David González Moreno el 03/10/2024
     Historial de cambios:
@@ -27,9 +27,10 @@
     <title>Registro</title>
 </head>
 <body>
-<?php
-    include "../inc/header.php";
-?>
+    <?php
+        include "../inc/header.php";
+    ?>
+
     <main id="main-content">
         <h1>Solicitar folleto</h1>
 
@@ -75,13 +76,14 @@
             </table>
 
             <button onclick="showModal()" class="greenButton">Ver precios</button>
+            <button onclick="showModal2()" class="greenButton">Ver precios (PHP)</button>
         </section>
 
         <h2>Fomulario solicitud</h2>
         <p>Rellena el siguiente formulario aportando todos los detalles para confeccionar tu folleto publicitario</p>
         <p>Los campos marcados con un asterisco (*) son obligatorios</p>
 
-        <form action="brochureResponse.html" method="get">
+        <form action="brochureResponse.php" method="post">
             <!-- Nombre -->
             <section class="inputGroup">
                 <label for="nombre">Nombre:</label>
@@ -159,7 +161,7 @@
             <!-- Color de la portada -->
             <section class="inputGroup">
                 <label for="colorPortada">Color de la portada</label>
-                <input type="color" id="colorPortada" name="colorPortada" value="#000000" disabled>
+                <input type="color" id="colorPortada" name="colorPortada" value="#000000">
             </section>
             
     
@@ -244,13 +246,17 @@
                 <section class="label" >Precio</section>
                 <section id="price" >Calculando...</section>
             </section>
+            <!-- precio hidden para recogerlo con php -->
+            <input type="hidden" id="precioTotalphp" name="precioTotalphp">
             
             <button class="greenButton" type="submit">Enviar solicitud</button> 
         </form>
     </main>
-<?php
-    include "../inc/footer.php";
-?>
+    
+    <?php
+        include "../inc/footer.php";
+    ?>
+
     <dialog id="details">
 
         <header>
@@ -261,7 +267,24 @@
             <table id="price-table"></table>
         </main>
         <footer></footer>
-      </dialog>
+    </dialog>
+
+
+    <dialog id="detailsPHP">
+        <header>
+            <h2>Detalles de los precios</h2>
+            <button onclick="closeModal2()"><i class="fa-solid fa-x"></i></button>
+        </header>
+        <main>
+            <?php
+                include '../phpAdds/brochureTableCalc.php';
+                echo generateTable();
+            ?>
+        </main>
+        <footer></footer>
+    </dialog>
+
+
 
     <script>
         init()

@@ -1,5 +1,5 @@
 <!--
-    Archivo: index.html
+    Archivo: index.php
     En este archivo se define la página principal del sitio web
     Creado por: Pablo Hernández García el 20/09/2024
     Historial de cambios:
@@ -10,6 +10,16 @@
     05/10/2024 - Añadidos los estilos css
     08/10/2024 - Terminados los estilos css
 -->
+
+<?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="error-message">No se ha podido realizar el login, usuario o contraseña incorrectos</span>
+            <button id="closeModalButton" class="close-button">Cerrar</button>
+        </div>
+    </div>
+<?php endif; ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -30,6 +40,7 @@
     
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" media="screen" crossorigin="anonymous"></script>
     <script src="./js/common.js" media="screen" crossorigin="anonymous"></script>
+    <script src="./js/index.js" media="screen" crossorigin="anonymous"></script>
     <title>FOTOCASA 2</title>
 </head>
 <body>
@@ -37,13 +48,13 @@
         <nav id="navBar">
             <section class="links">
                 <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
-                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
-                <a class="navLink" href="/public/styles.html"> <i class="fa-solid fa-pencil"></i> <span>Estilos</span></a>
+                <a class="navLink" href="/public/search.php"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
+                <a class="navLink" href="/public/styles.php"> <i class="fa-solid fa-pencil"></i> <span>Estilos</span></a>
             </section>
             
             <section class="profile">
-                <a class="navLink" href="/public/login.html"> <i class="fa-solid fa-user"></i> <span>Iniciar sesión</span> </a>
-                <a class="navLink" href="/public/register.html"> <i class="fa-solid fa-right-to-bracket"></i> <span>Registrarse</span> </a>
+                <a class="navLink" href="/public/login.php"> <i class="fa-solid fa-user"></i> <span>Iniciar sesión</span> </a>
+                <a class="navLink" href="/public/register.php"> <i class="fa-solid fa-right-to-bracket"></i> <span>Registrarse</span> </a>
             </section>
         </nav>
     </header>
@@ -54,7 +65,7 @@
             <input name="search" type="text">
         </section>
         <section class="houses">
-            <a class="cardLink" href="../restricted/cardDetails.html"> 
+            <a class="cardLink" href="../restricted/cardDetails.php?id=11"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -64,7 +75,7 @@
                     </section>
                 </section>
             </a>
-            <a class="cardLink" href="../restricted/cardDetails.html"> 
+            <a class="cardLink" href="../restricted/cardDetails.php?id=12"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house2.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -74,7 +85,7 @@
                     </section>
                 </section>
             </a>
-            <a class="cardLink" href="../restricted/cardDetails.html"> 
+            <a class="cardLink" href="../restricted/cardDetails.php?id=13"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -84,7 +95,7 @@
                     </section>
                 </section>
             </a>               
-            <a class="cardLink" href="../restricted/cardDetails.html"> 
+            <a class="cardLink" href="../restricted/cardDetails.php?id=14"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -94,7 +105,7 @@
                     </section>
                 </section>
             </a>
-            <a class="cardLink" href="../restricted/cardDetails.html"> 
+            <a class="cardLink" href="../restricted/cardDetails.php?id=15"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house2.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -104,7 +115,7 @@
                     </section>
                 </section>
             </a>
-            <a class="cardLink" href="../restricted/cardDetails.html"> 
+            <a class="cardLink" href="../restricted/cardDetails.php?id=16"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -116,22 +127,12 @@
             </a>               
         </section>
     </main>
-    <footer id="footer">
-        <img src="../assets/img/logo.png" class="logo">
-        <section class="index-column">
-            <strong>Contacto</strong>
-            <ul>
-                <li>contacto@gmail.com</li>
-                <li>644 78 58 95</li>
-            </ul>
-            <ul>
-                <li><a href="/public/accessInfo.html">Información de accesibilidad</a></li>
-                <li><a href="/public/cookiesInfo.html">Información de cookies</a></li>
-            </ul>
-        </section>
-    </footer>
+    <?php
+        include "inc/footer.php";
+    ?>
+
     <script>
         changeStyle();
-    checkCookies();
+        checkCookies();
     </script>    
 </body>

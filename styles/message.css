@@ -60,6 +60,19 @@
     }
 }
 
+
+
+.card-photo-mini {
+
+    img {
+        width: 60%;
+        max-height: 180px;
+    }
+}
+
+
+
+
 @media screen and (width <= 480px) {
     .messageInfo {
         flex-flow: column;

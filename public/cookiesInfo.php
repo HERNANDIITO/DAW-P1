@@ -1,10 +1,9 @@
 <!--
-    Archivo: messageResponse.html
-    En este archivo el usuario la respuesta a su mensaje recien enviado (si ha llegado o no)
-    Creado por: Pablo Hernández Moreno el 1/10/2024
+    Archivo: acces_info.php
+    En este archivo se recopila la información sobre las modificaciones que se han hecho en el codigo para mejorar la accesibilidad
+    Creado por: David González Moreno el 17/10/2024
     Historial de cambios:
-    26/09/2024 - Creado
-    08/10/2024 - CSS Aplicado
+    17/10/2024 - Creado
 -->
 
 
@@ -24,30 +23,36 @@
     <link rel="alternate stylesheet" media="screen" href="../styles/big-font-dyslexic/message.css"    title="Modo de letras grandes + dislexia" id="dyslexia_and_big_font">
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <script src="../js/common.js"></script>
+    <script src="../js/cookieInfo.js"></script>
     <title>Registro</title>
 </head>
 <body>
-<?php
-    include "../inc/header.php";
-?>
+    <?php
+        include "../inc/header.php";
+    ?>
+
     <main id="main-content">
-        <h1 class="title">Mensaje enviado</h1>
-        <span class="type">
-            <h2 class="title">Más información solicitada</h2> <i class="fa-solid fa-circle-info"></i>
-        </span>
+        <h1 class="title">Información sobre cookies</h1>
+        
         <section class="message">
             <section class="messageContent">
-                <p>He visto que usted vende un piso en Madrid, me gustaría saber si puedo alquilarlo por unos 3 meses para que Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga consequatur possimus dolorem.</p>
+                <h2>Cookies</h2>
+                <p>Nuestra página utiliza las cookies única y exclusivamente para almacenar el tema seleccionado.</p>
+                <p>Dicha cookie caduca a los 45 días de forma automática.</p>
             </section>
             <hr class="solid">
-            <section class="messageInfo">
-                <span>12/10/2024</span> <span>Louis Amoeba</span>
-            </section>
+            <section id="selection"></section>
+
         </section>
     </main>
-<?php
-    include "../inc/footer.php";
-?><script>
+    
+    <?php
+        include "../inc/footer.php";
+    ?>
+
+<script>
     changeStyle();
     checkCookies();
+    setup();
 </script>
+<body>

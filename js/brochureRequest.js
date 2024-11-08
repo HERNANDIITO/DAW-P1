@@ -5,10 +5,12 @@
 // 23/10/2024 - Creado
 
 var modal;
+var modal2;
 
 function init() {
     document.getElementById("price").innerText = '10.00 ' + "€"
     modal = document.getElementById("details")
+    modal2 = document.getElementById("detailsPHP")
     generateTable()
 }
 
@@ -62,8 +64,17 @@ function showModal() {
     modal.focus()
 }
 
+function showModal2() {
+    modal2.showModal()
+    modal2.focus()
+}
+
 function closeModal() {
     modal.close()
+}
+
+function closeModal2() {
+    modal2.close()
 }
 
 function getPrecioCopias(copias) {
@@ -114,5 +125,22 @@ function updatePrice() {
     const color     = document.getElementById("color").checked;
 
     document.getElementById("price").innerText = getPrecio(numCopias, numFotos, resFotos, color)
+    // esto para recuperar el numero con php
+    document.getElementById("precioTotalphp").value = getPrecioNum(numCopias, numFotos, resFotos, color)
+}
+
+
+function getPrecioNum(numCopias, numFotos, resFotos, color) {
+
+    var precioTotal = 0;
+
+    const base = 10;
+    const precioFotos   = resFotos <= 300 ? 0 : 0.2
+    const precioCopias  = getPrecioCopias(numCopias);
+    const precioColor   = color ? 0.5 : 0 
+
+    const precioTotalFotos = numFotos * ( precioFotos + precioColor )
     
+    precioTotal = base + precioCopias + precioTotalFotos
+    return (Math.floor(precioTotal * 100) / 100).toFixed(2);
 }

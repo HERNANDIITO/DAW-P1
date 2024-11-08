@@ -1,5 +1,5 @@
 <!--
-    Archivo: login.html
+    Archivo: login.php
     En este archivo se define el formulario de busqueda avanzada
     Creado por: Pablo Hernández García el 02/11/2024
     Historial de cambios:
@@ -31,11 +31,11 @@
         <nav id="navBar">
             <section class="links">
                 <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
-                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
+                <a class="navLink" href="/public/search.php"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
             </section>
             <section class="profile">
-                <a class="navLink" href="/public/login.html"> <i class="fa-solid fa-user"></i> Iniciar sesión </a>
-                <a class="navLink" href="/public/register.html"> <i class="fa-solid fa-right-to-bracket"></i> Registrarse </a>
+                <a class="navLink" href="/public/login.php"> <i class="fa-solid fa-user"></i> Iniciar sesión </a>
+                <a class="navLink" href="/public/register.php"> <i class="fa-solid fa-right-to-bracket"></i> Registrarse </a>
             </section>
         </nav>
     </header>
@@ -64,9 +64,13 @@
             </button>
         </nav>
     </main>
-<?php
-    include "../inc/footer.php";
-?></body>
+
+    <?php
+        include "../inc/footer.php";
+    ?>
+
+</body>
+
 <script>
     changeStyle();
     checkCookies();

@@ -1,5 +1,5 @@
 <!--
-    Archivo: sendMessage.html
+    Archivo: sendMessage.php
     En este archivo el usuario puede enviar un mensaje al perfil del anuncio
     Creado por: David González Moreno el 26/09/2024
     Historial de cambios:
@@ -29,12 +29,14 @@
     <title>Registro</title>
 </head>
 <body>
-<?php
-    include "../inc/header.php";
-?>
+        
+    <?php
+        include "../inc/header.php";
+    ?>
+
     <main id="main-content">
         <h1 class="title">Mensaje para Paco Moreno</h1>
-        <form action="messageResponse.html" >
+        <form action="messageResponse.php" method="POST" >
             <section class="inputGroup">
                 <label for="message">Mensaje</label>
                 <textarea name="message" placeholder="Aqui puedes escribir un mensaje al arrendador" ></textarea>
@@ -50,9 +52,12 @@
             <button class="greenButton" type="submit">Enviar</button>
         </form>
     </main>
-<?php
-    include "../inc/footer.php";
-?><script>
+
+    <?php
+        include "../inc/footer.php";
+    ?>
+
+<script>
     changeStyle();
     checkCookies();
 </script>

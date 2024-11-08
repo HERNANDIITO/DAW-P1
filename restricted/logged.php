@@ -1,5 +1,5 @@
 <!--
-    Archivo: index.html
+    Archivo: index.php
     En este archivo se define la página principal del sitio web
     Creado por: Pablo Hernández García el 20/09/2024
     Historial de cambios:
@@ -33,11 +33,11 @@
         <nav id="navBar">
             <section class="links">
                 <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
-                <a class="navLink" href="/public/search.html"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
+                <a class="navLink" href="/public/search.php"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
             </section>
             <section class="profile">
-                <a class="navLink" href="/private/myProfile.html"> <i class="fa-solid fa-user"></i> <span>Perfil</span> </a>
-                <a class="navLink" href="../index.html"> <i class="fa-solid fa-right-to-bracket"></i> <span>Cerrar sesión</span> </a>
+                <a class="navLink" href="/private/myProfile.php"> <i class="fa-solid fa-user"></i> <span>Perfil</span> </a>
+                <a class="navLink" href="../index.php"> <i class="fa-solid fa-right-to-bracket"></i> <span>Cerrar sesión</span> </a>
             </section>
         </nav>
     </header>
@@ -48,7 +48,7 @@
             <input name="search" type="text">
         </section>
         <section class="houses">
-            <a href="../restricted/cardDetails.html"> 
+            <a href="../restricted/cardDetails.php?id=21"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -58,7 +58,7 @@
                     </section>
                 </section>
             </a>
-            <a href="../restricted/cardDetails.html"> 
+            <a href="../restricted/cardDetails.php?id=22"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house2.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -68,7 +68,7 @@
                     </section>
                 </section>
             </a>
-            <a href="../restricted/cardDetails.html"> 
+            <a href="../restricted/cardDetails.php?id=23"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -81,9 +81,12 @@
             </a>               
         </section>
     </main>
-<?php
-    include "../inc/footer.php";
-?><script>
+
+    <?php
+        include "../inc/footer.php";
+    ?>
+
+<script>
     changeStyle();
     checkCookies();
 </script>

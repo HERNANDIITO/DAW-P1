@@ -1,5 +1,5 @@
 <!--
-    Archivo: myProfile.html
+    Archivo: myProfile.php
     Archivo dedicado a los detalles de perfil de un usuario que es uno mismo
     Creado por: Pablo Hernández García el 20/09/2024
     Historial de cambios:
@@ -28,9 +28,10 @@
     <title>myProfile</title>
 </head>
 <body>
-<?php
-    include "../inc/header.php";
-?>
+    <?php
+        include "../inc/header.php";
+    ?>
+
     <main id="main-content">
         <nav id="userMenu">
             <a href="">
@@ -41,11 +42,11 @@
                 <i class="fa-solid fa-trash"></i>
                 <span>Darme de baja</span>
             </a>
-            <a href="">
+            <a href="./myAds.php">
                 <i class="fa-solid fa-house"></i>
                 <span>Visualizar mis anuncios</span>
             </a>
-            <a href="">
+            <a href="./createAd.php">
                 <i class="fa-solid fa-plus"></i>
                 <span>Crear un anuncio nuevo</span>
             </a>
@@ -53,21 +54,26 @@
                 <i class="fa-solid fa-message"></i>
                 <span>Mis mensajes</span>
             </a>
-            <a href="../restricted/brochureRequest.html">
+            <a href="../restricted/brochureRequest.php">
                 <i class="fa-solid fa-file-lines"></i>
                 <span>Solicitar folleto</span>
             </a>
-            <a href="../index.html">
+            <a href="../index.php">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span>Cerrar sesión</span>
             </a>
+            <a href="./addPhoto.php">
+                <i class="fa-solid fa-camera"></i>
+                <span>Añadir foto a anuncio</span>
+            </a>
         </nav>
     </main>
-<?php
-    include "../inc/footer.php";
-?
 
-><script>
+    <?php
+        include "../inc/footer.php";
+    ?>
+
+<script>
     changeStyle();
     checkCookies();
 </script>

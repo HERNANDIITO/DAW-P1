@@ -472,6 +472,7 @@ dialog {
     }
 }
 
+
 @media screen and (width <= 480px) {
     .mainHeader {
         #navBar {

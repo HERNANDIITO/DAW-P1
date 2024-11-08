@@ -1,5 +1,5 @@
 <!--
-    Archivo: myMessages.html
+    Archivo: myMessages.php
     Archivo dedicado a los mensajes que recibe un usuario que es uno mismo
     Creado por: David González Moreno el 02/10/2024
     Historial de cambios:
@@ -100,9 +100,9 @@
         </section>
     </main>
 
-<?php
-    include "../inc/footer.php";
-?>
+    <?php
+        include "../inc/footer.php";
+    ?>
 
 <script>
     changeStyle();

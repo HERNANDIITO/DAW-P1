@@ -6,7 +6,7 @@
 
 /*
 
-<a href="../restricted/cardDetails.html"> 
+<a href="../restricted/cardDetails.php"> 
     <section class="card">
         <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
         <h1 class="title">Piso en Madrid</h1>
@@ -176,7 +176,7 @@ function init() {
             title:  "A",
             location: "C",
             price: "2",
-            link: "cardDetails.html",
+            link: "cardDetails.php?id=11",
             date: "03/29/2004",
             city: "AB"
         },
@@ -185,7 +185,7 @@ function init() {
             title:  "B",
             location: "B",
             price: "4",
-            link: "cardDetails.html",
+            link: "cardDetails.php?id=12",
             date: "12/23/2004",
             city: "AA"
         },
@@ -194,7 +194,7 @@ function init() {
             title:  "C",
             location: "A",
             price: "7",
-            link: "cardDetails.html",
+            link: "cardDetails.php?id=13",
             date: "10/30/2004",
             city: "BB"
         }

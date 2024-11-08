@@ -1,5 +1,5 @@
 <!--
-    Archivo: profile.html
+    Archivo: profile.php
     En este archivo se mostrara el perfil de un usuario diferente del usuario
     Creado por: Pablo Hernández García el 20/09/2024
     Historial de cambios:
@@ -28,9 +28,11 @@
     <title>Perfil</title>
 </head>
 <body>
-<?php
-    include "../inc/header.php";
-?>
+        
+    <?php
+        include "../inc/header.php";
+    ?>
+
     <main id="main-content">
         <section class="pfp">
             <img src="../assets/img/logo.png" class="logo">
@@ -48,7 +50,7 @@
         </section>
         <h1>Anuncios</h1>
         <section class="houses">
-            <a href="../restricted/cardDetails.html"> 
+            <a href="../restricted/cardDetails.php"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -58,7 +60,7 @@
                     </section>
                 </section>
             </a>
-            <a href="../restricted/cardDetails.html"> 
+            <a href="../restricted/cardDetails.php"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house2.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -68,7 +70,7 @@
                     </section>
                 </section>
             </a>
-            <a href="../restricted/cardDetails.html"> 
+            <a href="../restricted/cardDetails.php"> 
                 <section class="card">
                     <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
                     <h1 class="title">Piso en Madrid</h1>
@@ -80,9 +82,12 @@
             </a>               
         </section>
     </main>
-<?php
-    include "../inc/footer.php";
-?><script>
+
+    <?php
+        include "../inc/footer.php";
+    ?>
+
+<script>
     changeStyle();
     checkCookies();
 </script>
