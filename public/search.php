@@ -78,8 +78,8 @@
                     <input type="number" name="maxPrice" id="maxPrice">
                 </section>
                 <section class="inputGroup">
-                    <label for="minPate">Fecha de publicación mínima</label>
-                    <input type="date" name="minPate" id="minPate">
+                    <label for="minDate">Fecha de publicación mínima</label>
+                    <input type="date" name="minDate" id="minDate">
                     <label for="maxDate">Fecha de publicación máxima</label>
                     <input type="date" name="maxDate" id="maxDate">
                 </section>

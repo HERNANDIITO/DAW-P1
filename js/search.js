@@ -163,6 +163,7 @@ function filterCards() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
+    let formattedMinDate, formattedMaxDate
     const adType    = urlParams.get("adType"  );
     const workType  = urlParams.get("workType");
     const city      = urlParams.get("city"    );
@@ -172,14 +173,40 @@ function filterCards() {
     const minDate   = urlParams.get("minDate" );
     const maxDate   = urlParams.get("maxDate" );
 
-    if ( adType   != "" ) { cards = cards.filter((card) => card.adType    ==  adType          ) }
-    if ( workType != "" ) { cards = cards.filter((card) => card.workType  ==  workType        ) }
-    if ( city     != "" ) { cards = cards.filter((card) => card.city.includes(city)           ) }
-    if ( country  != "" ) { cards = cards.filter((card) => card.location.includes(country)    ) }
-    if ( minPrice != "" ) { cards = cards.filter((card) => card.price  >=  parseInt(minPrice)  ) }
-    if ( maxPrice != "" ) { cards = cards.filter((card) => card.price  <=  parseInt(maxPrice)  ) }
-    if ( minDate  != "" ) { cards = cards.filter((card) => Date(card.date)  >=  Date(minDate)  ) }
-    if ( maxDate  != "" ) { cards = cards.filter((card) => Date(card.date)  <=  Date(maxDate)  ) }
+    if (minDate != "" && minDate != null) {
+        var minDateSplit = minDate.split("-");
+        formattedMinDate = `${minDateSplit[1]}/${minDateSplit[2]}/${minDateSplit[0]}`;
+    } 
+
+    if (maxDate != "" && maxDate != null) {
+        var maxDateSplit = maxDate.split("-");
+        formattedMaxDate = `${maxDateSplit[1]}/${maxDateSplit[2]}/${maxDateSplit[0]}`;
+    } 
+
+    if ( adType   != "" && adType   != null ) { cards = cards.filter((card) => card.adType    ==  adType          ) }
+    if ( workType != "" && workType != null ) { cards = cards.filter((card) => card.workType  ==  workType        ) }
+    if ( city     != "" && city     != null ) { cards = cards.filter((card) => card.city.includes(city)           ) }
+    if ( country  != "" && country  != null ) { cards = cards.filter((card) => card.location.includes(country)    ) }
+    if ( minPrice != "" && minPrice != null ) { cards = cards.filter((card) => card.price  >=  parseInt(minPrice)  ) }
+    if ( maxPrice != "" && maxPrice != null ) { cards = cards.filter((card) => card.price  <=  parseInt(maxPrice)  ) }
+
+    console.log(cards);
+    if ( minDate  != ""  && minDate != null) { cards = cards.filter((card) => {
+        const cardDate = new Date(card.date);
+        const minDate = new Date(formattedMinDate);
+        return cardDate.getTime() >= minDate.getTime();
+    }) }
+
+    console.log(cards);
+    
+    
+    if ( maxDate  != ""  && maxDate != null) { cards = cards.filter((card) => {
+        const cardDate = new Date(card.date);
+        const maxDate = new Date(formattedMaxDate);
+        
+        return cardDate.getTime() <= maxDate.getTime();
+    }) }
+    console.log(cards);
 
 }
 
