@@ -47,22 +47,22 @@
         <aside class="filters">
             <form action="">
                 <section class="inputGroup">
-                    <label for="ad-type">Tipo de anuncio</label>
-                    <select name="ad-type" id="ad-type">
+                    <label for="adType">Tipo de anuncio</label>
+                    <select name="adType" id="adType">
                         <option value="">Todos</option>
-                        <option value="venta">Venta</option>
-                        <option value="alquiler">Alquiler</option>
+                        <option value="0">Venta</option>
+                        <option value="1">Alquiler</option>
                     </select>
                 </section>
                 <section class="inputGroup">
-                    <label for="ad-type">Tipo de obra</label>
-                    <select name="ad-type" id="ad-type" aria-placeholder="aa">
+                    <label for="workType">Tipo de obra</label>
+                    <select name="workType" id="workType" aria-placeholder="aa">
                         <option value="">Cualquiera</option>
-                        <option value="nueva">Obra nueva</option>
-                        <option value="vivienda">Vivienda</option>
-                        <option value="oficina">Oficina</option>
-                        <option value="local">Local</option>
-                        <option value="garaje">Garaje</option>
+                        <option value="0">Obra nueva</option>
+                        <option value="1">Vivienda</option>
+                        <option value="2">Oficina</option>
+                        <option value="3">Local</option>
+                        <option value="4">Garaje</option>
                     </select>
                 </section>
                 <section class="inputGroup">
@@ -72,16 +72,16 @@
                     <input type="text" name="country" id="country">
                 </section>
                 <section class="inputGroup">
-                    <label for="min-price">Precio mínimo</label>
-                    <input type="number" name="min-price" id="min-price">
-                    <label for="max-price">Precio máximo</label>
-                    <input type="number" name="max-price" id="max-price">
+                    <label for="minPrice">Precio mínimo</label>
+                    <input type="number" name="minPrice" id="minPrice">
+                    <label for="maxPrice">Precio máximo</label>
+                    <input type="number" name="maxPrice" id="maxPrice">
                 </section>
                 <section class="inputGroup">
-                    <label for="min-date">Fecha de publicación mínima</label>
-                    <input type="date" name="min-date" id="min-date">
-                    <label for="max-date">Fecha de publicación máxima</label>
-                    <input type="date" name="max-date" id="max-date">
+                    <label for="minPate">Fecha de publicación mínima</label>
+                    <input type="date" name="minPate" id="minPate">
+                    <label for="maxDate">Fecha de publicación máxima</label>
+                    <input type="date" name="maxDate" id="maxDate">
                 </section>
                 <button class="greenButton" type="submit">Buscar</button>
             </form>
@@ -107,15 +107,9 @@
         </section>
     </main>
 
-    <?php
-        include "../inc/footer.php";
-    ?>   
-
-    <script>
-        init()
-    </script>
-    
+    <?php include "../inc/footer.php"; ?>     
 <script>
     changeStyle();
     checkCookies();
+    start();
 </script>

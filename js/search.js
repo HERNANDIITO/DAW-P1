@@ -78,12 +78,15 @@ function createCard(image, title, location, price, link) {
     a.appendChild(section)
 
     houses.appendChild(a)
+    console.log(houses);
+    
 
 }
 
 function generateCards() {
-    sortHouses()
     for (let card in cards) {
+        console.log("card", card);
+        
         createCard(
             cards[card].image,
             cards[card].title,
@@ -133,23 +136,12 @@ function sortHouses() {
     }
 
     clearHouses();
-
-    for (let card in cards) {
-        createCard(
-            cards[card].image,
-            cards[card].title,
-            cards[card].location,
-            cards[card].price,
-            cards[card].link
-        )
-    }
+    generateCards();
 }
 
 // Funciones de ordenacion
 
 function sortString(card1, card2, key) {
-    console.log(card1, card2, key);
-    
     const s1 = card1[key].toString().toLowerCase();
     const s2 = card2[key].toString().toLowerCase();
 
@@ -167,38 +159,70 @@ function sortDate(card1, card2) {
 
 }
 
+function filterCards() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    const adType    = urlParams.get("adType"  );
+    const workType  = urlParams.get("workType");
+    const city      = urlParams.get("city"    );
+    const country   = urlParams.get("country" );
+    const minPrice  = urlParams.get("minPrice");
+    const maxPrice  = urlParams.get("maxPrice");
+    const minDate   = urlParams.get("minDate" );
+    const maxDate   = urlParams.get("maxDate" );
+
+    if ( adType   != "" ) { cards = cards.filter((card) => card.adType    ==  adType          ) }
+    if ( workType != "" ) { cards = cards.filter((card) => card.workType  ==  workType        ) }
+    if ( city     != "" ) { cards = cards.filter((card) => card.city.includes(city)           ) }
+    if ( country  != "" ) { cards = cards.filter((card) => card.location.includes(country)    ) }
+    if ( minPrice != "" ) { cards = cards.filter((card) => card.price  >=  parseInt(minPrice)  ) }
+    if ( maxPrice != "" ) { cards = cards.filter((card) => card.price  <=  parseInt(maxPrice)  ) }
+    if ( minDate  != "" ) { cards = cards.filter((card) => Date(card.date)  >=  Date(minDate)  ) }
+    if ( maxDate  != "" ) { cards = cards.filter((card) => Date(card.date)  <=  Date(maxDate)  ) }
+
+}
+
 // Funcion init
 
-function init() {
+function start() {
     cards = [
         {
             image: "house1.png",
             title:  "A",
             location: "C",
-            price: "2",
+            price: 2,
             link: "cardDetails.php?id=11",
             date: "03/29/2004",
-            city: "AB"
+            city: "AB",
+            adType: 0,
+            workType: 1
         },
         {
             image: "house1.png",
             title:  "B",
             location: "B",
-            price: "4",
+            price: 4,
             link: "cardDetails.php?id=12",
             date: "12/23/2004",
-            city: "AA"
+            city: "AA",
+            adType: 1,
+            workType: 2
         },
         {
             image: "house1.png",
             title:  "C",
             location: "A",
-            price: "7",
+            price: 7,
             link: "cardDetails.php?id=13",
             date: "10/30/2004",
-            city: "BB"
+            city: "BB",
+            adType: 0,
+            workType: 3
         }
     ]
 
+    filterCards()
     generateCards()
+
 }
