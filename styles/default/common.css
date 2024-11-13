@@ -98,6 +98,14 @@ a {
             }
         }
     }
+
+    .welcomeMessage {
+        background-color: var(--alt-color);
+        color: var(--main-bg-color);
+        p {
+            text-align: center;
+        }
+    }
 }
 
 #footer {
