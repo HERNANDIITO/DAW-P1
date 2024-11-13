@@ -2,7 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" media="screen" title="Modo claro" href="../styles/message.css">
+    <link 
+        rel="stylesheet" 
+        media="screen" 
+        href="../styles/<?php include '../inc/styleSelector.php' ?>/message.css"
+        title="<?php include '../inc/styleSelector.php' ?>"
+        id="<?php include '../inc/styleSelector.php' ?>"
+    >
     <!-- Otros estilos y scripts -->
     <title>Mensaje enviado</title>
 </head>
@@ -63,9 +69,6 @@
 
     <?php include "../inc/footer.php"; ?>
 
-<script>
-    changeStyle();
-    checkCookies();
-</script>
+
 </body>
 </html>

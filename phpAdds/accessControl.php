@@ -27,6 +27,8 @@
     // Obtener datos del formulario
     $username = isset($_POST['user']) ? $_POST['user'] : '';
     $password = isset($_POST['pass']) ? $_POST['pass'] : '';
+    // cea variable que almacena la fecha en la que se intenta acceder a la cookie de recordado
+    $date = 0;
 
     // Función para verificar si el usuario está autorizado
     function isAuthorized($username, $password, $authorizedUsers) {
@@ -38,14 +40,33 @@
         return false;
     }
 
-    // Comprobar si el usuario está autorizado
-    if (isAuthorized($username, $password, $authorizedUsers)) {
-        // Usuario autorizado, redirigir a la página privada
-        header("Location: ../restricted/logged.php");
-        exit();
-    } else {
-        // Usuario no autorizado, redirigir a la página principal con mensaje de error
-        header("Location: ../index.php?error=1");
-        exit();
+    // funcion para recordar al usuario (guardarlo en las cookies)
+    if (isset($_POST['remember'])) {
+        // Comprobar si el usuario está autorizado
+        if (isAuthorized($username, $password, $authorizedUsers)) {
+            // Usuario autorizado, redirigir a la página privada
+            session_start();
+            $_SESSION['userSession'] = $username;
+            // Guardar el nombre de usuario y la contraseña en cookies por 90 días
+            setcookie('rememberedUser', $username, $date, time() + (90 * 24 * 60 * 60), '/');
+            
+            header("Location: ../private/myProfile.php");
+            exit();
+        } else {
+            // Borrar las cookies si no está seleccionada la casilla
+            setcookie('rememberedUser', '', time() - 3600, '/');
+            // Usuario no autorizado, redirigir a la página principal con mensaje de error
+            header("Location: ../index.php?error=1");
+            exit();
+        }
+        
     }
+    
+    
+    
+    // esto para enviar el usuario a su perfil si no marca la casilla de de recordarle
+    header("Location: ../private/myProfile.php");
+
+    
+
 ?>

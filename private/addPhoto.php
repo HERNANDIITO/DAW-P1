@@ -9,12 +9,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/brochureRequest.css" title="Modo claro">
-    <!-- night mode -->
-    <link rel="alternate stylesheet" href="../styles/dark/night.css" title="Modo Noche" id="dark">
-    <!-- estilos para dislexicos y letras grandes -->
-    <link rel="alternate stylesheet" href="../styles/dyslexic/brochureRequest.css" title="Modo para dislexicos" id="dyslexia">
-    <link rel="alternate stylesheet" href="../styles/big-font/brochureRequest.css" title="Modo de letras grandes" id="big_font">
+    <link 
+        rel="stylesheet" 
+        media="screen" 
+        href="../styles/<?php include '../inc/styleSelector.php' ?>/brochureRequest.css"
+        title="<?php include '../inc/styleSelector.php' ?>"
+        id="<?php include '../inc/styleSelector.php' ?>"
+    >
     <title>Añadir Foto a Anuncio</title>
 </head>
 <body>
@@ -74,10 +75,7 @@
     <?php include "../inc/footer.php"; ?>
 
     <script src="../js/common.js"></script>
-    <script>
-        changeStyle();
-        checkCookies();
-    </script>
+
 
 </body>
 </html>

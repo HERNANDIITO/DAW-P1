@@ -13,24 +13,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen" title="Modo claro"  href="../styles/myProfile.css">
-    <!-- night mode -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dark/night.css" title="Modo Noche" id="dark">
-    <!-- dislexicos -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dyslexic/myProfile.css" title="Modo para dislexicos" id="dyslexia">
-    <!-- big-font -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font/myProfile.css"    title="Modo de letras grandes" id="big_font">
-    <!-- big-font-dyslexic -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font-dyslexic/myProfile.css"    title="Modo de letras grandes + dislexia" id="dyslexia_and_big_font">
+    <link 
+        rel="stylesheet" 
+        media="screen" 
+        href="../styles/<?php include '../inc/styleSelector.php' ?>/myProfile.css"
+        title="<?php include '../inc/styleSelector.php' ?>"
+        id="<?php include '../inc/styleSelector.php' ?>"
+    >
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <script src="../js/common.js"></script>
+    <script src="../js/myProfile.js"></script>
 
     <title>myProfile</title>
 </head>
 <body>
-    <?php
-        include "../inc/header.php";
-    ?>
+    <?php include "../inc/header.php"; ?>
 
     <main id="main-content">
         <nav id="userMenu">
@@ -58,22 +55,17 @@
                 <i class="fa-solid fa-file-lines"></i>
                 <span>Solicitar folleto</span>
             </a>
-            <a href="../index.php">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Cerrar sesión</span>
-            </a>
             <a href="./addPhoto.php">
                 <i class="fa-solid fa-camera"></i>
                 <span>Añadir foto a anuncio</span>
             </a>
+            <a id="logOut">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Cerrar sesión</span>
+            </a>
         </nav>
     </main>
 
-    <?php
-        include "../inc/footer.php";
-    ?>
-
-<script>
-    changeStyle();
-    checkCookies();
-</script>
+    <?php include "../inc/footer.php"; ?>
+</body>
+</html>

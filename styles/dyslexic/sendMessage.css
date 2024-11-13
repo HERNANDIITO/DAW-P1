@@ -5,6 +5,6 @@
     16/10/2024 - Creado
 */
 
-@import url(../sendMessage.css);
-@import url(../common.css);
+@import url(../default/sendMessage.css);
+@import url(../default/common.css);
 @import url(./common.css);

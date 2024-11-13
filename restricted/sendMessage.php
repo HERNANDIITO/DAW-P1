@@ -17,22 +17,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <script src="../js/common.js" ></script>
-    <link rel="stylesheet" media="screen" href="../styles/sendMessage.css"  title="Modo claro">
-    <!-- night mode -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dark/night.css" title="Modo Noche" id="dark">
-    <!-- dislexicos -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dyslexic/sendMessage.css"    title="Modo para dislexicos" id="dyslexia">
-    <!-- big-font -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font/sendMessage.css"  title="Modo de letras grandes" id="big_font">
-    <!-- big-font-dyslexic -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font-dyslexic/common.css"    title="Modo de letras grandes + dislexia" id="dyslexia_and_big_font">
+    <link
+        rel="stylesheet" 
+        media="screen" 
+        href="../styles/<?php include '../inc/styleSelector.php' ?>/sendMessage.css"
+        title="<?php include '../inc/styleSelector.php' ?>"
+        id="<?php include '../inc/styleSelector.php' ?>"
+    >
     <title>Registro</title>
 </head>
 <body>
         
-    <?php
-        include "../inc/header.php";
-    ?>
+    <?php include "../inc/header.php"; ?>
 
     <main id="main-content">
         <h1 class="title">Mensaje para Paco Moreno</h1>
@@ -53,11 +49,8 @@
         </form>
     </main>
 
-    <?php
-        include "../inc/footer.php";
-    ?>
+    <?php include "../inc/footer.php"; ?>
 
-<script>
-    changeStyle();
-    checkCookies();
-</script>
+
+</body>
+</html>

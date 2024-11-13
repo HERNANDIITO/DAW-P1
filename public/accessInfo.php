@@ -11,24 +11,19 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" media="screen" title="Modo claro"  href="../styles/message.css">
-    <!-- night mode -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dark/night.css" title="Modo Noche" id="dark">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- dislexicos -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dyslexic/messageResponse.css"    title="Modo para dislexicos" id="dyslexia">
-    <!-- big-font -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font/message.css"   title="Modo de letras grandes" id="big_font">
-    <!-- big-font-dyslexic -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font-dyslexic/message.css"    title="Modo de letras grandes + dislexia" id="dyslexia_and_big_font">
+    <link 
+        rel="stylesheet" 
+        media="screen" 
+        href="../styles/<?php include '../inc/styleSelector.php' ?>/message.css"
+        title="<?php include '../inc/styleSelector.php' ?>"
+        id="<?php include '../inc/styleSelector.php' ?>"
+    >
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <script src="../js/common.js"></script>
     <title>Registro</title>
 </head>
 <body>
-    <?php
-        include "../inc/header.php";
-    ?>
+    <?php include "../inc/header.php";?>
 
     <main id="main-content">
         <h1 class="title">Información sobre accesibilidad</h1>
@@ -75,11 +70,9 @@
         </section>
     </main>
     
-    <?php
-        include "../inc/footer.php";
-    ?>
+    <?php include "../inc/footer.php"; ?>
 
-<script>
-    changeStyle();
-    checkCookies();
-</script>
+
+
+</body>
+</html>

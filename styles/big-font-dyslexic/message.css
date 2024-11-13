@@ -6,6 +6,6 @@
     16/10/2024 - Creado
 */
 
-@import url(../message.css);
-@import url(../common.css);
+@import url(../default/message.css);
+@import url(../default/common.css);
 @import url(./common.css);

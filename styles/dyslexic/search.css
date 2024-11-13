@@ -6,6 +6,6 @@
     16/10/2024 - Creado
 */
 
-@import url(../search.css);
-@import url(../common.css);
+@import url(../default/search.css);
+@import url(../default/common.css);
 @import url(./common.css);

@@ -9,9 +9,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error de Registro</title>
-    <link rel="stylesheet" href="../styles/errorRegister.css">
+    <link 
+        rel="stylesheet" 
+        media="screen" 
+        href="../styles/<?php include '../inc/styleSelector.php' ?>/errorRegister.css"
+        title="<?php include '../inc/styleSelector.php' ?>"
+        id="<?php include '../inc/styleSelector.php' ?>"
+    >
 </head>
 <body>
+    <?php include "../inc/header.php";?>
     <main>
         <h1>Error en el Registro</h1>
         <p>Por favor, corrige los siguientes errores antes de continuar:</p>
@@ -32,5 +39,7 @@
         </ul>
         <a href="register.php" class="greenButton">Volver al Registro</a>
     </main>
+    <?php include "../inc/footer.php";?>
+
 </body>
 </html>

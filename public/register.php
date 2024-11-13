@@ -28,18 +28,7 @@
     <title>Registro</title>
 </head>
 <body>
-    <header class="mainHeader">
-        <nav id="navBar">
-            <section class="links">
-                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
-                <a class="navLink" href="/public/search.php"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
-            </section>
-            <section class="profile">
-                <a class="navLink" href="/public/login.php"> <i class="fa-solid fa-user"></i> Iniciar sesión </a>
-                <a class="navLink" href="/public/register.php"> <i class="fa-solid fa-right-to-bracket"></i> Registrarse </a>
-            </section>
-        </nav>
-    </header>
+    <?php include "../inc/header.php" ?>
     <main id="main-content">
         <h1 class="title">Registro</h1>
         <form action="./registerResponse.php" method="POST">
@@ -87,14 +76,7 @@
         <a href="/public/login.php">¿Ya tienes cuenta?</a>
     </main>
 
-    <?php
-        include "../inc/footer.php";
-    ?>
+    <?php include "../inc/footer.php";?>
 
-    <script>
-        // Desactivar funciones de validación JS
-        changeStyle();
-        checkCookies();
-    </script>
 </body>
 </html>

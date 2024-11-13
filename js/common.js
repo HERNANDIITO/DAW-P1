@@ -7,64 +7,6 @@
     24/09/2024 - Añadidas las primeras funciones
 */
 
-function getHeader() {
-    xhr = new XMLHttpRequest();
-    xhr.open('GET', "../common/header.html", false);
-    xhr.onload = function() {
-        const element = document.createElement('nav');
-        element.innerHTML = xhr.response.trim();
-        element.id = "navBar"
-        document.querySelector("body").insertBefore(element, document.querySelector("body").firstChild)
-    };
-    xhr.send();
-}
-
-function getFooter() {
-    xhr = new XMLHttpRequest();
-    xhr.open('GET', "../common/footer.html", false);
-    xhr.onload = function() {
-        const element = document.createElement('footer');
-        element.innerHTML = xhr.response.trim();
-        element.id = "footer"
-        document.querySelector("body").appendChild(element)
-    };
-    xhr.send();
-}
-
-function goToIndex() {
-    location.href = "index.html";
-}
-
-function isLogged() {
-    try {
-        const usu = JSON.parse(sessionStorage['datosUsu'])
-        return usu && `${(usu).LOGIN}:${(usu).TOKEN}` ? `${(usu).LOGIN}:${(usu).TOKEN}` : false; 
-    } catch {
-        return false;
-    }
-}
-
-function mustLogOut() {
-    if (isLogged()) {
-        location.href = "index.html";
-    }
-}
-
-function mustLogIn() {
-    if (!isLogged()) {
-        location.href = "index.html";
-    }
-}
-
-function fillHouses() {
-    xhr = new XMLHttpRequest();
-    xhr.open('GET', "../common/card.html", false);
-    xhr.onload = function() {
-        document.querySelector(".houses").innerHTML = xhr.response;
-    };
-    xhr.send();
-}
-
 // Funciones relacionadas con las cookies
 
 function checkCookies() {
@@ -170,36 +112,5 @@ function selectStyle(style) {
     }
 
     sessionStorage.setItem("style", style)
-    changeStyle();
-    checkCookies();
-}
-
-function swapStyle(styleSheet) {
-    const styleSheets = document.getElementsByTagName("link")
-    var isDefault = true;
-    
-    for (let element of styleSheets) {
-        element.disabled = true
-        if ( element.media.includes("screen") ) {
-            if ( element.href.includes(`/${styleSheet}/`)) {
-                element.disabled = false
-            }
-        }
-    }
-
-    if ( isDefault ) {
-        const selected = document.getElementsByTagName("link").item(0)
-        selected.disabled = false
-    }
-}
-
-function changeStyle() {
-    var style;
-    if ( localStorage.getItem("canStoreCookies") == "true" ) { style = getCookie("style") }
-    else { style = sessionStorage.getItem("style") }
-    console.log(style);
-    
-    if ( !style) { return; }
-
-    swapStyle(style)
+    window.location.reload();
 }

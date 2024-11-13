@@ -13,36 +13,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen" title="Modo claro"  href="../styles/search.css">
-    <!-- night mode -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dark/night.css" title="Modo Noche" id="dark">
-    <!-- impresion -->
-    <link rel="stylesheet" media="print" href="../styles/print/index.css"/>
-    <link rel="stylesheet" media="print" href="../styles/print/search.css"/>
-    <!-- dislexicos -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/dyslexic/search.css"    title="Modo para dislexicos" id="dyslexia">
-    <!-- big-font -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font/search.css"    title="Modo de letras grandes" id="big_font">
-    <!-- big-font-dyslexic -->
-    <link rel="alternate stylesheet" media="screen" href="../styles/big-font-dyslexic/search.css"    title="Modo de letras grandes + dislexia" id="dyslexia_and_big_font">
+    <link 
+        rel="stylesheet" 
+        media="screen" 
+        href="../styles/<?php include '../inc/styleSelector.php' ?>/search.css"
+        title="<?php include '../inc/styleSelector.php' ?>"
+        id="<?php include '../inc/styleSelector.php' ?>"
+    >
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <script src="../js/common.js"></script>
     <script src="../js/search.js" crossorigin="anonymous"></script>
     <title>Búsqueda avanzada</title>
 </head>
 <body>
-    <header class="mainHeader">
-        <nav id="navBar">
-            <section class="links">
-                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> Inicio</a>
-                <a class="navLink" href="/public/search.php"> <i class="fa-solid fa-magnifying-glass"></i> Búsqueda</a>
-            </section>
-            <section class="profile">
-                <a class="navLink" href="/public/login.php"> <i class="fa-solid fa-user"></i> Iniciar sesión </a>
-                <a class="navLink" href="/public/register.php"> <i class="fa-solid fa-right-to-bracket"></i> Registrarse </a>
-            </section>
-        </nav>
-    </header>
+
+    <?php include "../inc/header.php"; ?> 
     <main id="main-content">
         <aside class="filters">
             <form action="">
@@ -106,10 +91,9 @@
             <section id="houses" class="houses"></section>
         </section>
     </main>
-
     <?php include "../inc/footer.php"; ?>     
 <script>
-    changeStyle();
-    checkCookies();
     start();
 </script>
+</body>
+</html>

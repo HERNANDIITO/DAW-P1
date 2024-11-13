@@ -26,38 +26,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen" title="Modo claro"  href="styles/index.css">
-    <!-- night mode -->
-    <link rel="alternate stylesheet" media="screen" href="styles/dark/night.css" title="Modo Noche" id="dark">
-    <!-- impresion -->
     <link rel="stylesheet" media="print" href="./styles/print/index.css"/>
     <!-- Diselxia -->
-    <link rel="alternate stylesheet" media="screen" href="styles/dyslexic/index.css"    title="Modo para dislexicos" id="dyslexia">
-    <!-- big-font -->
-    <link rel="alternate stylesheet" media="screen" href="styles/big-font/index.css"    title="Modo de letras grandes" id="big_font">
-    <!-- big-font-dyslexic -->
-    <link rel="alternate stylesheet" media="screen" href="styles/big-font-dyslexic/index.css"    title="Modo de letras grandes + dislexia" id="dyslexia_and_big_font">
-    
+    <link
+        rel="stylesheet"
+        media="screen"
+        href="styles/<?php include './inc/styleSelector.php' ?>/index.css"   
+        title="<?php include './inc/styleSelector.php' ?>"
+        id="<?php include './inc/styleSelector.php' ?>"
+    >
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" media="screen" crossorigin="anonymous"></script>
     <script src="./js/common.js" media="screen" crossorigin="anonymous"></script>
     <script src="./js/index.js" media="screen" crossorigin="anonymous"></script>
     <title>FOTOCASA 2</title>
 </head>
 <body>
-    <header class="mainHeader">
-        <nav id="navBar">
-            <section class="links">
-                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
-                <a class="navLink" href="/public/search.php"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
-                <a class="navLink" href="/public/styles.php"> <i class="fa-solid fa-pencil"></i> <span>Estilos</span></a>
-            </section>
-            
-            <section class="profile">
-                <a class="navLink" href="/public/login.php"> <i class="fa-solid fa-user"></i> <span>Iniciar sesión</span> </a>
-                <a class="navLink" href="/public/register.php"> <i class="fa-solid fa-right-to-bracket"></i> <span>Registrarse</span> </a>
-            </section>
-        </nav>
-    </header>
+
+    <?php include "./inc/header.php" ?>
+
     <main id="main-content">
         <h1 class="mainTitle">FOTOCASA 2</h1>
         <section class="search">
@@ -130,9 +116,5 @@
     <?php
         include "inc/footer.php";
     ?>
-
-    <script>
-        changeStyle();
-        checkCookies();
-    </script>    
 </body>
+</html>

@@ -5,6 +5,6 @@
     16/10/2024 - Creado
 */
 
-@import url(../brochureRequest.css);
-@import url(../common.css);
+@import url(../default/brochureRequest.css);
+@import url(../default/common.css);
 @import url(./common.css);

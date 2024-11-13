@@ -6,6 +6,6 @@
 */
 
 
-@import url(../index.css);
-@import url(../common.css);
+@import url(../default/index.css);
+@import url(../default/common.css);
 @import url(./common.css);

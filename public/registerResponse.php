@@ -9,7 +9,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmación de Registro</title>
-    <link rel="stylesheet" href="../styles/registerResponse.css">
+    <link 
+        rel="stylesheet" 
+        media="screen" 
+        href="../styles/<?php include '../inc/styleSelector.php' ?>/registerResponse.css"
+        title="<?php include '../inc/styleSelector.php' ?>"
+        id="<?php include '../inc/styleSelector.php' ?>"
+    >
 </head>
 <body>
     <?php
@@ -43,7 +49,7 @@
             exit();
         }
     ?>
-
+    <?php include "../inc/header.php" ?>
     <main>
         <h1>Confirmación de Registro</h1>
         <section class="formResult">
@@ -75,5 +81,6 @@
 
         <a href="../private/myProfile.php" class="greenButton">Ir a Mi Perfil</a>
     </main>
+    <?php include "../inc/footer.php" ?>
 </body>
 </html>

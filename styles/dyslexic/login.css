@@ -5,6 +5,6 @@
     16/10/2024 - Creado
 */
 
-@import url(../login.css);
-@import url(../common.css);
+@import url(../default/login.css);
+@import url(../default/common.css);
 @import url(./common.css);
