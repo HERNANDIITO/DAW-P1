@@ -62,8 +62,6 @@
         
     }
     
-    
-    
     // esto para enviar el usuario a su perfil si no marca la casilla de de recordarle
     header("Location: ../private/myProfile.php");
 

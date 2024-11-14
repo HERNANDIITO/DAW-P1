@@ -7,27 +7,30 @@
         $hora = date('H:i');
 
         if ($hora >= "06:00" && $hora <= "11:59") {
-            $returnValue = "Buenos días Pepito";
+            $returnValue = "Buenos días";
         } elseif ($hora >= "12:00" && $hora <= "15:59") {
-            $returnValue = "Hola Pepito";
+            $returnValue = "Hola";
         } elseif ($hora >= "16:00" && $hora <= "19:59") {
-            $returnValue = "Buenas tardes Pepito";
+            $returnValue = "Buenas tardes";
         } else {
-            $returnValue = "Buenas noches Pepito";
+            $returnValue = "Buenas noches";
         }
+
+        if ( isset($_SESSION["userSession"]) ) { $returnValue += $_SESSION["userSession"]; }
 
         return $returnValue;
     }
 
 ?>
 
-<?php  if ( false )  { ?>
+<?php  if ( isset($_SESSION["userSession"]) )  { ?>
 
     <header class="mainHeader">
         <nav id="navBar">
             <section class="links">
                 <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
                 <a class="navLink" href="/public/search.php"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
+                <a class="navLink" href="/public/latest.php"> <i class="fa-solid fa-clock"></i> <span>Últimos visitados</span></a>
                 <a class="navLink" href="/public/styles.php"> <i class="fa-solid fa-pencil"></i> <span>Estilos</span></a>
             </section>
             
@@ -37,15 +40,16 @@
             </section>
         </nav>
     </header>
+    
+    <?php } else { ?>
 
-<?php } else { ?>
-
-    <header class="mainHeader">
-        <nav id="navBar">
-            <section class="links">
-                <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
-                <a class="navLink" href="/public/search.php"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
-                <a class="navLink" href="/public/styles.php"> <i class="fa-solid fa-pencil"></i> <span>Estilos</span></a>
+        <header class="mainHeader">
+            <nav id="navBar">
+                <section class="links">
+                    <a class="navLink" href="/"> <i class="fa-solid fa-house"></i> <span>Inicio</span></a>
+                    <a class="navLink" href="/public/search.php"> <i class="fa-solid fa-magnifying-glass"></i> <span>Búsqueda</span></a>
+                    <a class="navLink" href="/public/latest.php"> <i class="fa-solid fa-clock"></i> <span>Últimos visitados</span></a>
+                    <a class="navLink" href="/public/styles.php"> <i class="fa-solid fa-pencil"></i> <span>Estilos</span></a>
             </section>
             <section class="profile">
                 <a class="navLink" href="/private/myProfile.php"> <i class="fa-solid fa-user"></i> <span>Perfil</span> </a>

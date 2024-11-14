@@ -28,7 +28,7 @@
     <?php include "../inc/header.php" ?>
     <main id="main-content">
         <h1 class="title">Inicio de sesión</h1>
-        <form action="../phpAdds/accessControl.php" method="POST" id="loginForm">
+        <form action="../phpAdds/loginLogic.php" method="POST" id="loginForm">
             <section class="inputGroup">
                 <label for="user">Nombre de usuario</label>
                 <input onblur="checkUser(this.value)" type="text" name="user" placeholder="nombreUsuario" id="user">

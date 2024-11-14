@@ -14,6 +14,8 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
+@import url('../default/common.css');
+
 
 :root {
 
@@ -481,7 +483,7 @@ dialog {
 }
 
 
-@media screen and (width <= 480px) {
+@media screen and (width <= 845px) {
     .mainHeader {
         #navBar {
             padding: 1rem 1rem;
