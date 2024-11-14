@@ -211,7 +211,7 @@ function start() {
     cards = [
         {
             image: "house1.png",
-            title:  "A",
+            title:  "11",
             location: "C",
             price: 2,
             link: "cardDetails.php?id=11",
@@ -222,7 +222,7 @@ function start() {
         },
         {
             image: "house1.png",
-            title:  "B",
+            title:  "12",
             location: "B",
             price: 4,
             link: "cardDetails.php?id=12",
@@ -233,10 +233,87 @@ function start() {
         },
         {
             image: "house1.png",
-            title:  "C",
+            title:  "13",
             location: "A",
             price: 7,
             link: "cardDetails.php?id=13",
+            date: "10/30/2004",
+            city: "BB",
+            adType: 0,
+            workType: 3
+        },
+        {
+            image: "house1.png",
+            title:  "14",
+            location: "A",
+            price: 7,
+            link: "cardDetails.php?id=14",
+            date: "10/30/2004",
+            city: "BB",
+            adType: 0,
+            workType: 3
+        },
+        {
+            image: "house1.png",
+            title:  "15",
+            location: "A",
+            price: 7,
+            link: "cardDetails.php?id=15",
+            date: "10/30/2004",
+            city: "BB",
+            adType: 0,
+            workType: 3
+        },
+        {
+            image: "house1.png",
+            title:  "16",
+            location: "A",
+            price: 7,
+            link: "cardDetails.php?id=16",
+            date: "10/30/2004",
+            city: "BB",
+            adType: 0,
+            workType: 3
+        },
+        {
+            image: "house1.png",
+            title:  "17",
+            location: "A",
+            price: 7,
+            link: "cardDetails.php?id=17",
+            date: "10/30/2004",
+            city: "BB",
+            adType: 0,
+            workType: 3
+        },
+        {
+            image: "house1.png",
+            title:  "18",
+            location: "A",
+            price: 7,
+            link: "cardDetails.php?id=18",
+            date: "10/30/2004",
+            city: "BB",
+            adType: 0,
+            workType: 3
+        },
+        {
+            image: "house1.png",
+            title:  "19",
+            location: "A",
+            price: 7,
+            link: "cardDetails.php?id=19",
+            date: "10/30/2004",
+            city: "BB",
+            adType: 0,
+            workType: 3
+        },
+        {
+            image: "house1.png",
+            title:  "20",
+            location: "A",
+            price: 7,
+            link: "cardDetails.php?id=20",
             date: "10/30/2004",
             city: "BB",
             adType: 0,

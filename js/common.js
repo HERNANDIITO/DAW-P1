@@ -7,49 +7,8 @@
     24/09/2024 - Añadidas las primeras funciones
 */
 
-// Funciones relacionadas con las cookies
-
-function checkCookies() {
-    const canStoreCookies = localStorage.getItem("canStoreCookies")
-    
-    if ( canStoreCookies == undefined ) {
-        getCookieModal();
-        return;
-    }
-
-    if ( canStoreCookies == false ) { return; }
-}
-
-// Añade el menú de selección de cookies a cualquier pagina
-function getCookieModal() {
-    xhr = new XMLHttpRequest();
-    xhr.open('GET', "../common/cookie-modal.html", false);
-    xhr.onload = function() {
-        const element = document.createElement('cookies');
-        element.innerHTML = xhr.response.trim();
-        element.id = "cookies"
-        document.querySelector("body").appendChild(element)
-    };
-    xhr.send();
-}
-
-// Obtiene la cookie indicada por parametro
-function getCookie(c_name) {
-    if( document.cookie.length > 0 ) {
-        c_start = document.cookie.indexOf(c_name + "=");
-        if(c_start != -1) {
-            c_start = c_start + c_name.length + 1;
-            c_end = document.cookie.indexOf(";", c_start);
-            if(c_end == -1)
-                c_end = document.cookie.length;
-                return unescape(document.cookie.substring(c_start, c_end));
-        }
-    }
-    return false;
-}
-
 // Inicializa una cookie
-function setCookie(c_name, value, expiredays) {
+function  setCookie(c_name, value, expiredays) {
     const date = new Date()
     date.setDate( date.getDate() + expiredays );
 
@@ -86,10 +45,9 @@ function cookieModalResponse(response) {
     if ( response ) {
         modal = getSelectedModal(1);
         setCookie("style", "default", 45)
-        localStorage.setItem("canStoreCookies", true) 
+        setCookie("canStoreCookies", "true", 45)
     } else {
         modal = getSelectedModal(2);
-        localStorage.setItem("canStoreCookies", false) 
     }
 
     modal.showModal()
@@ -104,6 +62,19 @@ function closeCookieModal( modalToClose ) {
 
 }
 
+function removeCookie(cookieName) {
+    const cookieValue = "";
+    const cookieLifetime = -1;
+    const date = new Date();
+
+    date.setTime(date.getTime()+(cookieLifetime*24*60*60*1000));
+
+    const expires = "; expires="+date.toGMTString();
+
+    document.cookie = cookieName + "=" + JSON.stringify(cookieValue) + expires + "; path=/";
+
+}
+
 // Style selection
 
 function selectStyle(style) {
@@ -113,4 +84,12 @@ function selectStyle(style) {
 
     sessionStorage.setItem("style", style)
     window.location.reload();
+}
+
+
+// Cerrar sesion
+function logout() {
+    removeCookie("PHPSESSID");
+    removeCookie("rememberedUser");
+    window.location.replace("/");
 }

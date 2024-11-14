@@ -1,30 +1,33 @@
 <?php
-
     function getMessage(): string {
         $returnValue = "";
+        session_start();
 
         date_default_timezone_set('Europe/Madrid');
         $hora = date('H:i');
 
-        if ($hora >= "06:00" && $hora <= "11:59") {
-            $returnValue = "Buenos días";
-        } elseif ($hora >= "12:00" && $hora <= "15:59") {
-            $returnValue = "Hola";
-        } elseif ($hora >= "16:00" && $hora <= "19:59") {
-            $returnValue = "Buenas tardes";
-        } else {
-            $returnValue = "Buenas noches";
+        $user = $_SESSION["userSession"];
+
+        if ( isset($_COOKIE["rememberedUser"]) ) {
+            $user = $_COOKIE["rememberedUser"];
         }
 
-        if ( isset($_SESSION["userSession"]) ) { $returnValue += $_SESSION["userSession"]; }
+        if ($hora >= "06:00" && $hora <= "11:59") { $returnValue = "Buenos días " . $user; }
+        elseif ($hora >= "12:00" && $hora <= "15:59") { $returnValue = "Hola " . $user; }
+        elseif ($hora >= "16:00" && $hora <= "19:59") { $returnValue = "Buenas tardes " . $user; }
+        else { $returnValue = "Buenas noches " . $user; }
 
+        session_commit();
         return $returnValue;
     }
 
 ?>
 
-<?php  if ( isset($_SESSION["userSession"]) )  { ?>
-
+<?php  
+    session_start();
+    if ( !isset($_SESSION["userSession"]) && !isset($_COOKIE["rememberedUser"]) ) {
+?>
+    <script src="../js/common.js"></script>
     <header class="mainHeader">
         <nav id="navBar">
             <section class="links">
@@ -53,7 +56,7 @@
             </section>
             <section class="profile">
                 <a class="navLink" href="/private/myProfile.php"> <i class="fa-solid fa-user"></i> <span>Perfil</span> </a>
-                <a class="navLink" href="/index.php"> <i class="fa-solid fa-right-to-bracket"></i> <span>Cerrar sesión</span> </a>
+                <a class="navLink" onclick="logout()"> <i class="fa-solid fa-right-to-bracket"></i> <span>Cerrar sesión</span> </a>
             </section>            
         </nav>
         <section class="welcomeMessage">
@@ -62,3 +65,15 @@
     </header>
     
 <?php } ?>
+
+<?php
+    if ( !isset($_SESSION[""]) ) {
+        if (file_exists("../common/cookie-modal.php") ) { include "../common/cookie-modal.php"; }
+        else { include "./common/cookie-modal.php"; }
+    }
+
+    if ( file_exists("../phpAdds/authController.php") ) { include "../phpAdds/authController.php"; }
+    else { include "./phpAdds/authController.php"; }
+
+    session_commit();
+?>

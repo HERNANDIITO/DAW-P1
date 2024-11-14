@@ -74,8 +74,7 @@
 
     <?php include "../inc/footer.php"; ?>
 
-    <script src="../js/common.js"></script>
-
+    
 
 </body>
 </html>

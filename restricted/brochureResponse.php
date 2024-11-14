@@ -21,8 +21,7 @@
     >
 
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
-    <script src="../js/common.js"></script>
-    <title>Folleto</title>
+        <title>Folleto</title>
 </head>
 <body>
     <?php include "../inc/header.php"; ?>

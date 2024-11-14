@@ -14,8 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
-    <script src="../js/common.js"></script>
-    <link 
+        <link 
         rel="stylesheet" 
         media="screen" 
         href="../styles/<?php include '../inc/styleSelector.php' ?>/login.css"

@@ -13,8 +13,7 @@
     >
 
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
-    <script src="../js/common.js"></script>
-    <title>Detalle del Anuncio</title>
+        <title>Detalle del Anuncio</title>
 </head>
 <body>
     <?php include "../inc/header.php"; ?>

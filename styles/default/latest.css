@@ -6,3 +6,22 @@
     08/10/2024 - Desarrollado
 */
 @import url("./common.css");
+
+#main-content {
+
+    h1 {
+    
+        text-align: center;
+    }
+
+    .houses {
+        display: flex;
+        flex-flow: column-reverse;
+        justify-content: center;
+        margin: auto;
+    }
+
+    a {
+        width: fit-content;
+    }
+}

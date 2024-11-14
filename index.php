@@ -11,15 +11,21 @@
     08/10/2024 - Terminados los estilos css
 -->
 
-<?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
+<?php  session_start(); ?>
+<?php if (isset($_SESSION['flashdata_error'])): ?>
     <div id="errorModal" class="modal">
         <div class="modal-content">
-            <span class="error-message">No se ha podido realizar el login, usuario o contraseña incorrectos</span>
-            <button id="closeModalButton" class="close-button">Cerrar</button>
+            <span class="error-message"><?php echo $_SESSION['flashdata_error']; ?></span>
+            <button onclick="closeErrorModal()" id="closeModalButton" class="close-button">Cerrar</button>
         </div>
     </div>
-<?php endif; ?>
 
+    <?php
+        // Eliminar el mensaje de error después de mostrarlo
+        unset($_SESSION['flashdata_error']);
+    ?>
+<?php endif; ?>
+<?php  session_commit(); ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -40,7 +46,7 @@
     <script src="./js/index.js" media="screen" crossorigin="anonymous"></script>
     <title>FOTOCASA 2</title>
 </head>
-<body>
+<body></body>
 
     <?php include "./inc/header.php" ?>
 
@@ -113,8 +119,6 @@
             </a>               
         </section>
     </main>
-    <?php
-        include "inc/footer.php";
-    ?>
+    <?php include "inc/footer.php"; ?>
 </body>
 </html>

@@ -1,7 +1,36 @@
-<!--
-    Archivo: registerResponse.php
-    Página de respuesta de registro que confirma los datos ingresados o redirige a una página de error.
--->
+<?php
+session_start();
+
+// Recuperar datos del formulario
+$email = $_POST['email'];
+$username = $_POST['user'];
+$password = $_POST['pass'];
+$confirmPassword = $_POST['pass2'];
+$sex = $_POST['sex'];
+$birthdate = $_POST['birthdate'];
+$city = $_POST['city'];
+$country = $_POST['country'];
+
+// Validaciones de PHP
+$errors = [];
+
+if (empty($username)) {
+    $errors[] = "user";
+}
+
+if (empty($password) || empty($confirmPassword)) {
+    $errors[] = "pass";
+} elseif ($password !== $confirmPassword) {
+    $errors[] = "passMismatch";
+}
+
+if (!empty($errors)) {
+    // Almacenar errores en la sesión como "flashdata"
+    $_SESSION['flashdata_errors'] = $errors;
+    header("Location: errorRegister.php");
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -18,37 +47,6 @@
     >
 </head>
 <body>
-    <?php
-        // Recuperar datos del formulario
-        $email = $_POST['email'];
-        $username = $_POST['user'];
-        $password = $_POST['pass'];
-        $confirmPassword = $_POST['pass2'];
-        $sex = $_POST['sex'];
-        $birthdate = $_POST['birthdate'];
-        $city = $_POST['city'];
-        $country = $_POST['country'];
-
-        // Validaciones de PHP
-        $errors = [];
-
-        if (empty($username)) {
-            $errors[] = "user";
-        }
-
-        if (empty($password) || empty($confirmPassword)) {
-            $errors[] = "pass";
-        } elseif ($password !== $confirmPassword) {
-            $errors[] = "passMismatch";
-        }
-
-        if (!empty($errors)) {
-            // Redirigir a página de error con parámetros en la URL
-            $errorParams = http_build_query(["error" => $errors]);
-            header("Location: errorRegister.php?$errorParams");
-            exit();
-        }
-    ?>
     <?php include "../inc/header.php" ?>
     <main>
         <h1>Confirmación de Registro</h1>

@@ -21,8 +21,7 @@
         id="<?php include '../inc/styleSelector.php' ?>"
     >
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
-    <script src="../js/common.js"></script>
-    <script src="../js/myProfile.js"></script>
+        <script src="../js/myProfile.js"></script>
 
     <title>myProfile</title>
 </head>
@@ -59,7 +58,7 @@
                 <i class="fa-solid fa-camera"></i>
                 <span>Añadir foto a anuncio</span>
             </a>
-            <a id="logOut">
+            <a onclick="logout()" id="logOut">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span>Cerrar sesión</span>
             </a>
@@ -67,5 +66,10 @@
     </main>
 
     <?php include "../inc/footer.php"; ?>
+    <?php
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+    ?>
 </body>
 </html>

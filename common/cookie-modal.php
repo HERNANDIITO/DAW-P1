@@ -5,13 +5,15 @@
     Historial de cambios:
     02/11/2024 - Creado
 -->
-
+<?php if (!isset($_COOKIE["canStoreCookies"])) { ?>
 <section id="cookies">
     <section class="wrapper">
         <h2>Cookies</h2>
         <p>Este sitio utiliza cookies para almacenar cierta información como:</p>
         <ul>
             <li>Tema seleccionado</li>
+            <li>Sesión iniciada (si se desea)</li>
+            <li>Últimas páginas visitadas</li>
         </ul>
         <section class="buttons">
             <button onclick="cookieModalResponse(true) " class="greenButton">Aceptar</button>
@@ -43,3 +45,4 @@
     </main>
     <footer></footer>
 </dialog>
+<?php } ?>

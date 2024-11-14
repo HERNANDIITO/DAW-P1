@@ -40,31 +40,31 @@
         return false;
     }
 
+    session_start();
+    setcookie('rememberedUser', '', time() - 3600, '/');
+
     // funcion para recordar al usuario (guardarlo en las cookies)
-    if (isset($_POST['remember'])) {
-        // Comprobar si el usuario está autorizado
-        if (isAuthorized($username, $password, $authorizedUsers)) {
-            // Usuario autorizado, redirigir a la página privada
-            session_start();
-            $_SESSION['userSession'] = $username;
+    // Comprobar si el usuario está autorizado
+    
+    if (isAuthorized($username, $password, $authorizedUsers)) {
+        if (isset($_POST['remember']) && isset($_COOKIE["canStoreCookies"])) {
             // Guardar el nombre de usuario y la contraseña en cookies por 90 días
-            setcookie('rememberedUser', $username, $date, time() + (90 * 24 * 60 * 60), '/');
-            
-            header("Location: ../private/myProfile.php");
-            exit();
-        } else {
-            // Borrar las cookies si no está seleccionada la casilla
-            setcookie('rememberedUser', '', time() - 3600, '/');
-            // Usuario no autorizado, redirigir a la página principal con mensaje de error
-            header("Location: ../index.php?error=1");
-            exit();
+            $expireDate = time() + (90 * 24 * 60 * 60);
+            setcookie('rememberedUser', $username,  $expireDate, '/', '');
+            setcookie('dateCookie',     $date,      $expireDate, '/', '');
         }
+
+        // Usuario autorizado, redirigir a la página privada
+        $_SESSION['userSession'] = $username;
+        $_SESSION['passSession'] = $password;
+        header("Location: ../private/myProfile.php");
         
+    } else {
+        // Borrar las cookies si no está seleccionada la casilla
+        // Usuario no autorizado, redirigir a la página principal con mensaje de error
+        $_SESSION['flashdata_error'] = "No se ha podido realizar el login, usuario o contraseña incorrectos";
+        header("Location: ../index.php");
     }
-    
-    // esto para enviar el usuario a su perfil si no marca la casilla de de recordarle
-    header("Location: ../private/myProfile.php");
 
-    
-
+    session_commit();
 ?>

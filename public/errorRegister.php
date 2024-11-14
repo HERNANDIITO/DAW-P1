@@ -1,7 +1,6 @@
-<!--
-    Archivo: errorRegister.php
-    Página de error que muestra los errores en el formulario de registro.
--->
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -24,22 +23,26 @@
         <p>Por favor, corrige los siguientes errores antes de continuar:</p>
         <ul>
             <?php
-                $errors = isset($_GET['error']) ? $_GET['error'] : [];
+                // Recuperar errores de la sesión y eliminarlos
+                $errors = isset($_SESSION['flashdata_errors']) ? $_SESSION['flashdata_errors'] : [];
 
-                if (in_array("user", $errors)) {
-                    echo "<li>El nombre de usuario no puede estar vacío.</li>";
-                }
-                if (in_array("pass", $errors)) {
-                    echo "<li>La contraseña y su confirmación son obligatorias.</li>";
-                }
-                if (in_array("passMismatch", $errors)) {
-                    echo "<li>Las contraseñas no coinciden.</li>";
+                if (!empty($errors)) {
+                    foreach ($errors as $error) {
+                        if ($error === "user") {
+                            echo "<li>El nombre de usuario no puede estar vacío.</li>";
+                        } elseif ($error === "pass") {
+                            echo "<li>La contraseña y su confirmación son obligatorias.</li>";
+                        } elseif ($error === "passMismatch") {
+                            echo "<li>Las contraseñas no coinciden.</li>";
+                        }
+                    }
+                    // Borrar los errores de la sesión después de mostrarlos
+                    unset($_SESSION['flashdata_errors']);
                 }
             ?>
         </ul>
         <a href="register.php" class="greenButton">Volver al Registro</a>
     </main>
     <?php include "../inc/footer.php";?>
-
 </body>
 </html>
