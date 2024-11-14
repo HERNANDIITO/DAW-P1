@@ -71,9 +71,9 @@
         if (file_exists("../common/cookie-modal.php") ) { include "../common/cookie-modal.php"; }
         else { include "./common/cookie-modal.php"; }
     }
-
+    
+    session_commit();
+    
     if ( file_exists("../phpAdds/authController.php") ) { include "../phpAdds/authController.php"; }
     else { include "./phpAdds/authController.php"; }
-
-    session_commit();
 ?>

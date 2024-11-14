@@ -50,6 +50,22 @@
 
     <?php include "./inc/header.php" ?>
 
+    <?php  session_start(); ?>
+    <?php if (isset($_SESSION['welcomeMessage'])): ?>
+        <div id="welcomeModal" class="modal">
+            <div class="modal-content">
+                <span><?php echo $_SESSION['welcomeMessage']; ?></span>
+                <button onclick="closeWelcomeModal()" id="closeModalButton" class="close-button">Cerrar</button>
+            </div>
+        </div>
+
+        <?php
+            // Eliminar el mensaje de error después de mostrarlo
+            unset($_SESSION['welcomeMessage']);
+        ?>
+    <?php endif; ?>
+    <?php  session_commit(); ?>
+
     <main id="main-content">
         <h1 class="mainTitle">FOTOCASA 2</h1>
         <section class="search">

@@ -3,14 +3,15 @@
     session_start();
 
     // Estamos en el index
-    if ($_SERVER['REQUEST_URI'] == "" || $_SERVER['REQUEST_URI'] == "/index.php") {
+    if ($_SERVER['REQUEST_URI'] == "/" || $_SERVER['REQUEST_URI'] == "/index.php") {
         if (isset($_COOKIE['rememberedUser']) && isset($_COOKIE['dateCookie'])) {
             // Recuperar los valores de las cookies
             $username = $_COOKIE['rememberedUser'];
             $date = $_COOKIE['dateCookie'];
     
             // Mostrar el mensaje con los valores de las cookies
-            echo "Bienvenido de nuevo, $username. Su última visita registrada fue: $date.";
+            $_SESSION["welcomeMessage"] = "Bienvenido de nuevo, $username. Su última visita registrada fue: " . date('m/d/Y, h:i', timestamp: 1299446702);;
+
             // Resetea la cookie cambiando la fecha (despues de mostrarla) con la fecha actual para que, la proxima vez que inicies sesion, se vea cuando fue la ultima vez que entraste
             $date = time();
             setcookie('dateCookie', $date, $expireDate, '/', '');
