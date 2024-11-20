@@ -1,4 +1,12 @@
 <!-- Archivo: anuncioDetalle.html -->
+
+<?php
+    $cardId = isset($_GET['id']) ? $_GET['id'] : 0;
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

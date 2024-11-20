@@ -10,33 +10,17 @@
 -->
 
 <?php
-    class Card {
-        public $img;
-        public $title;
-        public $characteristics; //array con las caracteristicas
-        public $description;
-
-        public function __construct($img, $title, $characteristics, $description) {
-            $this->img = $img;
-            $this->title = $title;
-            $this->characteristics = $characteristics;
-            $this->description = $description;
-        }
-    }
-
-    $card1 = new Card("house1.png", "Piso en Madrid", ["Madrid c/Alfonso XI", "800.000€", "Paco Moreno", "29/03/2025", "90m²", 2, 4, "venta"], "Este moderno y acogedor piso se encuentra en una de las zonas más exclusivas de Madrid, en el barrio de Chamartín, a solo unos minutos del centro de la ciudad. Con una superficie de 120 metros cuadrados, este piso cuenta con amplios y luminosos espacios, ideales para una vida cómoda y tranquila en la capital.");
-    $card2 = new Card("house2.png", "Piso en Valencia", ["Valencia c/Paiporta III", "330.000€", "Raul Clyde", "12/02/2025", "40m²", 1, 2, "venta"], "Nos encontramos en un momento crítico tras la devastadora DANA que ha afectado gravemente a diversas localidades de Valencia. Muchas familias han sufrido grandes pérdidas materiales, y las infraestructuras de la ciudad y sus alrededores han quedado seriamente dañadas. Hoy, más que nunca, necesitamos unirnos como comunidad para brindar apoyo a quienes más lo necesitan. Si puedes, te pedimos que contribuyas con cualquier ayuda, ya sea en forma de donativos, ropa, alimentos o incluso tiempo voluntario. Cada pequeño gesto cuenta para que nuestros vecinos puedan superar esta difícil situación.");
-
-
     // Obtener el ID de la carta desde la URL
-        $cardId = isset($_GET['id']) ? $_GET['id'] : 0;
+    $cardId = isset($_GET['id']) ? $_GET['id'] : 0;
 
-    // Seleccionar la carta basada en el ID (par o impar)
-    if ($cardId % 2 == 0) {
-        $card = $card2;  // Si es par, mostrar la carta 2
-    } else {
-        $card = $card1;  // Si es impar, mostrar la carta 1
-    }
+    $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
+
+    $query = "SELECT  A.IdAnuncio, A.Titulo, A.Foto, A.Precio, A.Texto, A.Ciudad, A.Pais, A.Superficie, A.Nhabitaciones, A.Nbanyos, A.Planta, A.Anyo, A.FRegistro, TA.NomTAnuncio, TV.NomTVivienda, U.NomUsuario FROM Anuncios A JOIN TiposAnuncios TA ON A.TAnuncio = TA.IdTAnuncio JOIN TiposViviendas TV ON A.TVivienda = TV.IdTVivienda JOIN Usuarios U ON A.Usuario = U.IdUsuario WHERE A.IdAnuncio = $cardId";
+
+    $result = mysqli_query($connectionID, $query);
+    $card = $result->fetch_assoc();
+
+    mysqli_close($connectionID);
 
 ?>
 
@@ -63,28 +47,28 @@
 
     <main id="main-content">
         <section class="card-photo-big">
-            <img src="../assets/img/houses/<?php echo $card->img; ?>">
+            <img src="../assets/img/houses/<?php echo $card['Foto']; ?>">
         </section>
 
-        <h1><?php echo $card->title; ?></h1>
+        <h1><?php echo $card['Titulo']; ?></h1>
 
         <h2>Características</h2>
 
         <section class="info-wrapper">
             <section class="info">
-                <p><i class="fa-solid fa-location-dot"></i><?php echo $card->characteristics[0]; ?></p>
-                <p><i class="fa-solid fa-tag"></i><?php echo $card->characteristics[1]; ?></p>
+                <p><i class="fa-solid fa-location-dot"></i> <?php echo $card['Ciudad']; ?></p>
+                <p><i class="fa-solid fa-tag"></i> <?php echo $card['Precio']; ?>€</p>
                 <a href="profile.php">
-                    <p><i class="fa-solid fa-user"></i><?php echo $card->characteristics[2]; ?></p>
+                    <p><i class="fa-solid fa-user"></i> <?php echo $card['NomUsuario']; ?></p>
                 </a>
-                <p><i class="fa-solid fa-calendar-days"></i><?php echo $card->characteristics[3]; ?></p>
+                <p><i class="fa-solid fa-calendar-days"></i> <?php echo $card['FRegistro']; ?></p>
             </section>
 
             <section class="info">
-                <p><i class="fa-solid fa-expand"></i><?php echo $card->characteristics[4]; ?></p>
-                <p><i class="fa-solid fa-toilet"></i><?php echo $card->characteristics[5]; ?></p>
-                <p><i class="fa-solid fa-bed"></i><?php echo $card->characteristics[6]; ?></p>
-                <p><i class="fa-solid fa-suitcase"></i><?php echo $card->characteristics[7]; ?></p>
+                <p><i class="fa-solid fa-expand"></i> <?php echo $card['Superficie']; ?></p>
+                <p><i class="fa-solid fa-toilet"></i> <?php echo $card['Nbanyos']; ?></p>
+                <p><i class="fa-solid fa-bed"></i> <?php echo $card['Nhabitaciones']; ?></p>
+                <p><i class="fa-solid fa-suitcase"></i> <?php echo $card['Precio']; ?></p>
             </section>
         </section>
 
@@ -97,7 +81,7 @@
         <h2>Descripción</h2>
 
         <p class="desc">
-            <?php echo $card->description; ?>
+            <?php echo $card['Texto']; ?>
         </p>
 
         <section class="houses"></section>

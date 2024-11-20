@@ -1,3 +1,3 @@
-function redirigir() {
-    window.location.href = "./viewAd.php";
+function redirigir(id) {
+    window.location.href =`./viewAd.php?id=${id}`;
 }

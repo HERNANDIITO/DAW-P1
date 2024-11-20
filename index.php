@@ -51,7 +51,8 @@
     <?php include "./inc/header.php" ?>
 
     <?php  session_start(); ?>
-    <?php if (isset($_SESSION['welcomeMessage'])): ?>
+    <?php if (isset($_SESSION['welcomeMessage']) && !isset( $_SESSION['alreadyShown'])): ?>
+        <?php $_SESSION['alreadyShown'] = true ?>
         <div id="welcomeModal" class="modal">
             <div class="modal-content">
                 <span><?php echo $_SESSION['welcomeMessage']; ?></span>
@@ -73,68 +74,30 @@
             <input name="search" type="text">
         </section>
         <section class="houses">
-            <a class="cardLink" href="../restricted/cardDetails.php?id=11"> 
-                <section class="card">
-                    <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
-                    <h1 class="title">Piso en Madrid</h1>
-                    <section class="info">
-                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
-                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
-                    </section>
-                </section>
-            </a>
-            <a class="cardLink" href="../restricted/cardDetails.php?id=12"> 
-                <section class="card">
-                    <img class="mainImg" src="../assets/img/houses/house2.png" alt="">
-                    <h1 class="title">Piso en Madrid</h1>
-                    <section class="info">
-                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
-                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
-                    </section>
-                </section>
-            </a>
-            <a class="cardLink" href="../restricted/cardDetails.php?id=13"> 
-                <section class="card">
-                    <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
-                    <h1 class="title">Piso en Madrid</h1>
-                    <section class="info">
-                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
-                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
-                    </section>
-                </section>
-            </a>               
-            <a class="cardLink" href="../restricted/cardDetails.php?id=14"> 
-                <section class="card">
-                    <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
-                    <h1 class="title">Piso en Madrid</h1>
-                    <section class="info">
-                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
-                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
-                    </section>
-                </section>
-            </a>
-            <a class="cardLink" href="../restricted/cardDetails.php?id=15"> 
-                <section class="card">
-                    <img class="mainImg" src="../assets/img/houses/house2.png" alt="">
-                    <h1 class="title">Piso en Madrid</h1>
-                    <section class="info">
-                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
-                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
-                    </section>
-                </section>
-            </a>
-            <a class="cardLink" href="../restricted/cardDetails.php?id=16"> 
-                <section class="card">
-                    <img class="mainImg" src="../assets/img/houses/house1.png" alt="">
-                    <h1 class="title">Piso en Madrid</h1>
-                    <section class="info">
-                        <p><i class="fa-solid fa-location-dot"></i> Madrid</p>
-                        <p><i class="fa-solid fa-tag"></i> 200.000€</p>
-                    </section>
-                </section>
-            </a>               
+            <?php 
+                $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
+
+                $query = "SELECT * FROM Anuncios ORDER BY FRegistro DESC LIMIT 5";
+                $result = mysqli_query($connectionID, $query);
+
+                while($row = mysqli_fetch_assoc($result)) { ?>
+                    <a href="../restricted/cardDetails.php?id=<?php echo $row['IdAnuncio']?>"> 
+                        <section class="card">
+                            <img class="mainImg" src="assets/img/houses/<?php echo $row['Foto'] ?>" alt="<?php echo $row['Alternativo'] ?>">
+                            <h1 class="title"><?php echo $row['Titulo']?></h1>
+                            <section class="info">
+                                <p><i class="fa-solid fa-location-dot"></i> <?php echo $row['IdAnuncio']?></p>
+                                <p><i class="fa-solid fa-tag"></i> <?php echo $row['Precio']?>€</p>
+                            </section>
+                        </section>
+                    </a>
+                <?php
+                }
+                mysqli_close($connectionID);
+            ?>
         </section>
     </main>
+
     <?php include "inc/footer.php"; ?>
 </body>
 </html>

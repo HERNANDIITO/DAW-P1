@@ -1,12 +1,32 @@
-<!--
-    Archivo: register.php
-    En este archivo se define el formulario de búsqueda avanzada
-    Creado por: Pablo Hernández García el 26/09/2024
-    Historial de cambios:
-    26/09/2024 - Creado
-    28/09/2024 - Correciones del profesor
-    08/10/2024 - CSS Aplicado
--->
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Conexión a la base de datos
+$connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
+
+// Verificar si la conexión fue exitosa
+if (!$connectionID) {
+    die("Error al conectar con la base de datos: " . mysqli_connect_error());
+}
+
+// Consulta para obtener los países
+$sql = "SELECT IdPais, Nombre FROM Paises";
+$result = mysqli_query($connectionID, $sql);
+
+// Verificar si hay resultados
+$paises = [];
+if ($result && mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $paises[] = $row;
+    }
+}
+
+// Cerrar la conexión
+mysqli_close($connectionID);
+?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +34,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
-        <link 
+    <link 
         rel="stylesheet" 
         media="screen" 
         href="../styles/<?php include '../inc/styleSelector.php' ?>/login.css"
@@ -38,11 +58,11 @@
             </section>
             <section class="inputGroup">
                 <label for="pass">Contraseña</label>
-                <input name="pass" placeholder="contrasenyaMuySegura" id="passInput">
+                <input type="password" name="pass" placeholder="contrasenyaMuySegura" id="passInput">
             </section>
             <section class="inputGroup">
-                <label for="pass">Repetir contraseña</label>
-                <input name="pass2" placeholder="contrasenyaMuySegura" id="pass2">
+                <label for="pass2">Repetir contraseña</label>
+                <input type="password" name="pass2" placeholder="contrasenyaMuySegura" id="pass2">
             </section>
             <section class="inputGroup">
                 <label for="sex">Sexo</label>
@@ -61,7 +81,12 @@
             </section>
             <section class="inputGroup">
                 <label for="country">País de residencia</label>
-                <input name="country" placeholder="España">
+                <select name="country" id="country">
+                    <option value="" disabled selected>Selecciona tu país</option>
+                    <?php foreach ($paises as $pais): ?>
+                        <option value="<?= $pais['IdPais'] ?>"><?= htmlspecialchars($pais['Nombre']) ?></option>
+                    <?php endforeach; ?>
+                </select>
             </section>
             <section class="inputGroup">
                 <label for="pfp">Foto de perfil</label>
@@ -71,8 +96,6 @@
         </form>
         <a href="/public/login.php">¿Ya tienes cuenta?</a>
     </main>
-
-    <?php include "../inc/footer.php";?>
-
+    <?php include "../inc/footer.php"; ?>
 </body>
 </html>

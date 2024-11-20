@@ -41,11 +41,11 @@
             </a>
             <a href="./myAds.php">
                 <i class="fa-solid fa-house"></i>
-                <span>Visualizar mis anuncios</span>
+                <span>Mis anuncios</span>
             </a>
             <a href="./createAd.php">
                 <i class="fa-solid fa-plus"></i>
-                <span>Crear un anuncio nuevo</span>
+                <span>Anuncio nuevo</span>
             </a>
             <a href="./myMessages.php">
                 <i class="fa-solid fa-message"></i>
