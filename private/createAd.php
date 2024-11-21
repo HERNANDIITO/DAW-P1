@@ -1,10 +1,49 @@
-<!--
-    Archivo: createAd.php
-    En este archivo se define el formulario para crear un nuevo anuncio
-    Creado por: [Tu Nombre] el [Fecha de Creación]
-    Historial de cambios:
-    [Fecha] - Creado
--->
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Conexión a la base de datos
+$connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
+
+// Verificar si la conexión fue exitosa
+if (!$connectionID) {
+    die("Error al conectar con la base de datos: " . mysqli_connect_error());
+}
+
+// Consultas para obtener los datos
+$tiposAnuncios = [];
+$tiposViviendas = [];
+$paises = [];
+
+$sqlTiposAnuncios = "SELECT IdTAnuncio, NomTAnuncio FROM TiposAnuncios";
+$sqlTiposViviendas = "SELECT IdTVivienda, NomTVivienda FROM TiposViviendas";
+$sqlPaises = "SELECT IdPais, Nombre FROM Paises";
+
+$resultTiposAnuncios = mysqli_query($connectionID, $sqlTiposAnuncios);
+if ($resultTiposAnuncios && mysqli_num_rows($resultTiposAnuncios) > 0) {
+    while ($row = mysqli_fetch_assoc($resultTiposAnuncios)) {
+        $tiposAnuncios[] = $row;
+    }
+}
+
+$resultTiposViviendas = mysqli_query($connectionID, $sqlTiposViviendas);
+if ($resultTiposViviendas && mysqli_num_rows($resultTiposViviendas) > 0) {
+    while ($row = mysqli_fetch_assoc($resultTiposViviendas)) {
+        $tiposViviendas[] = $row;
+    }
+}
+
+$resultPaises = mysqli_query($connectionID, $sqlPaises);
+if ($resultPaises && mysqli_num_rows($resultPaises) > 0) {
+    while ($row = mysqli_fetch_assoc($resultPaises)) {
+        $paises[] = $row;
+    }
+}
+
+// Cerrar la conexión
+mysqli_close($connectionID);
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -18,9 +57,8 @@
         title="<?php include '../inc/styleSelector.php' ?>"
         id="<?php include '../inc/styleSelector.php' ?>"
     >
-    
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
-        <title>Crear Anuncio</title>
+    <title>Crear Anuncio</title>
 </head>
 <body>
     <?php include "../inc/header.php"; ?>
@@ -33,8 +71,9 @@
                 <section class="inputGroup">
                     <label for="tipoAnuncio">Tipo de Anuncio:</label>
                     <select name="tipoAnuncio" id="tipoAnuncio">
-                        <option value="venta">Venta</option>
-                        <option value="alquiler">Alquiler</option>
+                        <?php foreach ($tiposAnuncios as $tipo): ?>
+                            <option value="<?= $tipo['IdTAnuncio'] ?>"><?= htmlspecialchars($tipo['NomTAnuncio']) ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </section>
 
@@ -42,76 +81,34 @@
                 <section class="inputGroup">
                     <label for="tipoVivienda">Tipo de Vivienda:</label>
                     <select name="tipoVivienda" id="tipoVivienda">
-                        <option value="apartamento">Apartamento</option>
-                        <option value="casa">Casa</option>
-                        <option value="piso">Piso</option>
-                        <option value="chalet">Chalet</option>
+                        <?php foreach ($tiposViviendas as $tipo): ?>
+                            <option value="<?= $tipo['IdTVivienda'] ?>"><?= htmlspecialchars($tipo['NomTVivienda']) ?></option>
+                        <?php endforeach; ?>
                     </select>
-                </section>
-
-                <!-- Título -->
-                <section class="inputGroup">
-                    <label for="titulo">Título:</label>
-                    <input type="text" name="titulo" id="titulo" placeholder="Título del anuncio" required>
-                </section>
-
-                <!-- Descripción -->
-                <section class="inputGroup">
-                    <label for="descripcion">Descripción:</label>
-                    <textarea name="descripcion" id="descripcion" placeholder="Descripción detallada del anuncio" required></textarea>
-                </section>
-
-                <!-- Ciudad -->
-                <section class="inputGroup">
-                    <label for="ciudad">Ciudad:</label>
-                    <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad" required>
                 </section>
 
                 <!-- País -->
                 <section class="inputGroup">
                     <label for="pais">País:</label>
-                    <input type="text" name="pais" id="pais" placeholder="País" required>
+                    <select name="pais" id="pais">
+                        <?php foreach ($paises as $pais): ?>
+                            <option value="<?= $pais['IdPais'] ?>"><?= htmlspecialchars($pais['Nombre']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </section>
 
-                <!-- Características -->
-                <fieldset>
-                    <legend>Características</legend>
+                <!-- Otros campos -->
+                <section class="inputGroup">
+                    <label for="titulo">Título:</label>
+                    <input type="text" name="titulo" id="titulo" placeholder="Título del anuncio" required>
+                </section>
 
-                    <section class="inputGroup">
-                        <label for="ubicacion">Ubicación:</label>
-                        <input type="text" name="ubicacion" id="ubicacion" placeholder="Ubicación exacta">
-                    </section>
+                <section class="inputGroup">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea name="descripcion" id="descripcion" placeholder="Descripción detallada del anuncio" required></textarea>
+                </section>
 
-                    <section class="inputGroup">
-                        <label for="precio">Precio (€):</label>
-                        <input type="number" name="precio" id="precio" placeholder="Precio" required>
-                    </section>
-
-                    <section class="inputGroup">
-                        <label for="propietario">Propietario:</label>
-                        <input type="text" name="propietario" id="propietario" placeholder="Nombre del propietario">
-                    </section>
-
-                    <section class="inputGroup">
-                        <label for="fechaPublicacion">Fecha de Publicación:</label>
-                        <input type="date" name="fechaPublicacion" id="fechaPublicacion">
-                    </section>
-
-                    <section class="inputGroup">
-                        <label for="metros">Metros Cuadrados:</label>
-                        <input type="number" name="metros" id="metros" placeholder="Metros cuadrados" required>
-                    </section>
-
-                    <section class="inputGroup">
-                        <label for="banos">Baños:</label>
-                        <input type="number" name="banos" id="banos" placeholder="Número de baños" required>
-                    </section>
-
-                    <section class="inputGroup">
-                        <label for="habitaciones">Habitaciones:</label>
-                        <input type="number" name="habitaciones" id="habitaciones" placeholder="Número de habitaciones" required>
-                    </section>
-                </fieldset>
+                <!-- Continuar con el resto del formulario -->
 
                 <button class="greenButton" type="submit">Crear Anuncio</button>
             </form>
@@ -119,7 +116,5 @@
     </main>
 
     <?php include "../inc/footer.php"; ?>
-
-
 </body>
 </html>

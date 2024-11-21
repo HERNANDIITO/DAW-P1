@@ -50,9 +50,10 @@ if ($resultPaises && mysqli_num_rows($resultPaises) > 0) {
     }
 }
 
+$firstTime = true;
+
 // Procesar formulario y realizar búsqueda
-$resultados = [];
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
+if (($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) || $firstTime) {
     $adType = $_GET['adType'] ?? null;
     $workType = $_GET['workType'] ?? null;
     $city = $_GET['city'] ?? null;
@@ -61,6 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
     $maxPrice = $_GET['maxPrice'] ?? null;
     $minDate = $_GET['minDate'] ?? null;
     $maxDate = $_GET['maxDate'] ?? null;
+
+    $firstTime = false;
 
     // Construir consulta dinámica
     $query = "SELECT * FROM Anuncios WHERE 1=1";
@@ -170,7 +173,7 @@ mysqli_close($connectionID);
                 <?php foreach ($resultados as $resultado): ?>
                     <a href="../restricted/cardDetails.php?id=<?= htmlspecialchars($resultado['IdAnuncio']) ?>">
                         <section class="card">
-                            <img class="mainImg" src="assets/img/houses/<?= htmlspecialchars($resultado['Foto']) ?>" alt="<?= htmlspecialchars($resultado['Alternativo']) ?>">
+                            <img class="mainImg" src="../assets/img/houses/<?= htmlspecialchars($resultado['Foto']) ?>" alt="<?= htmlspecialchars($resultado['Alternativo']) ?>">
                             <h1 class="title"><?= htmlspecialchars($resultado['Titulo']) ?></h1>
                             <section class="info">
                                 <p><i class="fa-solid fa-location-dot"></i> <?= htmlspecialchars($resultado['Ciudad']) ?>, <?= htmlspecialchars($resultado['Pais']) ?></p>

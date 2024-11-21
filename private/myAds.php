@@ -14,13 +14,43 @@
     }
 
     session_start();
-    $connection = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
-    $query = "SELECT  A.IdAnuncio, A.Titulo, A.Precio, A.Texto, A.Ciudad, P.Nombre AS Pais, TA.NomTAnuncio AS TipoAnuncio, TV.NomTVivienda AS TipoVivienda, A.Superficie, A.Nhabitaciones, A.Nbanyos, A.Planta, A.Anyo, A.FRegistro FROM  Anuncios A JOIN  Paises P ON A.Pais = P.IdPais JOIN  TiposAnuncios TA ON A.TAnuncio = TA.IdTAnuncio JOIN  TiposViviendas TV ON A.TVivienda = TV.IdTVivienda WHERE  A.Usuario = ?";
 
-    $stmt = $connection->prepare($query);
-    $stmt->bind_param("i", $_SESSION['userSession']);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    if ( isset($_COOKIE["rememberedUser"]) ) {
+        $userID = $_COOKIE["rememberedUser"];
+    } else if( isset($_SESSION['userSession']) ) {
+        $userID = $_SESSION["userSession"];
+    } else {
+        header("");
+    }
+
+    $query = "
+        SELECT 
+            A.IdAnuncio, 
+            A.Titulo, 
+            A.Precio, 
+            A.Ciudad, 
+            A.Superficie, 
+            A.Nhabitaciones, 
+            A.Nbanyos, 
+            A.Planta, 
+            A.Anyo, 
+            A.Foto,
+            A.FRegistro,
+            P.Nombre as NomPais
+        FROM 
+            Anuncios A
+        JOIN 
+            Paises P ON A.Pais = P.IdPais
+        WHERE 
+            A.Usuario = ?
+    ";
+
+    $connection = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
+    $sentence = $connection->prepare($query);
+    $sentence->bind_param("i",$userID);
+    $sentence->execute();
+    $result = $sentence->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -38,36 +68,44 @@
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
     <script src="../js/common.js" media="screen" crossorigin="anonymous"></script>
     <script src="../js/myAds.js" media="screen" crossorigin="anonymous"></script>
-    <title>Mis mensajes</title>
+    <title>Mis anuncios</title>
 </head>
 <body>
-<?php include "../inc/header.php"; ?>
+    <?php include "../inc/header.php"; ?>
     <main id="main-content">
         <h1 class="title">Mis anuncios</h1>
 
         <section class="content">
             <section class="inMessages">
                 <section class="messages">
+                
+                    <?php foreach ($rows as $row) { ?>
+                        <section class="message">
 
-                <?php while ( $row = $result->fetch_assoc() ) { ?>
-                    <section class="message">
+                            <section class="card-photo-mini">
+                                <img src="../assets/img/houses/<?php echo $row['Foto'] ?>">
+                            </section>
+                            <section >
+                                <h2><?php echo $row['Titulo'] ?></h2>
+                            </section>
+                            <section class="messageContent">
+                                <p><?php echo $row['Texto'] ?></p>
+                            </section>
+                            <hr class="solid">
+                            <section class="messageInfo">
+                                <span><?php echo $row['Ciudad'] ?></span>
+                                <span><?php echo $row['NomPais'] ?></span>
+                                <span><?php echo $row['Precio'] ?>€</span>
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>
+                                    <a href="./viewAd.php?id=<?php echo $row['IdAnuncio'] ?>">
+                                        <button class="greenButton">Ver</button>
+                                    </a>
+                                </span>
+                            </section>
 
-                        <section class="card-photo-mini">
-                            <img src="../assets/img/houses/<?php echo $row['Foto'] ?>">
                         </section>
-                        <section >
-                            <h2><?php echo $row['Titulo'] ?></h2>
-                        </section>
-                        <section class="messageContent">
-                            <p><?php echo $row['Texto'] ?></p>
-                        </section>
-                        <hr class="solid">
-                        <section class="messageInfo">
-                            <span><?php echo $row['Ciudad'] ?></span> <span><?php echo $row['NombrePais'] ?></span> <span><?php echo $row['Precio'] ?>€</span><i class="fa-solid fa-circle-info"></i> <span><a href="./viewAd.php?id=<?php echo $row['IdAnuncio'] ?>"><button class="greenButton">Ver</button></a></span>
-                        </section>
-
-                    </section>
-                <?php } ?>
+                    <?php } ?>
                 </section>
             </section>
             
@@ -76,9 +114,9 @@
 
     <?php include "../inc/footer.php"; ?>
     <?php
-        $stmt->close();
-        $connection->close();
         session_commit();
+        $sentence->close();
+        $connection->close();
     ?>
 
 </body>

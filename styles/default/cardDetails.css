@@ -19,6 +19,20 @@
     }
 }
 
+.miniaturas {
+    display: flex;
+    flex-flow: row;
+    max-width: 450px;
+    max-height: 450px;
+    gap: 10px;
+    overflow: auto;
+}
+
+.aditional-img {
+    max-width: 450px;
+    max-height: 450px;
+}
+
 .card-photo-big {
     display: flex;
     flex-flow: row;
@@ -59,6 +73,12 @@ h1{
     display: flex;
     text-align: center;
     gap: 1rem;
+}
+
+.info > a {
+    span {
+        color: var(--color4);
+    }
 }
 
 

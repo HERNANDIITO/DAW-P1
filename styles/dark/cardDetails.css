@@ -62,6 +62,39 @@ h1{
 }
 
 
+.miniaturas {
+    max-width: 450px;
+    overflow: auto;
+    display: flex;
+    flex-flow: row;
+    gap: 10px;
+
+    .aditional-img {
+        width: auto !important;
+    }
+}
+
+
+.miniaturas {
+    display: flex;
+    flex-flow: row;
+}
+
+.aditional-img {
+    width: 120px;
+    max-height: 120px;
+}
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (width <= 790px) {  
 
     .buttonWrapper {

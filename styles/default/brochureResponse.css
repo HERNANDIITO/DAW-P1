@@ -7,6 +7,47 @@
 */
 @import url("./common.css");
 
+.anuncioDetalle {
+
+    padding: 10px 0;
+
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+
+    justify-content: center;
+
+    .inputGroup {
+        width: fit-content;
+        margin: 0 auto;
+
+        img:not(.additional-img) {
+            width: 450px;
+        }
+
+        .miniaturas {
+            max-width: 450px;
+            overflow: auto;
+            display: flex;
+            flex-flow: row;
+            gap: 10px;
+
+            .aditional-img {
+                width: auto !important;
+            }
+        }
+    }
+
+    a {
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    fieldset {
+        margin: 0 auto;
+    }
+}
+
 .inputGroup > span {
     width: fit-content;
     min-width: 250px;
@@ -18,7 +59,13 @@
     gap: 15px;
 
     width: fit-content;
-    /* margin: 1rem auto; */
+    margin: 1rem auto;
+
+    form {
+        display: flex;
+        flex-flow: column;
+        gap: 10px;
+    }
 }
 
 fieldset {

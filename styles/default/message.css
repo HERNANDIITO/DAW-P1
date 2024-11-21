@@ -51,6 +51,12 @@
     .messageInfo {
         display: flex;
         gap: 15px;
+
+        a {
+            span {
+                color: var(--color4);
+            }
+        }
         
         span, i {
             font-size: larger;
@@ -65,8 +71,7 @@
 .card-photo-mini {
 
     img {
-        width: 60%;
-        max-height: 180px;
+        max-width: 400px;
     }
 }
 

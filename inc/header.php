@@ -17,14 +17,12 @@
         elseif ($hora >= "16:00" && $hora <= "19:59") { $returnValue = "Buenas tardes " . $user; }
         else { $returnValue = "Buenas noches " . $user; }
 
-        session_commit();
         return $returnValue;
     }
 
 ?>
 
 <?php  
-    session_start();
     if ( !isset($_SESSION["userSession"]) && !isset($_COOKIE["rememberedUser"]) ) {
 ?>
     <script src="../js/common.js"></script>

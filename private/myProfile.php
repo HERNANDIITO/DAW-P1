@@ -31,7 +31,7 @@
 
     <main id="main-content">
         <nav id="userMenu">
-            <a href="">
+            <a href="./modifyProfile.php">
                 <i class="fa-solid fa-pencil"></i>
                 <span>Modificar mi perfil</span>
             </a>

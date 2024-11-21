@@ -7,6 +7,36 @@
     08/10/2024 - CSS Aplicado
 -->
 
+<?php
+    // Obtener el ID de la carta desde la URL
+    if ( !isset($_SESSION['userSession']) ) {
+        header('');
+    }
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    session_start();
+    $connection = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
+
+    $query = "SELECT IdAnuncio, Titulo FROM Anuncios WHERE Usuario = ?";
+
+    if ( isset($_COOKIE["rememberedUser"]) ) {
+        $userID = $_COOKIE["rememberedUser"];
+    } else {
+        $userID = $_SESSION["userSession"];
+    }
+
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param("i",$userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    session_commit();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -191,12 +221,11 @@
             <section class="inputGroup">
                 <label for="anuncioUsuario">Anuncio del usuario</label>
                 <select id="anuncioUsuario" name="anuncioUsuario" required>
-                    <option value="anuncio1">Anuncio 1</option>
-                    <option value="anuncio2">Anuncio 2</option>
-                    <!-- Aquí se añadirán dinámicamente los anuncios del usuario -->
+                    <?php foreach ($rows as $row) { ?>
+                        <option value="<?php echo $row['IdAnuncio'] ?>"><?php echo $row['Titulo'] ?></option>
+                    <?php } ?>
                 </select>
             </section>
-            
     
             <!-- Fecha de recepción -->
             <section class="inputGroup">
@@ -285,3 +314,8 @@
 
 </body>
 </html>
+
+<?php
+    $stmt->close();
+    $connection->close();
+?>
