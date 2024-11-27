@@ -1,0 +1,17 @@
+/*
+    Archivo: sendMessage.css
+    En este archivo se definen los estilos que se usaran a en sendMessage.html
+    Historial de cambios:
+    26/09/2024 - Creado
+    08/10/2024 - Desarrollado
+*/
+@import url("./common.css");
+@import url("./message.css");
+
+form {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    gap: 15px;
+}

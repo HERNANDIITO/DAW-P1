@@ -1,0 +1,26 @@
+/*
+    Archivo: common.css
+    En este archivo se definen los estilos que se usaran a en todas las paginas con el estilo para dislexia + fuente grande
+    Historial de cambios:
+    16/10/2024 - Creado
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('../default/common.css');
+
+/*
+    <uniquifier>: Use a unique and descriptive class name
+    <weight>: Use a value from 100 to 900 
+*/
+
+*:not(i) {
+  font-family: "Lexend", sans-serif !important;
+  font-optical-sizing: auto !important;
+  font-weight: 200 !important;
+  font-style: normal !important;
+}
+
+p, li {
+  font-size: 1.5rem;
+}

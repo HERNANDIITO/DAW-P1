@@ -1,0 +1,10 @@
+/*
+    Archivo: profile.css
+    En este archivo se definen los estilos que se usaran a en myProfile.html
+    Historial de cambios:
+    16/10/2024 - Creado
+*/
+
+@import url(../default/myProfile.css);
+@import url(../default/common.css);
+@import url(./common.css);

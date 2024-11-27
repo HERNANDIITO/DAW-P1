@@ -1,0 +1,12 @@
+/*
+    Archivo: common.css
+    En este archivo se definen los estilos que se usaran a en todas las paginas con el estilo para fuente grande
+    Historial de cambios:
+    16/10/2024 - Creado
+*/
+
+@import url("../default/common.css");
+
+p, li {
+  font-size: 1.5rem;
+}

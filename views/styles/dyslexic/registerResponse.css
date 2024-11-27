@@ -1,0 +1,25 @@
+/* Archivo: registerResponse.css */
+@import url("./common.css");
+
+.registerResponse {
+    background-color: var(--photo-bg);
+    color: var(--alt-color);
+    padding: 1rem 2rem;
+    border: 3px solid var(--color4);
+    border-radius: 15px;
+    width: fit-content;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.registerResponse h2 {
+    font-size: 30px;
+    margin-bottom: 0.5rem;
+}
+
+.registerResponse p {
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}

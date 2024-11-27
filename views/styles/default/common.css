@@ -1,0 +1,501 @@
+/*
+    Archivo: common.css
+    En este archivo se definen los estilos que se usaran a lo largo de toda la web
+    Creado por: Pablo Hernández el 24/09/2024
+    Historial de cambios:
+    20/09/2024 - Creado
+    24/09/2024 - Añadidas las clases del navbar y el footer
+    26/09/2024 - Añadidas estilos para .houses
+    08/10/2024 - Ajustes para la navbar
+    08/10/2024 - Desarrollado
+*/
+
+/* var declaration */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
+@import url('../default/common.css');
+
+
+:root {
+
+    --main-bg-color: #fff6d7;
+    --photo-bg: #f8f6ef;
+    --color2: #D9AA71;
+    --color3: #59381C;
+    --color4: #A67041;
+    --alt-color: #261206;
+
+}
+
+/* General */
+
+body {
+    display: flex;
+    flex-flow: column;
+    margin: 0;
+    flex-grow: 1;
+    background: linear-gradient(90deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 75%, rgba(0,0,0,0.25) 100%);
+    background-color: var(--main-bg-color);
+    color: var(--alt-color);
+}
+
+html {
+    height: 100%;
+}
+
+h1 {
+    font-size: 95px;
+    font-family: 'Cormorant Garamond';
+    margin: 0;
+}
+
+p, h2, h3, h4, h5, h6, strong {
+    margin: 0;
+    font-family:  'Playfair Display';
+}
+
+a {
+    color: var(--main-bg-color);
+
+    &:hover {
+        color: var(--color4);
+    }
+
+    &:visited {
+        color: var(--color4);
+    }
+}
+
+/* Navegacion */
+
+.mainHeader {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    #navBar {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        padding: 1rem 5%;
+        background-color: var(--alt-color);
+    
+        .links, .profile {
+            display: flex;
+            flex-flow: row;
+            width: fit-content;
+            justify-content: space-around;
+            gap: 2rem;
+    
+            .navLink {
+                color: var(--main-bg-color);
+                text-decoration: none;
+                font-size: 20px;
+                cursor: pointer;
+    
+                &:hover {
+                    scale: 1.1;
+                    transition: all .1s;
+                }
+            }
+        }
+    }
+
+    .welcomeMessage {
+        background-color: var(--alt-color);
+        color: var(--main-bg-color);
+        p {
+            text-align: center;
+        }
+    }
+}
+
+#footer {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    gap: 1rem;
+    z-index: 100;
+    background-color: var(--alt-color);
+    color: var(--main-bg-color);
+    padding: 25px 0;
+
+    .logo {
+        width: auto;
+        height: 128px;
+        display: block;
+        margin: auto 0;
+    }
+
+    .index-column {
+
+        strong {
+            font-size: xx-large;
+        }
+
+        ul {
+            display: flex;
+            flex-flow: column;
+            gap: 10px;
+            
+            li {
+                text-decoration: none;
+                list-style: none;
+                color: var(--main-bg-color);
+            }
+        }
+    }
+}
+
+#main-content {
+    flex-grow: 1;
+    min-height: 100vh;
+    min-height: calc(100vh - 128px - 50px - 75px);
+    padding: 25px 0 50px 0;
+    
+    .title {
+        text-align: center;
+    }
+}
+
+/* Contenidos y contenedores */
+
+.houses {
+    display: inline-flex;
+    flex-flow: row;
+    gap: 15px;
+    padding: 0 10px;
+    width: fit-content;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.cardLink {
+    text-decoration: none;
+    color: var(--alt-color);
+}
+
+.card {
+    height: 400px;
+    width: 300px;
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+    border: 3px solid var(--alt-color);
+    background-color: var(--alt-color);
+    color: var(--main-bg-color);
+    border-radius: 15px;
+    gap: 5px;
+    transition: all .25s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
+        scale: 1.05;
+        z-index: 0;
+        transition: all .25s ease-in-out;
+    }
+
+    .mainImg {
+        height: 70%;
+        width: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        background-color: var(--photo-bg);
+    }
+
+    .title {
+        font-size: xx-large;
+    }
+
+    .author {
+        display: flex;
+        flex-flow: row;
+        gap: 10px;
+
+        img {
+            width: 64px;
+            height: 64px;
+            background: blue;
+        }
+
+        strong {
+            margin: auto 0;
+            font-size: x-large;
+        }
+    }
+
+    .info {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-around;
+        gap: 15px;
+        font-size: x-large;
+        margin: 20px;
+    }
+}
+
+
+.greenButton {
+    background-color: #4d924e;
+    border: none;
+    color: white;
+    padding: 1rem 4rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 25px;
+
+    &:disabled {
+        background-color: #1d321d; /* Verde */
+    }
+
+    &:hover{
+        background-color: #1d321d; /* Verde */
+    }
+}
+
+.redButton {
+    background-color: #924d4d;
+    border: none;
+    color: white;
+    padding: 1rem 4rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 25px;
+
+    &:disabled {
+        background-color: #321d1d; /* Verde */
+    }
+
+    &:hover{
+        background-color: #321d1d; /* Verde */
+    }
+}
+
+.inputGroup {
+    display: flex;
+    flex-flow: column;
+
+    .radioGroup {
+        display: flex;
+        flex-flow: row;
+
+        .radio:first-child {
+            border-bottom-left-radius: 15px;
+        }
+        
+        .radio:last-child {
+            border-bottom-right-radius: 15px;
+        }
+
+        .radio {
+            border: 5px solid var(--alt-color);
+            width: fit-content;
+            min-width: 250px;
+            font-size: 25px;
+            padding: 5px 15px;
+            display: flex;
+            flex-flow: row;
+            justify-content: space-between;
+
+            label {
+                display: block;
+            }
+
+            input[type="radio"] {
+                position: relative;
+            }
+
+            input[type="radio"] {
+                appearance: none;
+                -webkit-appearance: none;
+                border: 20px solid var(--alt-color);
+                border-radius: 100%;
+                margin: 0;
+                transition: all .25s ease-in-out;
+            }
+            
+            input[type="radio"]:checked, input[type="radio"]:hover {
+                border: 20px double var(--alt-color);
+                appearance: none;
+                -webkit-appearance: none;
+                border-radius: 100%;
+                margin: 0;
+                transition: all .25s ease-in-out;
+            }
+        }
+    }
+
+    > label, .radioGroup > label {
+        background-color: var(--alt-color);
+        color: var(--main-bg-color);
+        font-size: 25px;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 10px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        width: fit-content;
+    }
+
+    .radioGroup > label {
+        border-bottom-left-radius: 15px;
+        border-top-right-radius: 0px;
+    }
+
+    input:not(input[type="radio"]), select, option:hover, textarea, span {
+        background-color: var(--main-bg-color);
+        color: var(--alt-color);
+        font-size: 25px;
+        padding: 5px 15px;
+        border: 5px solid var(--alt-color);
+        border-radius: 10px;
+        border-top-left-radius: 0;
+
+        &:focus {
+            outline: none;
+        }
+
+
+    }
+
+    textarea {
+        margin: 0;
+        resize: none;
+        height: 250px;
+    }
+
+    
+    input:focus {
+        background-color: rgb(228, 203, 106) !important; 
+        outline: none; 
+    }
+}
+
+.inputGroup:hover input {
+    background-color: #dbd2af !important;
+}
+
+.solid {
+    color: var(--alt-color);
+}
+
+#cookies {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 101;
+    color: var(--main-bg-color);
+    background: var(--alt-color);
+    padding: 15px 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    filter: drop-shadow(0 0 5px rgb(0, 0, 0));
+
+    .wrapper {
+        margin: 0 auto;
+        width: fit-content;
+    }
+
+    p, h2, ul, li, .buttons {
+        width: fit-content;
+    }
+
+    .buttons {
+        display: flex;
+        flex-flow: row;
+        gap: 20px;
+    }
+}
+
+dialog {
+    background-color: var(--main-bg-color);
+    color: var(--alt-color);
+    border: 5px solid var(--alt-color);
+    border-radius: 15px;
+    padding: 0;
+
+    header {
+        display: flex;
+        flex-flow: row;
+        gap: 1rem;
+        background-color: var(--alt-color);
+        padding: 5px;
+        justify-content: space-between;
+        padding: 15px 50px;
+        
+        h2 {
+            color: var(--main-bg-color);
+            margin: auto 0;
+        }
+
+        button {
+            background-color: transparent;
+            outline: none;
+            border: 5px solid var(--main-bg-color);
+            border-radius: 15px;
+            padding: 5px;
+            transition: all .25s;
+
+            i {
+                width: fit-content;
+                font-size: 25px;
+                color: var(--main-bg-color);
+            }
+
+            &:hover {
+                background-color: var(--main-bg-color);
+                border: 5px solid var(--alt-color);
+                transition: all .25s;
+
+                i {
+                    color: var(--alt-color);
+                }
+            }
+        }
+    }
+
+    main {
+
+        p {
+            padding: 10px 20px;
+        }
+    }
+
+    footer {
+        min-height: 15px;
+        display: flex;
+        flex-flow: row;
+        gap: 1rem;
+        background-color: var(--alt-color);
+        padding: 5px;
+    }
+}
+
+
+@media screen and (width <= 845px) {
+    .mainHeader {
+        #navBar {
+            padding: 1rem 1rem;
+    
+            .links, .profile {
+                gap: 10px;
+
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}

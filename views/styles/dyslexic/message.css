@@ -1,0 +1,11 @@
+/*
+    Archivo: message.css
+    En este archivo se definen los estilos que se usaran para darle estilo a los mensajes
+    Creado por: Pablo Hernández el 08/10/2024
+    Historial de cambios:
+    16/10/2024 - Creado
+*/
+
+@import url(../default/message.css);
+@import url(../default/common.css);
+@import url(./common.css);

@@ -1,0 +1,19 @@
+a {
+    display: none;
+}
+
+label {
+    margin-right: 0.5cm;
+
+}
+
+.inputGroup {
+    display: grid;
+    grid-template-columns: 5cm 5cm;
+    margin: 0.05cm 0;
+    padding: 1.5mm;
+}
+
+.inputGroup:nth-child(even) {
+    border: 1mm solid black;
+}

@@ -1,0 +1,30 @@
+/* Archivo: errorRegister.css */
+@import url("./common.css");
+
+.errorRegister {
+    background-color: #f8e2e2;
+    color: #924d4d;
+    padding: 1rem 2rem;
+    border: 3px solid #924d4d;
+    border-radius: 15px;
+    width: fit-content;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.errorRegister h2 {
+    font-size: 30px;
+    margin-bottom: 0.5rem;
+    color: #924d4d;
+}
+
+.errorRegister p {
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}
+
+h1 {
+    color: rgb(193, 0, 0) !important;
+}

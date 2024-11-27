@@ -1,0 +1,10 @@
+@import url("../default/common.css");
+
+:root {
+    --main-bg-color: #1e1e1e;  /* Fondo principal oscuro */
+    --photo-bg: #6b4c35;       /* Fondo de fotos ligeramente más claro */
+    --color2: #8A7D72;         /* Color suave para detalles (grises o marrones suaves) */
+    --color3: #43311e;         /* Texto en colores claros (crema o blanco) */
+    --color4: #B58D6F;         /* Color para elementos interactivos (botones, etc.) */
+    --alt-color: #8c6446;      /* Color alternativo claro para contrastes (blanco claro) */
+}
