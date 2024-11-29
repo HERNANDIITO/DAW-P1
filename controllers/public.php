@@ -1,8 +1,9 @@
 <?php
+require_once "models/PublicModel.php";
 
 class PublicController {
     public function index() {
-        require_once "models/PublicModel.php";
+
 
         $public = new PublicModel();
         $newest = $public->getNewest();
@@ -11,6 +12,7 @@ class PublicController {
         $data['newest'] = $newest;
 
         require_once "views/public/public.php";
+
     }
 
     public function accessInfo() {
@@ -58,6 +60,32 @@ class PublicController {
     public function search() {
 
         $data['title'] = "Búsqueda";
+        $public = new PublicModel();
+
+        $data["adTypes"] = $public->getAdTypes();
+        $data["buildingTypes"] = $public->getBuildingTypes();
+        $data["countries"] = $public->getCountries();
+
+        $data["searchParamAdType"]      = $_GET['adType'] ?? null;;
+        $data["searchParamWorkType"]    = $_GET['workType'] ?? null;;
+        $data["searchParamCountry"]     = $_GET['country'] ?? null;;
+        $data["searchParamCity"]        = $_GET['city'] ?? null;;
+        $data["searchParamMinPrice"]    = $_GET['minPrice'] ?? null;;
+        $data["searchParamMaxPrice"]    = $_GET['maxPrice'] ?? null;;
+        $data["searchParamMinDate"]     = $_GET['minDate'] ?? null;;
+        $data["searchParamMaxDate"]     = $_GET['maxDate'] ?? null;;
+
+        $data["filteredSearch"] = $public->getSearch(
+            $data["searchParamAdType"],
+            $data["searchParamWorkType"],
+            $data["searchParamCountry"],
+                $data["searchParamCity"],
+            $data["searchParamMinPrice"],
+            $data["searchParamMaxPrice"],
+            $data["searchParamMinDate"],
+            $data["searchParamMaxDate"]
+        );
+
         require_once "views/public/search.php";
 
     }
