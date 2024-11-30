@@ -2,7 +2,7 @@
     
     // obtiene el controlador (public, restricted o private)
     function getController($controller): object {
-        $contorllerName = ucwords($controller)."Controller";
+        $controllerName = ucwords($controller)."Controller";
         $controllerFile = "controllers/".ucwords($controller).".php";
 
         if ( !is_file($controllerFile) ) {
@@ -11,7 +11,7 @@
 
         require_once $controllerFile;
 
-        $controller = new $contorllerName();
+        $controller = new $controllerName();
 
         return $controller;
     }

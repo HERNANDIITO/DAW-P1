@@ -100,4 +100,27 @@ class PublicModel {
         return $paises;
     }
 
+    function isAuthorized($username, $password):array|bool {
+        $query = "SELECT IdUsuario, NomUsuario, Email, Sexo, FNacimiento, Ciudad, P.Nombre AS Pais, Foto, FRegistro, E.Nombre AS Estilo FROM Usuarios U JOIN Paises P ON U.Pais = P.IdPais LEFT JOIN Estilos E ON U.Estilo = E.IdEstilo WHERE U.NomUsuario = ? AND U.Clave = ?";
+        
+        $stmt = $this->db->prepare( $query );
+        $stmt->bind_param("ss", $username, $password);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+
+        $stmt->close();
+
+        if ( $user ) {
+            return $user;
+        }
+    
+        return false;
+    }
+
+    public function __destruct() {
+        $this->db->close();
+    }
+
 }

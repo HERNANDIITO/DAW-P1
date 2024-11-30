@@ -14,19 +14,17 @@ error_reporting(E_ALL);
     <link 
         rel="stylesheet" 
         media="screen" 
-        href="../styles/<?php include 'views/common/styleSelector.php' ?>/login.css"
+        href="views/styles/<?php include 'views/common/styleSelector.php' ?>/login.css"
         title="<?php include 'views/common/styleSelector.php' ?>"
         id="<?php include 'views/common/styleSelector.php' ?>"
     >
     <title><?php echo $data['title']?></title>
 </head>
 <body>
-    <?php include "../inc/header.php" ?>
     <main id="main-content">
         <h1 class="title">Registro</h1>
-        <?php include "../phpAdds/registerForm.php" ?>
-        <a href="/public/login.php">¿Ya tienes cuenta?</a>
+        <?php include "views/common/registerForm.php" ?>
+        <a href="<?php echo urlPUBLIC . urlACTION . 'login'  ?>">¿Ya tienes cuenta?</a>
     </main>
-    <?php include "../inc/footer.php"; ?>
 </body>
 </html>

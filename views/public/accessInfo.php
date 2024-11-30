@@ -14,7 +14,7 @@
     <link 
         rel="stylesheet" 
         media="screen" 
-        href="../styles/<?php include 'views/common/styleSelector.php' ?>/message.css"
+        href="views/styles/<?php include 'views/common/styleSelector.php' ?>/message.css"
         title="<?php include 'views/common/styleSelector.php' ?>"
         id="<?php include 'views/common/styleSelector.php' ?>"
     >
@@ -22,8 +22,6 @@
         <title><?php echo $data['title']?></title>
 </head>
 <body>
-    <?php include "../inc/header.php";?>
-
     <main id="main-content">
         <h1 class="title">Información sobre accesibilidad</h1>
         
@@ -68,10 +66,5 @@
             <hr class="solid">
         </section>
     </main>
-    
-    <?php include "../inc/footer.php"; ?>
-
-
-
 </body>
 </html>

@@ -17,17 +17,16 @@
         <link 
         rel="stylesheet" 
         media="screen" 
-        href="../styles/<?php include 'views/common/styleSelector.php' ?>/login.css"
+        href="views/styles/<?php include 'views/common/styleSelector.php' ?>/login.css"
         title="<?php include 'views/common/styleSelector.php' ?>"
         id="<?php include 'views/common/styleSelector.php' ?>"
     >
     <title><?php echo $data['title']?></title>
 </head>
 <body>
-    <?php include "../inc/header.php" ?>
     <main id="main-content">
         <h1 class="title">Inicio de sesión</h1>
-        <form action="../phpAdds/loginLogic.php" method="POST" id="loginForm">
+        <form action="<?php echo urlPUBLIC . urlACTION . 'loginLogic'  ?>" method="POST" id="loginForm">
             <section class="inputGroup">
                 <label for="user">Nombre de usuario</label>
                 <input onblur="checkUser(this.value)" type="text" name="user" placeholder="nombreUsuario" id="user">
@@ -42,11 +41,8 @@
             </section>
             <button class="greenButton" type="submit" id="submitLoginButton">Entrar</button>
         </form>
-        <a href="/public/register.php">¿Todavía no tienes cuenta?</a>
+        <a href="<?php echo urlPUBLIC . urlACTION . 'register'  ?>">¿Todavía no tienes cuenta?</a>
 
     </main>
-    
-    <?php include "../inc/footer.php"; ?>
-
 </body>
     <script src="../js/login.js"></script>

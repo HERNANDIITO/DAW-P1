@@ -46,7 +46,7 @@
         </section>
         <section class="houses">
             <?php foreach ($data['newest'] as $row) { ?>
-                    <a href="../restricted/cardDetails.php?id=<?php echo $row['IdAnuncio']?>"> 
+                    <a href="<?php echo urlRESTRICTED . urlACTION . 'cardDetails' . '&id=' . $row['IdAnuncio'] ?>">
                         <section class="card">
                             <img class="mainImg" src="assets/img/houses/<?php echo $row['Foto'] ?>" alt="<?php echo $row['Alternativo'] ?>">
                             <h1 class="title"><?php echo $row['Titulo']?></h1>

@@ -2,6 +2,7 @@
 require_once "models/PublicModel.php";
 
 class PublicController {
+
     public function index() {
 
 
@@ -79,7 +80,7 @@ class PublicController {
             $data["searchParamAdType"],
             $data["searchParamWorkType"],
             $data["searchParamCountry"],
-                $data["searchParamCity"],
+            $data["searchParamCity"],
             $data["searchParamMinPrice"],
             $data["searchParamMaxPrice"],
             $data["searchParamMinDate"],
@@ -97,5 +98,11 @@ class PublicController {
 
     }
 
+    public function loginLogic() {
+
+        $data['title'] = "Cargando inicio de sesión...";
+        require_once "core/loginLogic.php";
+
+    }
 
 }
