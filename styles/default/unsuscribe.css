@@ -1,0 +1,44 @@
+/*
+    Archivo: profile.css
+    En este archivo se definen los estilos que se usaran a en myProfile.html
+    Historial de cambios:
+    26/09/2024 - Creado
+    08/10/2024 - Desarrollado
+*/
+
+@import url("./common.css");
+@import url("./index.css");
+
+h2 {
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: column;
+
+    width: fit-content;
+    margin: auto;
+    gap: 5px;
+
+    border: 1px solid black;
+    border-radius: 12px;
+
+    span {
+        padding: 10px 15px;
+    }
+
+    .total {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+    }
+
+    hr {
+        margin: 0;
+    }
+
+    .buttons {
+        margin: 10px 15px;
+    }
+}

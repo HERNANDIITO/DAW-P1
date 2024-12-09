@@ -14,6 +14,7 @@
 
             // Resetea la cookie cambiando la fecha (despues de mostrarla) con la fecha actual para que, la proxima vez que inicies sesion, se vea cuando fue la ultima vez que entraste
             $date = time();
+            $expireDate = time() + (90 * 24 * 60 * 60);
             setcookie('dateCookie', $date, $expireDate, '/', '');
         }
     }

@@ -6,16 +6,27 @@
         date_default_timezone_set('Europe/Madrid');
         $hora = date('H:i');
 
-        $user = $_SESSION["userSession"];
+        $userID = $_SESSION["userSession"];
 
         if ( isset($_COOKIE["rememberedUser"]) ) {
-            $user = $_COOKIE["rememberedUser"];
+            $userID = $_COOKIE["rememberedUser"];
         }
 
-        if ($hora >= "06:00" && $hora <= "11:59") { $returnValue = "Buenos días " . $user; }
-        elseif ($hora >= "12:00" && $hora <= "15:59") { $returnValue = "Hola " . $user; }
-        elseif ($hora >= "16:00" && $hora <= "19:59") { $returnValue = "Buenas tardes " . $user; }
-        else { $returnValue = "Buenas noches " . $user; }
+        $conn = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
+
+        // Preparar la consulta SQL
+        $stmt = $conn->prepare("SELECT NomUsuario FROM usuarios WHERE IdUsuario = ?");
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+
+        // Obtener el resultado
+        $result = $stmt->get_result();
+        $usuario = $result->fetch_assoc();
+
+        if ($hora >= "06:00" && $hora <= "11:59") { $returnValue = "Buenos días " . $usuario['NomUsuario']; }
+        elseif ($hora >= "12:00" && $hora <= "15:59") { $returnValue = "Hola " . $usuario['NomUsuario']; }
+        elseif ($hora >= "16:00" && $hora <= "19:59") { $returnValue = "Buenas tardes " . $usuario['NomUsuario']; }
+        else { $returnValue = "Buenas noches " . $usuario['NomUsuario']; }
 
         return $returnValue;
     }

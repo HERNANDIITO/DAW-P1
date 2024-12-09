@@ -24,7 +24,7 @@
     <script src="../js/myProfile.js"></script>
     <script src="../js/common.js"></script>
 
-    <title>myProfile</title>
+    <title>Mi perfil</title>
 </head>
 <body>
     <?php include "../inc/header.php"; ?>
@@ -35,7 +35,7 @@
                 <i class="fa-solid fa-pencil"></i>
                 <span>Modificar mi perfil</span>
             </a>
-            <a href="">
+            <a href="./unsuscribe.php">
                 <i class="fa-solid fa-trash"></i>
                 <span>Darme de baja</span>
             </a>
