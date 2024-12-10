@@ -32,9 +32,20 @@
             flex-flow: row;
             gap: 10px;
 
-            .aditional-img {
-                width: auto !important;
+            .imgWrapper {
+                min-height: 50px;
+
+                .deleteButton {
+                    .redButton {
+                        padding: 10px !important;
+                    }
+                }
+
+                .aditional-img {
+                    width: auto !important;
+                }
             }
+
         }
     }
 
@@ -76,14 +87,4 @@ fieldset {
 
 img {
     width: 60%;
-}
-
-.miniaturas {
-    display: flex;
-    flex-flow: row;
-}
-
-.aditional-img {
-    width: 120px;
-    max-height: 120px;
 }

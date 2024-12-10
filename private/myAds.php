@@ -31,6 +31,7 @@
             A.Ciudad, 
             A.Superficie, 
             A.Nhabitaciones, 
+            A.Texto,
             A.Nbanyos, 
             A.Planta, 
             A.Anyo, 
@@ -51,6 +52,14 @@
     $sentence->execute();
     $result = $sentence->get_result();
     $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    $msg = isset($_GET['msg']) ? $_GET['msg'] : null;
+
+    if ( $msg == 1 ) {
+        echo "<script>alert('Anuncio eliminado con éxito');</script>";
+    } else if ($msg == 2) {
+        echo "<script>alert('Un error ha ocurrido');</script>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -80,8 +89,7 @@
                 <section class="messages">
                 
                     <?php foreach ($rows as $row) { ?>
-                        <section class="message">
-
+                        <section class="ad message">
                             <section class="card-photo-mini">
                                 <img src="../assets/img/houses/<?php echo $row['Foto'] ?>">
                             </section>
@@ -101,9 +109,11 @@
                                     <a href="./viewAd.php?id=<?php echo $row['IdAnuncio'] ?>">
                                         <button class="greenButton">Ver</button>
                                     </a>
+                                    <a href="./delete-ad.php?id=<?php echo $row['IdAnuncio'] ?>">
+                                        <button class="redButton">Eliminar</button>
+                                    </a>
                                 </span>
                             </section>
-
                         </section>
                     <?php } ?>
                 </section>

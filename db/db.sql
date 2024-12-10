@@ -1,13 +1,15 @@
 -- SQLBook: Code
 -- Crear base de datos
 
+DROP DATABASE Fotocasa2;
 CREATE DATABASE IF NOT EXISTS Fotocasa2;
 USE Fotocasa2;
 
 -- Tabla TiposMensajes
 CREATE TABLE IF NOT EXISTS TiposMensajes (
     IdTMensaje INT AUTO_INCREMENT PRIMARY KEY,
-    NomTMensaje TEXT NOT NULL
+    NomTMensaje TEXT NOT NULL,
+    Icono TEXT
 );
 
 -- Tabla TiposAnuncios
@@ -49,6 +51,7 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     Foto TEXT,
     FRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Estilo INT,
+    Icono VARCHAR(25),
     FOREIGN KEY (Estilo) REFERENCES Estilos(IdEstilo),
     FOREIGN KEY (Pais) REFERENCES Paises(IdPais)
 );
@@ -75,7 +78,7 @@ CREATE TABLE IF NOT EXISTS Anuncios (
     FOREIGN KEY (TAnuncio) REFERENCES TiposAnuncios(IdTAnuncio),
     FOREIGN KEY (TVivienda) REFERENCES TiposViviendas(IdTVivienda),
     FOREIGN KEY (Pais) REFERENCES Paises(IdPais),
-    FOREIGN KEY (Usuario) REFERENCES Usuarios(IdUsuario)
+    FOREIGN KEY (Usuario) REFERENCES Usuarios(IdUsuario) ON DELETE CASCADE
 );
 
 -- Tabla Mensajes
@@ -88,9 +91,9 @@ CREATE TABLE IF NOT EXISTS Mensajes (
     UsuarioDestino INT,
     FRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (TMensaje) REFERENCES TiposMensajes(IdTMensaje),
-    FOREIGN KEY (Anuncio) REFERENCES Anuncios(IdAnuncio),
-    FOREIGN KEY (UsuarioOrigen) REFERENCES Usuarios(IdUsuario),
-    FOREIGN KEY (UsuarioDestino) REFERENCES Usuarios(IdUsuario)
+    FOREIGN KEY (Anuncio) REFERENCES Anuncios(IdAnuncio) ON DELETE CASCADE,
+    FOREIGN KEY (UsuarioOrigen) REFERENCES Usuarios(IdUsuario) ON DELETE CASCADE,
+    FOREIGN KEY (UsuarioDestino) REFERENCES Usuarios(IdUsuario) ON DELETE CASCADE
 );
 
 -- Tabla Fotos
@@ -100,7 +103,7 @@ CREATE TABLE IF NOT EXISTS Fotos (
     Fichero TEXT,
     Alternativo VARCHAR(255) NOT NULL,
     Anuncio INT,
-    FOREIGN KEY (Anuncio) REFERENCES Anuncios(IdAnuncio)
+    FOREIGN KEY (Anuncio) REFERENCES Anuncios(IdAnuncio) ON DELETE CASCADE
 );
 
 
@@ -121,5 +124,5 @@ CREATE TABLE IF NOT EXISTS Solicitudes (
     IPrecio BOOLEAN,
     FRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Coste FLOAT,
-    FOREIGN KEY (Anuncio) REFERENCES Anuncios(IdAnuncio)
+    FOREIGN KEY (Anuncio) REFERENCES Anuncios(IdAnuncio) ON DELETE CASCADE
 );

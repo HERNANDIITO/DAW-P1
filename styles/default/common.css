@@ -228,11 +228,17 @@ a {
 
     .info {
         display: flex;
-        flex-flow: row;
+        flex-flow: column;
         justify-content: space-around;
         gap: 15px;
         font-size: x-large;
         margin: 20px;
+
+        p {
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 }
 

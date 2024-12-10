@@ -77,7 +77,18 @@
             <?php 
                 $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
 
-                $query = "SELECT * FROM Anuncios ORDER BY FRegistro DESC LIMIT 5";
+                $query = "
+                    SELECT 
+                        Anuncios.*, 
+                        Paises.Nombre AS PaisNombre
+                    FROM 
+                        Anuncios
+                    JOIN 
+                        Paises ON Anuncios.Pais = Paises.IdPais
+                    ORDER BY 
+                        Anuncios.FRegistro DESC
+                    LIMIT 5;
+                ";
                 $result = mysqli_query($connectionID, $query);
 
                 while($row = mysqli_fetch_assoc($result)) { ?>
@@ -86,7 +97,7 @@
                             <img class="mainImg" src="assets/img/houses/<?php echo $row['Foto'] ?>" alt="<?php echo $row['Alternativo'] ?>">
                             <h1 class="title"><?php echo $row['Titulo']?></h1>
                             <section class="info">
-                                <p><i class="fa-solid fa-location-dot"></i> <?php echo $row['IdAnuncio']?></p>
+                                <p><i class="fa-solid fa-location-dot"></i> <?php echo $row['PaisNombre'] . ', ' . $row['Ciudad']?></p>
                                 <p><i class="fa-solid fa-tag"></i> <?php echo $row['Precio']?>€</p>
                             </section>
                         </section>

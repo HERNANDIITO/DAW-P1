@@ -94,6 +94,15 @@
     $generalConnection->close();
     $photosConnection->close();
     $messageConnection->close();
+
+    
+    $msg = isset($_GET['msg']) ? $_GET['msg'] : null;
+
+    if ( $msg == 1 ) {
+        echo "<script>alert('Foto eliminada con éxito');</script>";
+    } else if ($msg == 2) {
+        echo "<script>alert('Un error ha ocurrido');</script>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -159,7 +168,12 @@
                 <label>Fotos adicionales:</label>
                 <div class="miniaturas">
                     <?php while ($photo = $photosResult->fetch_assoc()) { ?>
-                        <img class="aditional-img" src="../assets/img/ads/<?php echo $photo['Anuncio'] ?>/<?php echo $photo['Fichero'] ?>" alt="<?php echo $photo['Alternativo']; ?>" class="miniatura">
+                        <section class="imgWrapper">
+                            <img class="aditional-img" src="../assets/img/ads/<?php echo $photo['Anuncio'] ?>/<?php echo $photo['Fichero'] ?>" alt="<?php echo $photo['Alternativo']; ?>" class="miniatura">
+                            <a class="deleteButton" href="./delete-photo.php?id=<?php echo $photo['IdFoto']?>&adId=<?php echo $cardId ?>">
+                                <button class="redButton" ><i class="fa-solid fa-trash"></i></button>
+                            </a>
+                        </section>
                     <?php } ?>
                 </div>
             </section>
