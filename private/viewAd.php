@@ -98,11 +98,41 @@
     
     $msg = isset($_GET['msg']) ? $_GET['msg'] : null;
 
-    if ( $msg == 1 ) {
-        echo "<script>alert('Foto eliminada con éxito');</script>";
-    } else if ($msg == 2) {
-        echo "<script>alert('Un error ha ocurrido');</script>";
+    switch( $msg ) {
+        case 1:
+            echo "<script>alert('Foto eliminada con éxito');</script>";
+            break;
+            
+        case 2:
+            echo "<script>alert('Un error ha ocurrido');</script>";
+            break;
+            
+        case 3:
+            echo "<script>alert('Faltan datos por rellenar');</script>";
+            break;
+            
+        case 4:
+            echo "<script>alert('Error seleccionando el anuncio');</script>";
+            break;
+            
+        case 5:
+            echo "<script>alert('Error subiendo el anuncio');</script>";
+            break;
+            
+        case 6:
+            echo "<script>alert('Ese tipo de archivo no está permitido');</script>";
+            break;
+            
+        case 7:
+            echo "<script>alert('Texto alternativo demasiado corto o redunante');</script>";
+            break;
+            
+        case 8:
+            echo "<script>alert('Foto subida con éxito');</script>";
+            break;
+            
     }
+
 ?>
 
 <!DOCTYPE html>

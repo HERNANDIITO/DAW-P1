@@ -4,6 +4,78 @@
     Creado el: 08/11/2024
 -->
 
+<?php    
+        session_start();
+    
+        $userID = $_SESSION["userSession"];
+    
+        if ( isset($_COOKIE["rememberedUser"]) ) {
+            $userID = $_COOKIE["rememberedUser"];
+        }
+    
+        session_commit();
+    
+        $query = "
+            SELECT 
+                IdAnuncio, 
+                Titulo
+            FROM 
+                Anuncios
+            WHERE 
+                Usuario = ?
+        ";
+    
+        $connection = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
+        $sentence = $connection->prepare($query);
+        $sentence->bind_param("i",$userID);
+        $sentence->execute();
+        $result = $sentence->get_result();
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+        $selectedAd = isset($_GET['ad']) ? $_GET['ad'] : null;
+
+        $anuncioEncontrado = null;
+
+        if ( $selectedAd != null ) {
+            foreach ($rows as $anuncio) {
+                if ($anuncio['IdAnuncio'] == $selectedAd) {
+                    $anuncioEncontrado = $anuncio;
+                    break; 
+                }
+            }
+        }
+
+            
+    $msg = isset($_GET['msg']) ? $_GET['msg'] : null;
+
+    switch( $msg ) {
+        case 3:
+            echo "<script>alert('Faltan datos por rellenar');</script>";
+            break;
+            
+        case 4:
+            echo "<script>alert('Error seleccionando el anuncio');</script>";
+            break;
+            
+        case 5:
+            echo "<script>alert('Error subiendo el anuncio');</script>";
+            break;
+            
+        case 6:
+            echo "<script>alert('Ese tipo de archivo no está permitido');</script>";
+            break;
+            
+        case 7:
+            echo "<script>alert('Texto alternativo demasiado corto o redunante');</script>";
+            break;
+            
+        case 8:
+            echo "<script>alert('Foto subida con éxito');</script>";
+            break;
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,18 +88,19 @@
         title="<?php include '../inc/styleSelector.php' ?>"
         id="<?php include '../inc/styleSelector.php' ?>"
     >
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" media="screen" crossorigin="anonymous"></script>
     <title>Añadir Foto a Anuncio</title>
 </head>
 <body>
 
     <?php include "../inc/header.php"; ?>
 
-    <main>
+    <main id="main-content">
         <section class="formContainer">
             <h1>Añadir Foto a Anuncio</h1>
             
             <!-- Formulario de subida de foto -->
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="../phpAdds/addPhoto-response.php" method="POST" enctype="multipart/form-data">
                 
                 <!-- Campo de foto -->
                 <section class="inputGroup">
@@ -50,19 +123,13 @@
                 <!-- Lista desplegable para seleccionar anuncio -->
                 <section class="inputGroup">
                     <label for="adSelect">Anuncio:</label>
-                    <select name="adSelect" id="adSelect" <?php echo (basename($_SERVER['HTTP_REFERER']) != 'myProfile.php') ? 'disabled' : ''; ?>>
-                        <?php
-                        // Ejemplo de opciones. En una implementación real, las opciones se extraerían de una base de datos.
-                        $ads = ['Anuncio 1', 'Anuncio 2', 'Anuncio 3'];
-                        $selectedAd = isset($_GET['ad']) ? $_GET['ad'] : null;
-
-                        // Genera las opciones de la lista desplegable.
-                        echo '<option value="">Selecciona un anuncio</option>';
-                        foreach ($ads as $ad) {
-                            $isSelected = ($ad === $selectedAd) ? 'selected' : '';
-                            echo "<option value='$ad' $isSelected>$ad</option>";
-                        }
-                        ?>
+                    <select name="adSelect" id="adSelect">
+                    <option <?php echo isset($selectedAd) ? '' : 'selected'; ?> value="">Selecciona un anuncio</option>
+                        <?php  foreach ($rows as $ad) { ?>
+                            <option  value="<?php echo $ad['IdAnuncio'] ?>" <?php echo ($ad['IdAnuncio'] == $selectedAd) ? 'selected' : ''; ?>>
+                                <?php echo $ad['Titulo'] ?>
+                            </option>
+                        <?php } ?>
                     </select>
                 </section>
 

@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 // Conexión a la base de datos
 $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
 
@@ -41,6 +37,14 @@ if ($resultPaises && mysqli_num_rows($resultPaises) > 0) {
     }
 }
 
+$msg = isset($_GET['msg']) ? $_GET['msg'] : null;
+
+if ( $msg == 1 ) {
+    echo "<script>alert('Valores inválidos');</script>";
+} else if ($msg == 2) {
+    echo "<script>alert('Todos los campos son obligatorios');</script>";
+}
+
 // Cerrar la conexión
 mysqli_close($connectionID);
 ?>
@@ -66,7 +70,7 @@ mysqli_close($connectionID);
     <main>
         <section class="formResult">
             <h1>Crear Anuncio</h1>
-            <form action="submitAd.php" method="post">
+            <form action="../phpAdds/createAd-response.php" method="post">
                 <!-- Tipo de Anuncio -->
                 <section class="inputGroup">
                     <label for="tipoAnuncio">Tipo de Anuncio:</label>
@@ -101,6 +105,41 @@ mysqli_close($connectionID);
                 <section class="inputGroup">
                     <label for="titulo">Título:</label>
                     <input type="text" name="titulo" id="titulo" placeholder="Título del anuncio" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="titulo">Precio:</label>
+                    <input type="number" name="precio" id="precio" placeholder="Precio" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="titulo">Ciudad:</label>
+                    <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="titulo">Superficie:</label>
+                    <input type="number" name="superficie" id="superficie" placeholder="90" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="titulo">Habitaciones:</label>
+                    <input type="number" name="habitaciones" id="habitaciones" placeholder="2" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="titulo">Baños:</label>
+                    <input type="number" name="banyos" id="banyos" placeholder="1" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="titulo">Planta:</label>
+                    <input type="number" name="planta" id="planta" placeholder="6" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="titulo">Año:</label>
+                    <input type="number" name="anyo" id="anyo" placeholder="1990" required>
                 </section>
 
                 <section class="inputGroup">
