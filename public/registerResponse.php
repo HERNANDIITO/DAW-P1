@@ -10,6 +10,7 @@ $sex = $_POST['sex'];
 $birthdate = $_POST['birthdate'];
 $city = $_POST['city'];
 $country = $_POST['country'];
+$style = 1;
 
 // Convertir sexo a un valor numérico
 if ($sex === "hombre") {
@@ -129,20 +130,13 @@ if (!$connectionID) {
 }
 
 // Preparar consulta para insertar usuario
-$connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
-
-if (!$connectionID) {
-    die("Error de conexión: " . mysqli_connect_error());
-}
-
-// Preparar consulta para insertar usuario
-$query = "INSERT INTO Usuarios (NomUsuario, Clave, Email, Sexo, FNacimiento, Ciudad, Pais) 
-          VALUES (?, ?, ?, ?, ?, ?, ?)";
+$query = "INSERT INTO Usuarios (NomUsuario, Clave, Email, Sexo, FNacimiento, Ciudad, Pais, Estilo) 
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = mysqli_prepare($connectionID, $query);
 
 if ($stmt) {
-    mysqli_stmt_bind_param($stmt, "sssissi", $username, $password, $email, $sex, $birthdate, $city, $country);
+    mysqli_stmt_bind_param($stmt, "sssissii", $username, $password, $email, $sex, $birthdate, $city, $country, $style);
 
     if (mysqli_stmt_execute($stmt)) {
         $userId = mysqli_insert_id($connectionID); // Obtener el ID del usuario creado
@@ -160,7 +154,7 @@ if ($stmt) {
 }
 
 mysqli_close($connectionID);
-$_SESSION['userSession'] = $username;
+$_SESSION['userSession'] = $userId;
 
 ?>
 <!DOCTYPE html>

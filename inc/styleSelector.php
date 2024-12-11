@@ -29,6 +29,11 @@
         $sentence->execute();
         $result = $sentence->get_result();
         $style = $result->fetch_assoc();
+        
+        if ($style === null) {
+            echo 'default';
+            return;
+        }
 
         echo $style['Fichero'];
 
