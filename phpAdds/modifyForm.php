@@ -40,21 +40,21 @@
         $connection->close();
         $sentence->close();
 
-    }
-    $queryPaises = "SELECT IdPais, Nombre FROM Paises";
-    $connectionPaises = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
-    $sentencePaises = $connectionPaises->prepare($queryPaises);
-    $sentencePaises->execute();
-    $resultPaises = $sentencePaises->get_result();
-    $paises = $resultPaises->fetch_all(MYSQLI_ASSOC);
+        $queryPaises = "SELECT IdPais, Nombre FROM Paises";
+        $connectionPaises = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
+        $sentencePaises = $connectionPaises->prepare($queryPaises);
+        $sentencePaises->execute();
+        $resultPaises = $sentencePaises->get_result();
+        $paises = $resultPaises->fetch_all(MYSQLI_ASSOC);
 
-    $connectionPaises->close();
-    $sentencePaises->close();
+        $connectionPaises->close();
+        $sentencePaises->close();
     
+    }
 ?> 
 
 
-<form action="./registerResponse.php" method="POST">
+<form action="../private/modifyResponse.php" method="POST">
     <section class="inputGroup">
         <label for="email">Email</label>
         <input value="<?php echo isset($user['Email']) ? $user['Email'] : '' ?>" name="email" placeholder="usu@email.com" id="email">

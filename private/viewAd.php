@@ -223,6 +223,7 @@
                     <p>No hay mensajes disponibles para este anuncio.</p>
                 <?php endif; ?>
             </fieldset>
+            <a href="modifyAd.php"><button class="greenButton" id="modifyAdButton">Modificar</button></a>
         </section>
     </main>
 

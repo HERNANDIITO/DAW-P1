@@ -46,6 +46,8 @@
 
         // Usuario autorizado, redirigir a la página privada
         $_SESSION['userSession'] = $user['IdUsuario'];
+        $_SESSION['user_password'] = $password;
+        
         header("Location: ../private/myProfile.php");
         
     } else {

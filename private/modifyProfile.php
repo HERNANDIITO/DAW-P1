@@ -30,7 +30,7 @@
     <?php include "../inc/header.php"; ?>
 
     <main id="main-content">
-    <?php include "../phpAdds/registerForm.php"?>
+        <?php include "../phpAdds/modifyForm.php"?>
     </main>
 
     <?php include "../inc/footer.php"; ?>
