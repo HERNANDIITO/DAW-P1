@@ -1,99 +1,58 @@
 <?php
-    $cardId = isset($_GET['id']) ? $_GET['id'] : 0;
+// Conexión a la base de datos
+$connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
 
-    // Conexiones
-    $generalConnection = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
-    $photosConnection = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
-    $messageConnection = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
+// Verificar si la conexión fue exitosa
+if (!$connectionID) {
+    die("Error al conectar con la base de datos: " . mysqli_connect_error());
+}
 
-    // Consulta general
-    $generalQuery = "
-        SELECT
-            A.IdAnuncio, 
-            A.Titulo, 
-            A.Foto, 
-            A.Precio, 
-            A.Texto, 
-            A.Ciudad, 
-            A.Pais, 
-            A.Superficie, 
-            A.Nhabitaciones, 
-            A.Nbanyos, 
-            A.Planta, 
-            A.Anyo,
-            A.Alternativo,
-            A.FRegistro, 
-            TA.NomTAnuncio, 
-            TV.NomTVivienda, 
-            U.NomUsuario,
-            P.Nombre as NomPais
-        FROM
-            Anuncios A
-        JOIN
-            TiposAnuncios TA ON A.TAnuncio = TA.IdTAnuncio
-        JOIN
-            Paises P ON A.Pais = P.IdPais
-        JOIN 
-            TiposViviendas TV ON A.TVivienda = TV.IdTVivienda 
-        JOIN 
-            Usuarios U ON A.Usuario = U.IdUsuario WHERE A.IdAnuncio = ?
-    ";
+// Obtener el ID del anuncio desde la sesión
+session_start();
+$adId = $_SESSION['AdId'];
 
-    // Consulta fotos
-    $photosQuery = "
-        SELECT 
-            F.IdFoto, 
-            F.Titulo, 
-            F.Fichero, 
-            F.Alternativo,
-            F.Anuncio
-        FROM 
-            Fotos F
-        WHERE 
-            F.Anuncio = ?
-    ";
+// Consultas para obtener los datos
+$tiposAnuncios = [];
+$tiposViviendas = [];
+$paises = [];
+$anuncio = [];
 
-    // Consulta mensajes
-    $messageQuery = "
-        SELECT 
-            M.IdMensaje, 
-            M.Texto, 
-            M.FRegistro, 
-            TM.NomTMensaje, 
-            U.NomUsuario AS UsuarioOrigen
-        FROM 
-            Mensajes M
-        JOIN 
-            TiposMensajes TM ON M.TMensaje = TM.IdTMensaje
-        JOIN 
-            Usuarios U ON M.UsuarioOrigen = U.IdUsuario
-        WHERE 
-            M.Anuncio = ?
-    ";
+// Consultas para llenar los select
+$sqlTiposAnuncios = "SELECT IdTAnuncio, NomTAnuncio FROM TiposAnuncios";
+$sqlTiposViviendas = "SELECT IdTVivienda, NomTVivienda FROM TiposViviendas";
+$sqlPaises = "SELECT IdPais, Nombre FROM Paises";
 
-    // Ejecutar consulta general
-    $generalSentence = $generalConnection->prepare($generalQuery);
-    $generalSentence->bind_param("i", $cardId);
-    $generalSentence->execute();
-    $generalResult = $generalSentence->get_result();
-    $card = $generalResult->fetch_assoc();
+// Consulta para obtener los datos del anuncio a modificar
+$sqlAnuncio = "SELECT * FROM Anuncios WHERE IdAnuncio = $adId";
 
-    // Ejecutar consulta fotos
-    $photosSentence = $photosConnection->prepare($photosQuery);
-    $photosSentence->bind_param("i", $cardId);
-    $photosSentence->execute();
-    $photosResult = $photosSentence->get_result();
+$resultTiposAnuncios = mysqli_query($connectionID, $sqlTiposAnuncios);
+if ($resultTiposAnuncios && mysqli_num_rows($resultTiposAnuncios) > 0) {
+    while ($row = mysqli_fetch_assoc($resultTiposAnuncios)) {
+        $tiposAnuncios[] = $row;
+    }
+}
 
-    // Ejecutar consulta mensajes
-    $messageSentence = $messageConnection->prepare($messageQuery);
-    $messageSentence->bind_param("i", $cardId);
-    $messageSentence->execute();
-    $messageResult = $messageSentence->get_result();
+$resultTiposViviendas = mysqli_query($connectionID, $sqlTiposViviendas);
+if ($resultTiposViviendas && mysqli_num_rows($resultTiposViviendas) > 0) {
+    while ($row = mysqli_fetch_assoc($resultTiposViviendas)) {
+        $tiposViviendas[] = $row;
+    }
+}
 
-    // Cerrar conexiones
-    $generalConnection->close();
-    $photosConnection->close();
-    $messageConnection->close();
+$resultPaises = mysqli_query($connectionID, $sqlPaises);
+if ($resultPaises && mysqli_num_rows($resultPaises) > 0) {
+    while ($row = mysqli_fetch_assoc($resultPaises)) {
+        $paises[] = $row;
+    }
+}
+
+$resultAnuncio = mysqli_query($connectionID, $sqlAnuncio);
+if ($resultAnuncio && mysqli_num_rows($resultAnuncio) > 0) {
+    $anuncio = mysqli_fetch_assoc($resultAnuncio);
+}
+
+// Cerrar la conexión
+mysqli_close($connectionID);
 ?>
 
 <!DOCTYPE html>
@@ -109,81 +68,94 @@
         id="<?php include '../inc/styleSelector.php' ?>"
     >
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
-    <title>Detalle del Anuncio</title>
+    <title>Modificar Anuncio</title>
 </head>
 <body>
     <?php include "../inc/header.php"; ?>
 
     <main>
-        <form action="../private/modifyResponse.php" method="POST">
-
-            <section class="anuncioDetalle">
-                <!-- Información general del anuncio -->
+        <section class="formResult">
+            <h1>Modificar Anuncio</h1>
+            <form action="../phpAdds/updateAd-response.php" method="post">
+                <!-- Tipo de Anuncio -->
                 <section class="inputGroup">
-                    <label>Tipo de anuncio:</label>
-                    <span><?php echo $card['NomTAnuncio']; ?></span>
-                </section>
-                <section class="inputGroup">
-                    <label>Tipo de vivienda:</label>
-                    <span><?php echo $card['NomTVivienda']; ?></span>
-                </section>
-                <section class="inputGroup">
-                    <label>Foto principal:</label>
-                    <img src="../assets/img/houses/<?php echo $card['Foto']; ?>" alt="<?php echo $card['Alternativo']; ?>">
-                </section>
-                <section class="inputGroup">
-                    <label>Título:</label>
-                    <span><?php echo $card['Titulo']; ?></span>
-                </section>
-                <section class="inputGroup">
-                    <label>Precio:</label>
-                    <span><?php echo $card['Precio']; ?> €</span>
-                </section>
-                <section class="inputGroup">
-                    <label>Descripción:</label>
-                    <span><?php echo $card['Texto']; ?></span>
-                </section>
-                <section class="inputGroup">
-                    <label>Fecha de publicación:</label>
-                    <span><?php echo $card['FRegistro']; ?></span>
-                </section>
-                <section class="inputGroup">
-                    <label>Ciudad:</label>
-                    <span><?php echo $card['Ciudad']; ?></span>
-                </section>
-                <section class="inputGroup">
-                    <label>País:</label>
-                    <span><?php echo $card['NomPais']; ?></span>
+                    <label for="tipoAnuncio">Tipo de Anuncio:</label>
+                    <select name="tipoAnuncio" id="tipoAnuncio">
+                        <?php foreach ($tiposAnuncios as $tipo): ?>
+                            <option value="<?= $tipo['IdTAnuncio'] ?>" <?= $anuncio['TAnuncio'] == $tipo['IdTAnuncio'] ? 'selected' : '' ?>><?= htmlspecialchars($tipo['NomTAnuncio']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </section>
 
-                <!-- Miniaturas de fotos adicionales -->
+                <!-- Tipo de Vivienda -->
                 <section class="inputGroup">
-                    <label>Fotos adicionales:</label>
-                    <div class="miniaturas">
-                        <?php while ($photo = $photosResult->fetch_assoc()) { ?>
-                            <img class="aditional-img" src="../assets/img/ads/<?php echo $photo['Anuncio'] ?>/<?php echo $photo['Fichero'] ?>" alt="<?php echo $photo['Alternativo']; ?>" class="miniatura">
-                        <?php } ?>
-                    </div>
+                    <label for="tipoVivienda">Tipo de Vivienda:</label>
+                    <select name="tipoVivienda" id="tipoVivienda">
+                        <?php foreach ($tiposViviendas as $tipo): ?>
+                            <option value="<?= $tipo['IdTVivienda'] ?>" <?= $anuncio['TVivienda'] == $tipo['IdTVivienda'] ? 'selected' : '' ?>><?= htmlspecialchars($tipo['NomTVivienda']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </section>
 
-                <!-- Mensajes del anuncio -->
-                <fieldset>
-                    <legend>Mensajes:</legend>
-                    <?php if ($messageResult->num_rows > 0): ?>
-                        <?php while ($message = $messageResult->fetch_assoc()): ?>
-                            <section class="inputGroup">
-                                <label><?php echo $message['NomTMensaje']; ?> de <?php echo $message['UsuarioOrigen']; ?>:</label>
-                                <span><?php echo $message['Texto']; ?></span>
-                                <span>Fecha: <?php echo $message['FRegistro']; ?></span>
-                            </section>
-                        <?php endwhile; ?>
-                    <?php else: ?>
-                        <p>No hay mensajes disponibles para este anuncio.</p>
-                    <?php endif; ?>
-                </fieldset>
-                <button class="greenButton" id="submitAdButton">Confirmar</button>
-            </section>
-        </form>
+                <!-- País -->
+                <section class="inputGroup">
+                    <label for="pais">País:</label>
+                    <select name="pais" id="pais">
+                        <?php foreach ($paises as $pais): ?>
+                            <option value="<?= $pais['IdPais'] ?>" <?= $anuncio['Pais'] == $pais['IdPais'] ? 'selected' : '' ?>><?= htmlspecialchars($pais['Nombre']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </section>
+
+                <!-- Otros campos -->
+                <section class="inputGroup">
+                    <label for="titulo">Título:</label>
+                    <input type="text" name="titulo" id="titulo" value="<?= htmlspecialchars($anuncio['Titulo']) ?>" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="precio">Precio:</label>
+                    <input type="number" name="precio" id="precio" value="<?= htmlspecialchars($anuncio['Precio']) ?>" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="ciudad">Ciudad:</label>
+                    <input type="text" name="ciudad" id="ciudad" value="<?= htmlspecialchars($anuncio['Ciudad']) ?>" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="superficie">Superficie:</label>
+                    <input type="number" name="superficie" id="superficie" value="<?= htmlspecialchars($anuncio['Superficie']) ?>" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="habitaciones">Habitaciones:</label>
+                    <input type="number" name="habitaciones" id="habitaciones" value="<?= htmlspecialchars($anuncio['Nhabitaciones']) ?>" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="banyos">Baños:</label>
+                    <input type="number" name="banyos" id="banyos" value="<?= htmlspecialchars($anuncio['Nbanyos']) ?>" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="planta">Planta:</label>
+                    <input type="number" name="planta" id="planta" value="<?= htmlspecialchars($anuncio['Planta']) ?>" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="anyo">Año:</label>
+                    <input type="number" name="anyo" id="anyo" value="<?= htmlspecialchars($anuncio['Anyo']) ?>" required>
+                </section>
+
+                <section class="inputGroup">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea name="descripcion" id="descripcion" required><?= htmlspecialchars($anuncio['Texto']) ?></textarea>
+                </section>
+
+                <button class="greenButton" type="submit">Modificar Anuncio</button>
+            </form>
+        </section>
     </main>
 
     <?php include "../inc/footer.php"; ?>

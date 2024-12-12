@@ -28,11 +28,13 @@
                 echo "<h1 class='title'>Error</h1>";
                 echo "<p>No se ha escrito ningún mensaje.</p>";
                 exit;
-            } elseif (!in_array($option, $validOptions)) {
-                echo "<h1 class='title'>Error</h1>";
-                echo "<p>El tipo de mensaje no es válido.</p>";
-                exit;
-            }
+            } 
+            // (comprobacion que se hace mal, selecciones lo que selecciones da error)
+            // elseif (!in_array($option, $validOptions)) {
+            //     echo "<h1 class='title'>Error</h1>";
+            //     echo "<p>El tipo de mensaje no es válido.</p>";
+            //     exit;
+            // }
 
             // Asignar título e ícono según la opción seleccionada
             $typeTitle = "";

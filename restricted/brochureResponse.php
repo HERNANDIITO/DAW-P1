@@ -1,12 +1,107 @@
-<!--
-    Archivo: myProfile.php
-    Archivo dedicado a la confirmación de una solicitud de folletos
-    Creado por: Pablo Hernández García el 03/10/2024
-    Historial de cambios:
-    20/09/2024 - Creado
-    08/10/2024 - CSS Aplicado
--->
+<?php
+// Enable error reporting for debugging
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+// Start session
+session_start();
+
+// Validate that the form is submitted via POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    die('Acceso no autorizado');
+}
+
+// Database connection
+$connection = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
+
+// Check connection
+if ($connection->connect_error) {
+    die("Error de conexión: " . $connection->connect_error);
+}
+
+// Prepare the SQL statement
+$query = "INSERT INTO Solicitudes (
+    Anuncio, 
+    Texto, 
+    Nombre, 
+    Email, 
+    Direccion, 
+    Telefono, 
+    Color, 
+    Copias, 
+    Resolucion, 
+    Fecha, 
+    IColor, 
+    IPrecio, 
+    Coste
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+// Prepare the statement
+$stmt = $connection->prepare($query);
+
+// Construct full address
+$direccion = implode(', ', [
+    $_POST['calle'] . ' ' . $_POST['numero'],
+    !empty($_POST['piso']) ? 'Piso: ' . $_POST['piso'] : '',
+    !empty($_POST['puerta']) ? 'Puerta: ' . $_POST['puerta'] : '',
+    $_POST['codigoPostal'] . ' ' . $_POST['localidad'],
+    $_POST['provincia'] . ', ' . $_POST['pais']
+]);
+
+// Prepare input data
+$anuncio = $_POST['anuncioUsuario'];
+$texto = $_POST['textoAdicional'] ?? '';
+$nombre = $_POST['nombre'];
+$email = $_POST['email'];
+$telefono = $_POST['telefono'] ?? null;
+$color = $_POST['colorPortada'];
+$copias = $_POST['numCopias'];
+$resolucion = $_POST['resFotos'];
+$fecha = !empty($_POST['fechaRecepcion']) ? $_POST['fechaRecepcion'] : null;
+
+// Convert color printing to boolean
+$iColor = $_POST['impresionColor'] === 'color' ? 1 : 0;
+$iPrecio = $_POST['impresionPrecio'] === 'conPrecio' ? 1 : 0;
+
+// Coste (price) from hidden input
+$coste = $_POST['precioTotalphp'];
+
+// Bind parameters
+$stmt->bind_param(
+    "issssssiissdd", 
+    $anuncio, 
+    $texto, 
+    $nombre, 
+    $email, 
+    $direccion, 
+    $telefono, 
+    $color, 
+    $copias, 
+    $resolucion, 
+    $fecha, 
+    $iColor, 
+    $iPrecio, 
+    $coste
+);
+
+// Execute the statement
+try {
+    $result = $stmt->execute();
+    
+    if (!$result) {
+        // If insertion fails, throw an exception
+        throw new Exception($stmt->error);
+    }
+} catch (Exception $e) {
+    // Store error in session to display on the page
+    $_SESSION['insert_error'] = $e->getMessage();
+}
+
+// Close statement and connection
+$stmt->close();
+$connection->close();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,12 +116,20 @@
     >
 
     <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
-        <title>Folleto</title>
+    <title>Folleto</title>
 </head>
 <body>
     <?php include "../inc/header.php"; ?>
 
     <main>
+        <?php if (isset($_SESSION['insert_error'])): ?>
+            <section class="error-message">
+                <h2>Error al guardar la solicitud</h2>
+                <p><?php echo htmlspecialchars($_SESSION['insert_error']); ?></p>
+                <?php unset($_SESSION['insert_error']); ?>
+            </section>
+        <?php endif; ?>
+
         <section class="formResult">
             <!-- Nombre -->
             <section class="inputGroup">
@@ -151,7 +254,5 @@
     </main>
 
     <?php include "../inc/footer.php"; ?>
-
-
 </body>
 </html>

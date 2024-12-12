@@ -1,5 +1,8 @@
 <?php
     $cardId = isset($_GET['id']) ? $_GET['id'] : 0;
+    session_start();
+    $_SESSION['AdId'] = $cardId;
+    session_commit();
 
     // Conexiones
     $generalConnection = new mysqli("localhost:3306", "admin", "admin", "fotocasa2");
