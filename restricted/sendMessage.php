@@ -1,7 +1,16 @@
 <?php
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+// Verificar si el ID del anuncio está en la sesión
+if (!isset($_SESSION['AdId'])) {
+    die("Error: No se encontró el ID del anuncio en la sesión.");
+}
+
+// Obtener el ID del anuncio desde la sesión
+$adId = $_SESSION['AdId'];
 
 // Conexión a la base de datos
 $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
@@ -9,6 +18,28 @@ $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
 // Verificar si la conexión fue exitosa
 if (!$connectionID) {
     die("Error al conectar con la base de datos: " . mysqli_connect_error());
+}
+
+// Consulta para obtener el nombre del usuario destino
+$queryUsuarioDestino = "SELECT u.NomUsuario 
+                        FROM Usuarios u 
+                        JOIN Anuncios a ON u.IdUsuario = a.Usuario 
+                        WHERE a.IdAnuncio = ?";
+$stmtDestino = mysqli_prepare($connectionID, $queryUsuarioDestino);
+
+if ($stmtDestino) {
+    mysqli_stmt_bind_param($stmtDestino, "i", $adId);
+    mysqli_stmt_execute($stmtDestino);
+    mysqli_stmt_bind_result($stmtDestino, $nombreUsuarioDestino);
+    mysqli_stmt_fetch($stmtDestino);
+    mysqli_stmt_close($stmtDestino);
+
+    // Si no se encuentra el usuario, asignar un valor por defecto
+    if (!$nombreUsuarioDestino) {
+        $nombreUsuarioDestino = "Usuario desconocido";
+    }
+} else {
+    die("Error al preparar la consulta para obtener el nombre del usuario: " . mysqli_error($connectionID));
 }
 
 // Consulta para obtener los tipos de mensajes
@@ -47,7 +78,7 @@ mysqli_close($connectionID);
     <?php include "../inc/header.php"; ?>
 
     <main id="main-content">
-        <h1 class="title">Mensaje para Paco Moreno</h1>
+        <h1 class="title">Mensaje para <?php echo htmlspecialchars($nombreUsuarioDestino); ?></h1>
         <form action="messageResponse.php" method="POST">
             <section class="inputGroup">
                 <label for="message">Mensaje</label>

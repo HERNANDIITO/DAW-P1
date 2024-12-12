@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $cardId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+session_start();
+    $_SESSION['AdId'] = $cardId;
+session_commit();
 
 $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
 

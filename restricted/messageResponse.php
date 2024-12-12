@@ -1,3 +1,90 @@
+<?php
+session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Verificar si AdId está disponible en la sesión
+if (!isset($_SESSION['AdId']) || !isset($_SESSION['userSession'])) {
+    echo "<h1>Error</h1><p>No se encontró el ID del anuncio o la sesión del usuario. Por favor, intenta nuevamente.</p>";
+    exit;
+}
+
+// Obtener el ID del anuncio y el usuario de origen desde la sesión
+$adId = $_SESSION['AdId'];
+$usuarioOrigen = $_SESSION['userSession'];
+
+// Conexión a la base de datos
+$connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
+if (!$connectionID) {
+    echo "<h1>Error</h1><p>Error al conectar con la base de datos: " . mysqli_connect_error() . "</p>";
+    exit;
+}
+
+// Obtener el usuario de destino a partir del anuncio
+$queryUsuarioDestino = "SELECT Usuario FROM Anuncios WHERE IdAnuncio = ?";
+$stmtDestino = mysqli_prepare($connectionID, $queryUsuarioDestino);
+
+if ($stmtDestino) {
+    mysqli_stmt_bind_param($stmtDestino, "i", $adId);
+    mysqli_stmt_execute($stmtDestino);
+    mysqli_stmt_bind_result($stmtDestino, $usuarioDestino);
+    mysqli_stmt_fetch($stmtDestino);
+    mysqli_stmt_close($stmtDestino);
+
+    // Verificar si se obtuvo un usuario
+    if (!$usuarioDestino) {
+        echo "<h1>Error</h1><p>No se encontró el usuario del anuncio especificado.</p>";
+        exit;
+    }
+} else {
+    echo "<h1>Error</h1><p>Error al preparar la consulta para obtener el usuario de destino: " . mysqli_error($connectionID) . "</p>";
+    exit;
+}
+
+// Verificar si se recibieron los datos del formulario
+if (empty($_POST['message'])) {
+    echo "<h1>Error</h1><p>El mensaje es obligatorio.</p>";
+    exit;
+}
+
+// Limpiar y procesar los datos del formulario
+$message = mysqli_real_escape_string($connectionID, $_POST['message']);
+$option = isset($_POST['option']) ? (int)$_POST['option'] : 0;
+
+// Asociar el tipo de mensaje con un texto
+$typeMap = [
+    1 => "Más información",
+    2 => "Cita",
+    3 => "Oferta",
+];
+$typeTitle = isset($typeMap[$option]) ? $typeMap[$option] : "Tipo no especificado";
+
+// Insertar el mensaje en la base de datos
+$sql = "INSERT INTO Mensajes (TMensaje, Texto, Anuncio, UsuarioOrigen, UsuarioDestino)
+        VALUES (?, ?, ?, ?, ?)";
+$stmt = mysqli_prepare($connectionID, $sql);
+
+if ($stmt) {
+    mysqli_stmt_bind_param($stmt, "isiii", $option, $message, $adId, $usuarioOrigen, $usuarioDestino);
+    $execution = mysqli_stmt_execute($stmt);
+
+    if (!$execution) {
+        echo "<h1>Error</h1><p>Error al enviar el mensaje: " . mysqli_error($connectionID) . "</p>";
+        exit;
+    }
+
+    mysqli_stmt_close($stmt);
+} else {
+    echo "<h1>Error</h1><p>Error al preparar la consulta: " . mysqli_error($connectionID) . "</p>";
+    exit;
+}
+
+// Cerrar conexión
+mysqli_close($connectionID);
+
+// Mostrar los datos del formulario en HTML
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,53 +96,16 @@
         title="<?php include '../inc/styleSelector.php' ?>"
         id="<?php include '../inc/styleSelector.php' ?>"
     >
-    <!-- Otros estilos y scripts -->
     <title>Mensaje enviado</title>
 </head>
 <body>
-        
     <?php include "../inc/header.php"; ?>
 
     <main id="main-content">
-        <?php
-            // Definir opciones válidas y obtener datos del formulario
-            $validOptions = ["info", "date", "offer"];
-            $message = isset($_POST['message']) ? trim($_POST['message']) : '';
-            $option = isset($_POST['option']) ? $_POST['option'] : '';
-
-            // Verificar que se haya enviado el mensaje y que la opción sea válida
-            if (empty($message)) {
-                echo "<h1 class='title'>Error</h1>";
-                echo "<p>No se ha escrito ningún mensaje.</p>";
-                exit;
-            } 
-            // (comprobacion que se hace mal, selecciones lo que selecciones da error)
-            // elseif (!in_array($option, $validOptions)) {
-            //     echo "<h1 class='title'>Error</h1>";
-            //     echo "<p>El tipo de mensaje no es válido.</p>";
-            //     exit;
-            // }
-
-            // Asignar título e ícono según la opción seleccionada
-            $typeTitle = "";
-            $iconClass = "";
-
-            if ($option == "info") {
-                $typeTitle = "Más información solicitada";
-                $iconClass = "fa-circle-info";
-            } elseif ($option == "date") {
-                $typeTitle = "Cita solicitada";
-                $iconClass = "fa-calendar-check";
-            } elseif ($option == "offer") {
-                $typeTitle = "Oferta enviada";
-                $iconClass = "fa-handshake";
-            }
-        ?>
-
         <h1 class="title">Mensaje enviado</h1>
         <span class="type">
-            <h2 class="title"><?php echo $typeTitle; ?></h2>
-            <i class="fa-solid <?php echo $iconClass; ?>"></i>
+            <h2 class="title"><?php echo htmlspecialchars($typeTitle); ?></h2>
+            <i class="fa-solid fa-paper-plane"></i>
         </span>
         <section class="message">
             <section class="messageContent">
@@ -64,13 +114,12 @@
             <hr class="solid">
             <section class="messageInfo">
                 <span><?php echo date("d/m/Y"); ?></span>
-                <span>Louis Amoeba</span>
+                <span>De: Usuario #<?php echo $usuarioOrigen; ?></span>
+                <span>Para: Usuario #<?php echo $usuarioDestino; ?></span>
             </section>
         </section>
     </main>
 
     <?php include "../inc/footer.php"; ?>
-
-
 </body>
 </html>
