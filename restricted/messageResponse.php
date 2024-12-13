@@ -14,6 +14,8 @@ if (!isset($_SESSION['AdId']) || !isset($_SESSION['userSession'])) {
 $adId = $_SESSION['AdId'];
 $usuarioOrigen = $_SESSION['userSession'];
 
+session_commit();
+
 // Conexión a la base de datos
 $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
 if (!$connectionID) {
@@ -80,6 +82,28 @@ if ($stmt) {
     exit;
 }
 
+$sql = "
+    SELECT NomUsuario, IdUsuario
+    FROM Usuarios 
+    WHERE IdUsuario IN (?, ?);
+";
+
+$stmt = mysqli_prepare($connectionID, $sql);
+$stmt->bind_param("ii", $usuarioOrigen, $usuarioDestino);
+$stmt->execute();
+$result = $stmt->get_result();
+$usuarios = $result->fetch_all(MYSQLI_ASSOC);
+
+foreach ($usuarios as $usuario) {
+    if ($usuario['IdUsuario'] == $usuarioOrigen) {
+        $usuarioOrigen = $usuario['NomUsuario'];
+    } 
+
+    if ($usuario['IdUsuario'] == $usuarioDestino) {
+        $usuarioDestino = $usuario['NomUsuario'];
+    } 
+}
+
 // Cerrar conexión
 mysqli_close($connectionID);
 
@@ -96,6 +120,8 @@ mysqli_close($connectionID);
         title="<?php include '../inc/styleSelector.php' ?>"
         id="<?php include '../inc/styleSelector.php' ?>"
     >
+    <script src="https://kit.fontawesome.com/fb64e90a7d.js" crossorigin="anonymous"></script>
+
     <title>Mensaje enviado</title>
 </head>
 <body>
@@ -114,8 +140,8 @@ mysqli_close($connectionID);
             <hr class="solid">
             <section class="messageInfo">
                 <span><?php echo date("d/m/Y"); ?></span>
-                <span>De: Usuario #<?php echo $usuarioOrigen; ?></span>
-                <span>Para: Usuario #<?php echo $usuarioDestino; ?></span>
+                <span>De: <?php echo $usuarioOrigen; ?></span>
+                <span>Para: <?php echo $usuarioDestino; ?></span>
             </section>
         </section>
     </main>

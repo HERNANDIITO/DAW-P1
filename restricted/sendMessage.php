@@ -12,6 +12,8 @@ if (!isset($_SESSION['AdId'])) {
 // Obtener el ID del anuncio desde la sesión
 $adId = $_SESSION['AdId'];
 
+session_commit();
+
 // Conexión a la base de datos
 $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
 
