@@ -139,7 +139,9 @@ if ( isset($_FILES["pfp"]) ) {
     $types .= "s";
 
     if (!empty($currentPfp) && file_exists($currentPfp)) {
-        unlink($currentPfp);
+        if ( $currentPfp != "../assets/img/pfps/default.png" ) {
+            unlink($currentPfp);
+        } 
     }
 }
 
@@ -151,7 +153,9 @@ if ( isset($deletePhoto) ) {
     $types .= "s";
 
     if (!empty($currentPfp) && file_exists($currentPfp)) {
-        unlink($currentPfp);
+        if ( $currentPfp != "../assets/img/pfps/default.png" ) {
+            unlink($currentPfp);
+        } 
     }
 }
 
