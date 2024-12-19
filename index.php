@@ -27,6 +27,76 @@
 <?php endif; ?>
 <?php  session_commit(); ?>
 
+
+
+<!-- ficherada -->
+<?php
+$ficheroAnuncios = 'data/anuncios_escogidos.txt';
+
+// Leer y procesar el archivo de anuncios escogidos
+$anunciosEscogidos = [];
+if (file_exists($ficheroAnuncios)) {
+    $lineas = file($ficheroAnuncios, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lineas as $linea) {
+        parse_str(str_replace([';', ':'], ['&', '='], $linea), $anuncio);
+        $anunciosEscogidos[] = $anuncio;
+    }
+}
+
+// Seleccionar un anuncio al azar
+$anuncioSeleccionado = $anunciosEscogidos[array_rand($anunciosEscogidos)];
+
+// Obtener información del anuncio de la base de datos
+$connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
+$idAnuncio = $anuncioSeleccionado['IdAnuncio'];
+$queryAnuncio = "
+    SELECT 
+        Anuncios.*, 
+        Paises.Nombre AS PaisNombre
+    FROM 
+        Anuncios
+    JOIN 
+        Paises ON Anuncios.Pais = Paises.IdPais
+    WHERE 
+        Anuncios.IdAnuncio = $idAnuncio;
+";
+$resultAnuncio = mysqli_query($connectionID, $queryAnuncio);
+$anuncioBD = mysqli_fetch_assoc($resultAnuncio);
+mysqli_close($connectionID);
+
+?>
+
+<!-- consejismo -->
+<?php
+// Leer el fichero JSON de consejos
+$consejosFile = 'data/consejos.json';
+if (file_exists($consejosFile)) {
+    $consejos = json_decode(file_get_contents($consejosFile), true);
+    
+    if (is_array($consejos) && count($consejos) > 0) {
+        // Seleccionar un consejo aleatorio
+        $consejoAleatorio = $consejos[array_rand($consejos)];
+        
+        // Obtener las propiedades del consejo
+        $categoria = htmlspecialchars($consejoAleatorio['categoria']);
+        $importancia = htmlspecialchars($consejoAleatorio['importancia']);
+        $descripcion = htmlspecialchars($consejoAleatorio['descripcion']);
+    } else {
+        $categoria = "N/A";
+        $importancia = "N/A";
+        $descripcion = "No hay consejos disponibles en este momento.";
+    }
+} else {
+    $categoria = "N/A";
+    $importancia = "N/A";
+    $descripcion = "El archivo de consejos no existe.";
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -69,10 +139,37 @@
 
     <main id="main-content">
         <h1 class="mainTitle">FOTOCASA 2</h1>
+        <!-- <div class="dailyAd">
+            <h2>wowww</h2>
+        </div> -->
         <section class="search">
             <label for="search">Búsqueda rápida</label>
             <input name="search" type="text">
         </section>
+        <!-- Apartado de anuncios del dia  -->
+        <section class="dailyAd">
+            <a href="../restricted/cardDetails.php?id=<?php echo $anuncioBD['IdAnuncio']?>">
+                <section class="featuredCard">
+                    <h2>Anuncio del dia</h2>
+                    <img class="mainImg" src="assets/img/houses/<?php echo $anuncioBD['Foto']; ?>" alt="<?php echo $anuncioBD['Alternativo']; ?>">
+                    <h1 class="title"><?php echo $anuncioBD['Titulo']; ?></h1>
+                    <section class="info">
+                        <p><i class="fa-solid fa-location-dot"></i> <?php echo $anuncioBD['PaisNombre'] . ', ' . $anuncioBD['Ciudad']; ?></p>
+                        <p><i class="fa-solid fa-tag"></i> <?php echo $anuncioBD['Precio']; ?>€</p>
+                        <p><strong>Seleccionado por:</strong> <?php echo $anuncioSeleccionado['Persona']; ?></p>
+                        <p><strong>Comentario:</strong> <?php echo $anuncioSeleccionado['Comentario']; ?></p>
+                    </section>
+                </section>
+            </a>
+        </section>
+        <!-- Apartado de Consejo de Compra/Venta -->
+        <section class="consejo">
+            <h2>Consejo de Compra/Venta</h2>
+            <p><strong>Categoría:</strong> <?= $categoria ?></p>
+            <p><strong>Importancia:</strong> <?= $importancia ?></p>
+            <p><strong>Descripción:</strong> <?= $descripcion ?></p>
+        </section>
+                
         <section class="houses">
             <?php 
                 $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");

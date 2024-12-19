@@ -509,6 +509,150 @@ dialog {
 }
 
 
+
+
+    /* Centrado horizontal y ajuste de contexto */
+    .featuredCard {
+        position: relative; /* Permite el posicionamiento sin afectar a otros elementos */
+        margin: 20px auto; /* Centrado horizontal mediante auto en los márgenes */
+        height: 400px;
+        width: 300px;
+        display: flex;
+        flex-flow: column;
+        padding: 10px;
+        background-color: var(--alt-color);
+        color: var(--main-bg-color);
+        border-radius: 15px;
+        gap: 5px;
+        transition: all 0.25s ease-in-out;
+        overflow: hidden; /* Para el gradiente animado */
+        z-index: 1; /* Evita superposición sobre otros elementos */
+    }
+
+    /* Efecto del gradiente animado */
+    .featuredCard::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(180deg, rgb(55, 23, 4), rgb(252, 210, 179));
+        animation: rotateGradient 3s linear infinite;
+        z-index: -1; /* Coloca el gradiente detrás del contenido */
+    }
+
+    @keyframes rotateGradient {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .featuredCard:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        scale: 1.05;
+        z-index: 2; /* Sube un nivel al hacer hover */
+    }
+
+    .featuredCard .mainImg {
+        height: 70%;
+        width: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        background-color: var(--photo-bg);
+    }
+
+    .featuredCard .title {
+        font-size: xx-large;
+        text-align: center;
+    }
+
+    .featuredCard .info {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        gap: 15px;
+        font-size: x-large;
+        margin: 10px;
+        text-align: center;
+    }
+
+    .featuredCard .info p {
+        text-wrap: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+
+
+
+
+.consejo {
+    position: relative;
+    margin: 20px;
+    padding: 15px;
+    background-color: #261206; /* Fondo marrón */
+    color: white; /* Letras blancas */
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.consejo h2 {
+    font-size: 1.5em;
+    color: white;
+}
+
+.consejo p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+/* Gradiente animado en el borde */
+.consejo::before {
+    content: '';
+    position: absolute;
+    top: -10%; /* Se extiende un poco más allá del contenedor */
+    left: -10%;
+    width: 120%; /* Cubre más del área para permitir la animación */
+    height: 120%;
+    background-image: linear-gradient(180deg, rgb(120, 69, 50), rgb(186, 159, 135));
+    animation: rotBGimg 3s linear infinite;
+    z-index: 2;
+    border-radius: 30px; /* Se ajusta a los bordes del contenedor */
+}
+
+.consejo::after {
+    content: '';
+    position: absolute;
+    inset: 5px; /* Espaciado interno para mostrar el efecto del borde */
+    background-color: #261206;
+    border-radius: 15px;
+    z-index: 3;
+}
+
+@keyframes rotBGimg {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Asegura que el contenido esté por encima de los efectos */
+.consejo h2, .consejo p {
+    position: relative;
+    z-index: 4;
+}
+
+
+
+
+
 @media screen and (width <= 845px) {
     .mainHeader {
         #navBar {

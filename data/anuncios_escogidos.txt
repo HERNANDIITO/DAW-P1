@@ -1,0 +1,5 @@
+IdAnuncio:72;Persona:Juan Pérez;Comentario:Excelente ubicación y precio competitivo.
+IdAnuncio:73;Persona:María López;Comentario:Ideal para familias con hijos.
+IdAnuncio:74;Persona:Carlos García;Comentario:Acabados de lujo en pleno centro.
+IdAnuncio:77;Persona:Ana Martínez;Comentario:Perfecto para quienes buscan tranquilidad y naturaleza.
+IdAnuncio:76;Persona:Luis Fernández;Comentario:Oportunidad única en una zona de alta demanda.
