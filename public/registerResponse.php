@@ -122,6 +122,19 @@ else {
 }
 
 
+$subida = "../assets/img/pfps/";
+
+if ( isset($_FILES["pfp"]) ) {
+    move_uploaded_file(
+        $_FILES["pfp"]["tmp_name"],                 // en vez de "pfp" deberia de ir el nombre del input en la subida
+        $subida . $_FILES["pfp"]["name"] . time()   // ruta en la que se sube
+    );
+    
+    $subida .= $_FILES["pfp"]["name"] . time();
+} else {
+    $subida .= "default.png";
+}
+
 // Conectar a la base de datos
 $connectionID = mysqli_connect("localhost:3306", "admin", "admin", "fotocasa2");
 
@@ -130,13 +143,13 @@ if (!$connectionID) {
 }
 
 // Preparar consulta para insertar usuario
-$query = "INSERT INTO Usuarios (NomUsuario, Clave, Email, Sexo, FNacimiento, Ciudad, Pais, Estilo) 
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+$query = "INSERT INTO Usuarios (NomUsuario, Clave, Email, Sexo, FNacimiento, Ciudad, Pais, Estilo, Foto) 
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = mysqli_prepare($connectionID, $query);
 
 if ($stmt) {
-    mysqli_stmt_bind_param($stmt, "sssissii", $username, $password, $email, $sex, $birthdate, $city, $country, $style);
+    mysqli_stmt_bind_param($stmt, "sssissiis", $username, $password, $email, $sex, $birthdate, $city, $country, $style, $subida);
 
     if (mysqli_stmt_execute($stmt)) {
         $userId = mysqli_insert_id($connectionID); // Obtener el ID del usuario creado
@@ -199,6 +212,10 @@ $_SESSION['userSession'] = $userId;
             <section class="inputGroup">
                 <label>País de residencia:</label>
                 <span><?php echo htmlspecialchars($country); ?></span>
+            </section>
+            <section class="inputGroup">
+                <label>Foto de perfil</label>
+                <img src="<?php echo $subida ?>" alt="Foto de perfil del usuario">
             </section>
         </section>
 

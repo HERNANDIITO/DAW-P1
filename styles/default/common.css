@@ -289,9 +289,28 @@ a {
     }
 }
 
+
+.formResult {
+    gap: 1rem;
+    display: flex;
+    flex-flow: column;
+    max-width: 80%;
+    margin: auto;
+}
+
 .inputGroup {
     display: flex;
     flex-flow: column;
+
+    img {
+        height: auto;
+        width: 256px;
+        display: block;
+        border: 5px solid var(--alt-color);
+        border-radius: 15px;
+        border-top-left-radius: 15px;
+        border-top-left-radius: 0;
+    }
 
     .radioGroup {
         display: flex;

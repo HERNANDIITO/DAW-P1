@@ -54,7 +54,7 @@
 ?> 
 
 
-<form action="./registerResponse.php" method="POST">
+<form action="./registerResponse.php" method="POST" enctype="multipart/form-data">
     <section class="inputGroup">
         <label for="email">Email</label>
         <input value="<?php echo isset($user['Email']) ? $user['Email'] : '' ?>" name="email" placeholder="usu@email.com" id="email">
@@ -97,7 +97,7 @@
     </section>
     <section class="inputGroup">
         <label for="pfp">Foto de perfil</label>
-        <input name="pfp">
+        <input type="file" name="pfp">
     </section>
     <button class="greenButton" id="submitLoginButton">Confirmar</button>
 </form>

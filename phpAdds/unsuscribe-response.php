@@ -27,10 +27,22 @@
 
     try {
         // Eliminar el usuario
+        $stmt = $conn->prepare("SELECT Foto FROM usuarios WHERE IdUsuario = ?");
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $usuario = $result->fetch_assoc();
+
         $stmt = $conn->prepare("DELETE FROM usuarios WHERE IdUsuario = ?");
         $stmt->bind_param("i", $userID);
         $stmt->execute();
         echo "Fotos eliminadas: " . $stmt->affected_rows . "\n";
+        
+        if (file_exists($usuario["Foto"])) {
+            if ( $usuario["Foto"] != "../assets/img/pfps/default.png" ) {
+                unlink($usuario["Foto"]);
+            } 
+        }
         
         // Confirmar la transacción
         $conn->commit();

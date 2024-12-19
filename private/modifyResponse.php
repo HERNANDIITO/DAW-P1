@@ -10,6 +10,8 @@ $sex = $_POST['sex'];
 $birthdate = $_POST['birthdate'];
 $city = $_POST['city'];
 $country = $_POST['country'];
+$deletePhoto = $_POST['deletePhoto'];
+$currentPfp = $_POST['currentPfp'];
 
 // Convertir sexo a un valor numérico
 if ($sex === "hombre") {
@@ -120,6 +122,37 @@ if (!empty($country) && $country !== "Selecciona tu país") {
     $updates[] = "Pais = ?";
     $params[] = $country;
     $types .= "s";
+}
+
+$subida = "../assets/img/pfps/";
+
+if ( isset($_FILES["pfp"]) ) {
+    $subida .= $_FILES["pfp"]["name"] . time();
+
+    move_uploaded_file(
+        $_FILES["pfp"]["tmp_name"],                 // en vez de "pfp" deberia de ir el nombre del input en la subida
+        $subida   // ruta en la que se sube
+    );
+
+    $updates[] = "Foto = ?";
+    $params[] = $subida;
+    $types .= "s";
+
+    if (!empty($currentPfp) && file_exists($currentPfp)) {
+        unlink($currentPfp);
+    }
+}
+
+if ( isset($deletePhoto) ) {
+    $subida = "../assets/img/pfps/default.png";
+
+    $updates[] = "Foto = ?";
+    $params[] = $subida;
+    $types .= "s";
+
+    if (!empty($currentPfp) && file_exists($currentPfp)) {
+        unlink($currentPfp);
+    }
 }
 
 if (empty($updates)) {

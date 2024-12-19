@@ -54,7 +54,7 @@
 ?> 
 
 
-<form action="../private/modifyResponse.php" method="POST">
+<form action="../private/modifyResponse.php" method="POST" enctype="multipart/form-data">
     <section class="inputGroup">
         <label for="email">Email</label>
         <input value="<?php echo isset($user['Email']) ? $user['Email'] : '' ?>" name="email" placeholder="usu@email.com" id="email">
@@ -97,7 +97,15 @@
     </section>
     <section class="inputGroup">
         <label for="pfp">Foto de perfil</label>
-        <input name="pfp">
+        <img style="border: 5px solid; border-top-right-radius: 15px;" src="<?php echo $user['Foto'] ?>" alt="">
+        <input style="border-top-right-radius: 0;" type="file" name="pfp">
+    
     </section>
+    <section class="inputGroup">
+        <label for="deletePhoto">Eliminar foto</label>
+        <input type="checkbox" name="deletePhoto">
+        <input type="hidden" value="<?php echo $user['Foto'] ?>" name="currentPfp">
+    </section>
+    
     <button class="greenButton" id="submitLoginButton">Confirmar</button>
 </form>
